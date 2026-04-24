@@ -967,6 +967,14 @@ section {
   gap: 2rem;
   margin-top: 3rem;
 }
+/* Solo variant: one big centered card for a single mascot */
+.mascots-grid--solo {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
+.mascots-grid--solo .mascot-info { padding: 2.25rem 2.25rem 2.5rem; }
+.mascots-grid--solo .mascot-info h3 { font-size: 2.4rem; }
+.mascots-grid--solo .mascot-info p { font-size: 1.05rem; }
 .mascot-card {
   background: #fff;
   border: 4px solid var(--ink);
