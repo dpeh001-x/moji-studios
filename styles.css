@@ -174,8 +174,25 @@ body {
   text-decoration: none;
   color: var(--ink);
 }
-.logo-icon { display: block; image-rendering: auto; }
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 48px;
+}
 .logo-icon svg { display: block; }
+.logo-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 3px 0 rgba(0,0,0,0.15));
+  transition: transform 0.25s cubic-bezier(.2,.9,.3,1.3);
+}
+.nav-logo:hover .logo-icon img {
+  transform: rotate(-6deg) scale(1.08);
+}
 
 .logo-text {
   font-family: var(--font-display);
