@@ -53,6 +53,9 @@
 </head>
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
+
 <!-- Animated CRT scanlines overlay -->
 <div class="scanlines" aria-hidden="true"></div>
 <div class="crt-flicker" aria-hidden="true"></div>
@@ -72,26 +75,25 @@
     <a href="#top" class="nav-logo">
       <span class="logo-icon" aria-hidden="true">
         <svg viewBox="0 0 40 40" width="40" height="40">
-          <!-- ears -->
-          <circle cx="10" cy="11" r="5.5" fill="#a0663a" stroke="#2a1910" stroke-width="2"/>
-          <circle cx="30" cy="11" r="5.5" fill="#a0663a" stroke="#2a1910" stroke-width="2"/>
-          <circle cx="10" cy="11" r="2.4" fill="#fff0c8"/>
-          <circle cx="30" cy="11" r="2.4" fill="#fff0c8"/>
-          <!-- face -->
-          <ellipse cx="20" cy="22" rx="13" ry="12" fill="#fff0c8" stroke="#2a1910" stroke-width="2"/>
-          <!-- forehead stripes -->
-          <rect x="18" y="12" width="1.3" height="4" rx="0.6" fill="#a0663a"/>
-          <rect x="20.7" y="12" width="1.3" height="4" rx="0.6" fill="#a0663a"/>
+          <!-- tuft on head -->
+          <path d="M 18 5 Q 20 1 22 5 Q 21 8 20 7 Q 19 8 18 5 Z" fill="#ffd84d" stroke="#2a1910" stroke-width="2" stroke-linejoin="round"/>
+          <!-- body/head (yellow chick) -->
+          <ellipse cx="20" cy="22" rx="14" ry="13" fill="#ffd84d" stroke="#2a1910" stroke-width="2.5"/>
+          <!-- wing -->
+          <ellipse cx="9.5" cy="23" rx="3.8" ry="5" fill="#ffc52a" stroke="#2a1910" stroke-width="1.8" transform="rotate(-12 9.5 23)"/>
           <!-- eyes -->
-          <ellipse cx="15" cy="21" rx="2.2" ry="2.8" fill="#2a1910"/>
-          <ellipse cx="25" cy="21" rx="2.2" ry="2.8" fill="#2a1910"/>
-          <circle cx="15.7" cy="20" r="0.9" fill="#fff"/>
-          <circle cx="25.7" cy="20" r="0.9" fill="#fff"/>
+          <ellipse cx="16.5" cy="20" rx="2.1" ry="2.6" fill="#2a1910"/>
+          <ellipse cx="24" cy="20" rx="2.1" ry="2.6" fill="#2a1910"/>
+          <circle cx="17.2" cy="19.2" r="0.8" fill="#fff"/>
+          <circle cx="24.7" cy="19.2" r="0.8" fill="#fff"/>
+          <!-- beak -->
+          <path d="M 20 23 L 23 25 L 17 25 Z" fill="#ff9454" stroke="#2a1910" stroke-width="1.4" stroke-linejoin="round"/>
           <!-- blush -->
-          <ellipse cx="11.5" cy="25" rx="2" ry="1.2" fill="#ff8ab0" opacity="0.85"/>
-          <ellipse cx="28.5" cy="25" rx="2" ry="1.2" fill="#ff8ab0" opacity="0.85"/>
-          <!-- smile -->
-          <path d="M 17 25 Q 20 28 23 25" stroke="#2a1910" stroke-width="1.6" fill="#2a1910" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="11.5" cy="26" rx="1.8" ry="1.1" fill="#ff8ab0" opacity="0.85"/>
+          <ellipse cx="28.5" cy="26" rx="1.8" ry="1.1" fill="#ff8ab0" opacity="0.85"/>
+          <!-- tiny feet -->
+          <path d="M 16 35 L 15 37 M 16 35 L 17 37" stroke="#ff9454" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          <path d="M 24 35 L 23 37 M 24 35 L 25 37" stroke="#ff9454" stroke-width="1.6" stroke-linecap="round" fill="none"/>
         </svg>
       </span>
       <span class="logo-text">MOJI<span class="logo-text-accent">STUDIOS</span></span>
@@ -113,12 +115,21 @@
   <div class="hero-stars" aria-hidden="true"></div>
   <div class="hero-sun" aria-hidden="true"></div>
 
+  <!-- Floating parallax shapes -->
+  <div class="hero-shapes" aria-hidden="true">
+    <div class="hero-shape hero-shape-a" data-depth="30"></div>
+    <div class="hero-shape hero-shape-b" data-depth="45"></div>
+    <div class="hero-shape hero-shape-c" data-depth="22"></div>
+    <div class="hero-shape hero-shape-d" data-depth="36"></div>
+    <div class="hero-shape hero-shape-e" data-depth="18"></div>
+  </div>
+
   <div class="hero-content">
     <div class="hero-tag">
       <span class="blink">●</span> EST. 2026 — EARLY 2000s, ETERNALLY
     </div>
 
-    <div class="hero-logo-video">
+    <div class="hero-logo-video" data-depth="10">
       <video autoplay muted loop playsinline preload="auto" aria-label="Moji Studios dancing chick">
         <source src="moji-mascot-1.mp4" type="video/mp4" />
       </video>
@@ -132,11 +143,16 @@
       Cozy retro games, hand-crafted with love. MojiWorld &amp; MojiMon coming soon.
     </p>
     <div class="hero-actions">
-      <a href="#games" class="btn btn-primary">
+      <a href="#games" class="btn btn-primary magnetic">
         <span class="btn-arrow">▶</span> See Our Games
       </a>
-      <a href="#contact" class="btn btn-ghost">Say Hi</a>
+      <a href="#contact" class="btn btn-ghost magnetic">Say Hi</a>
     </div>
+
+    <a href="#games" class="scroll-indicator" aria-label="Scroll to games">
+      <span class="scroll-indicator-text">scroll</span>
+      <span class="scroll-indicator-arrow">▾</span>
+    </a>
   </div>
 
   <div class="hero-console" aria-hidden="true">
@@ -173,7 +189,7 @@
     <div class="games-grid">
 
       <!-- MojiWorld — flagship 2D side-scrolling MMORPG -->
-      <article class="game-card game-card-featured" data-neon="pink">
+      <article class="game-card game-card-featured tilt-card" data-neon="pink">
         <div class="game-art">
           <svg class="pixel" viewBox="0 0 128 72" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -408,7 +424,7 @@
       </article>
 
       <!-- MojiMon — monster-breeding RPG -->
-      <article class="game-card game-card-featured" data-neon="cyan">
+      <article class="game-card game-card-featured tilt-card" data-neon="cyan">
         <div class="game-art">
           <svg class="pixel" viewBox="0 0 128 72" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -593,9 +609,9 @@
     <p class="section-sub">Our one-and-only mascot. Named after sweet potatoes, because obviously.</p>
 
     <div class="mascots-grid mascots-grid--solo">
-      <article class="mascot-card">
+      <article class="mascot-card tilt-card" data-neon="pink">
         <div class="mascot-video">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="Guguma the Moji mascot">
+          <video id="guguma-video" autoplay muted loop playsinline preload="metadata" aria-label="Guguma the Moji mascot">
             <source src="moji-mascot-2.mp4" type="video/mp4" />
           </video>
         </div>
@@ -603,6 +619,12 @@
           <span class="mascot-tag">MOJI MASCOT</span>
           <h3>Guguma</h3>
           <p>The face of Moji Studios. Wears the logo like a t-shirt, dances without warning, and will absolutely stare into your soul if you don't smile back. Sweet potato energy only.</p>
+          <div class="mood-picker" role="tablist" aria-label="Guguma's mood">
+            <span class="mood-label">Mood:</span>
+            <button type="button" class="mood-chip is-active" data-mood="moji-mascot-2.mp4" aria-pressed="true">👋 Hi</button>
+            <button type="button" class="mood-chip" data-mood="moji-mascot-1.mp4" aria-pressed="false">✨ Bounce</button>
+            <button type="button" class="mood-chip" data-mood="moji-logo.mp4" aria-pressed="false">🎬 Logo</button>
+          </div>
         </div>
       </article>
     </div>
