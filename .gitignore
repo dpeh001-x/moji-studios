@@ -1,0 +1,18 @@
+# System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / tooling
+.claude/
+.vscode/
+.idea/
+
+# Temp / build artifacts
+_frames/
+*.log
+node_modules/
+
+# Keep original brand source files (unused locally)
+*.zip
+.wrangler/

@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Moji Studios — a game company dedicated to crafting early 2000s retro games. Home of MojiWorld (2D side-scrolling MMORPG) and MojiMon (creature-breeding RPG)." />
+<meta name="theme-color" content="#fcc41c" />
+<meta name="author" content="Moji Studios" />
+<meta name="keywords" content="Moji Studios, MojiWorld, MojiMon, 2D MMORPG, side-scrolling MMO, creature breeding, early 2000s games, retro gaming, pixel art, indie games" />
+
+<title>Moji Studios — Early 2000s, Reborn.</title>
+
+<link rel="canonical" href="https://moji-studios.com/" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+
+<!-- Open Graph / Facebook / Discord / LinkedIn -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Moji Studios" />
+<meta property="og:url" content="https://moji-studios.com/" />
+<meta property="og:title" content="Moji Studios — Early 2000s, Reborn." />
+<meta property="og:description" content="A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and MojiMon." />
+<meta property="og:image" content="https://moji-studios.com/og-image.svg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Moji Studios — Early 2000s, Reborn." />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Moji Studios — Early 2000s, Reborn." />
+<meta name="twitter:description" content="A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and MojiMon." />
+<meta name="twitter:image" content="https://moji-studios.com/og-image.svg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&family=VT323&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+
+<!-- JSON-LD structured data for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Moji Studios",
+  "url": "https://moji-studios.com",
+  "logo": "https://moji-studios.com/favicon.svg",
+  "foundingDate": "2026",
+  "description": "A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and MojiMon.",
+  "sameAs": []
+}
+</script>
+</head>
+<body>
+
+<!-- Animated CRT scanlines overlay -->
+<div class="scanlines" aria-hidden="true"></div>
+<div class="crt-flicker" aria-hidden="true"></div>
+
+<!-- Loader -->
+<div id="loader" class="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">MOJI</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <div class="loader-text">LOADING... <span id="loader-percent">0</span>%</div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-logo">
+      <span class="logo-icon" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="40" height="40">
+          <!-- ears -->
+          <circle cx="10" cy="11" r="5.5" fill="#a0663a" stroke="#2a1910" stroke-width="2"/>
+          <circle cx="30" cy="11" r="5.5" fill="#a0663a" stroke="#2a1910" stroke-width="2"/>
+          <circle cx="10" cy="11" r="2.4" fill="#fff0c8"/>
+          <circle cx="30" cy="11" r="2.4" fill="#fff0c8"/>
+          <!-- face -->
+          <ellipse cx="20" cy="22" rx="13" ry="12" fill="#fff0c8" stroke="#2a1910" stroke-width="2"/>
+          <!-- forehead stripes -->
+          <rect x="18" y="12" width="1.3" height="4" rx="0.6" fill="#a0663a"/>
+          <rect x="20.7" y="12" width="1.3" height="4" rx="0.6" fill="#a0663a"/>
+          <!-- eyes -->
+          <ellipse cx="15" cy="21" rx="2.2" ry="2.8" fill="#2a1910"/>
+          <ellipse cx="25" cy="21" rx="2.2" ry="2.8" fill="#2a1910"/>
+          <circle cx="15.7" cy="20" r="0.9" fill="#fff"/>
+          <circle cx="25.7" cy="20" r="0.9" fill="#fff"/>
+          <!-- blush -->
+          <ellipse cx="11.5" cy="25" rx="2" ry="1.2" fill="#ff8ab0" opacity="0.85"/>
+          <ellipse cx="28.5" cy="25" rx="2" ry="1.2" fill="#ff8ab0" opacity="0.85"/>
+          <!-- smile -->
+          <path d="M 17 25 Q 20 28 23 25" stroke="#2a1910" stroke-width="1.6" fill="#2a1910" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="logo-text">MOJI<span class="logo-text-accent">STUDIOS</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#games">Games</a>
+      <a href="#mascots">The Cast</a>
+      <a href="#studio">Studio</a>
+      <a href="#craft">The Craft</a>
+      <a href="#contact" class="nav-cta">Press Start</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-stars" aria-hidden="true"></div>
+  <div class="hero-sun" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="blink">●</span> EST. 2026 — EARLY 2000s, ETERNALLY
+    </div>
+
+    <div class="hero-logo-video">
+      <video autoplay muted loop playsinline preload="auto" poster="moji-logo-poster.png" aria-label="Moji Studios animated logo">
+        <source src="moji-logo.mp4" type="video/mp4" />
+      </video>
+      <img class="hero-chick hero-chick-peek" src="moji-chick.png" alt="" aria-hidden="true" />
+    </div>
+
+    <h1 class="hero-title">
+      <span class="glitch" data-text="Early 2000s,">Early 2000s,</span>
+      <span class="hero-title-accent">Reborn.</span>
+    </h1>
+    <p class="hero-sub">
+      Moji Studios is a game company dedicated to crafting the games you grew up on —
+      cozy 2D side-scrolling MMOs, creature-collecting adventures, and the pixelated
+      magic of the early 2000s. Modernised, multiplayer, made with obsessive love.
+    </p>
+    <div class="hero-actions">
+      <a href="#games" class="btn btn-primary">
+        <span class="btn-arrow">▶</span> Explore Our Worlds
+      </a>
+      <a href="#studio" class="btn btn-ghost">About the Studio</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-target="2">0</span>
+        <span class="stat-label">Flagship Worlds</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="240">0</span><span class="stat-plus">+</span>
+        <span class="stat-label">Mojimon Species</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="8">0</span>
+        <span class="stat-label">Continents</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="60">0</span>
+        <span class="stat-label">FPS Locked</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-console" aria-hidden="true">
+    <div class="console-screen">
+      <div class="console-pixel-art"></div>
+    </div>
+    <div class="console-body">
+      <div class="console-dpad">
+        <div class="dpad-v"></div>
+        <div class="dpad-h"></div>
+      </div>
+      <div class="console-buttons">
+        <div class="btn-a">A</div>
+        <div class="btn-b">B</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>♥ EST. 2026 ♥ EARLY 2000s FOREVER ♥ MOJIWORLD ONLINE ♥ BREED YOUR MOJIMON ♥ CHIBI-FORWARD ♥ HAND-PIXELED ♥ COZY MMO VIBES ♥ 240+ CREATURES ♥ SIDE-SCROLL YOUR HEART OUT ♥</span>
+      <span>♥ EST. 2026 ♥ EARLY 2000s FOREVER ♥ MOJIWORLD ONLINE ♥ BREED YOUR MOJIMON ♥ CHIBI-FORWARD ♥ HAND-PIXELED ♥ COZY MMO VIBES ♥ 240+ CREATURES ♥ SIDE-SCROLL YOUR HEART OUT ♥</span>
+    </div>
+  </div>
+</section>
+
+<!-- Studio / About -->
+<section id="studio" class="studio">
+  <div class="container">
+    <div class="section-label">01 / STUDIO</div>
+    <div class="studio-grid">
+      <div class="studio-copy">
+        <h2 class="section-title">
+          We make the games<br />
+          that <em>made us</em>.
+        </h2>
+        <p class="lead">
+          Moji Studios is a game company dedicated to crafting early 2000s retro games —
+          the cozy pixel worlds, the chibi heroes, the endless summer afternoons logged
+          into side-scrolling MMOs with your friends.
+        </p>
+        <p>
+          We grew up on <strong>Super Mario, MapleStory, Pokémon, Neopets, Harvest Moon</strong>
+          — the golden age when games felt like places, when pixel sprites had
+          personality, and when one soundtrack could define an entire childhood.
+        </p>
+        <p>
+          Founded in <strong>2026</strong> by veterans who never stopped playing those games,
+          Moji Studios is rebuilding that era — not with cheap nostalgia, but with craft.
+          Modern engines. Hand-drawn pixel art. Multiplayer servers. <strong>The feeling is the product.</strong>
+        </p>
+        <div class="studio-badges">
+          <div class="badge">
+            <div class="badge-icon">★</div>
+            <div>
+              <div class="badge-title">Early 2000s Specialists</div>
+              <div class="badge-sub">MMO-era aesthetic. Chibi-forward.</div>
+            </div>
+          </div>
+          <div class="badge">
+            <div class="badge-icon">◈</div>
+            <div>
+              <div class="badge-title">Fully Independent</div>
+              <div class="badge-sub">Self-funded. Self-published. EST. 2026.</div>
+            </div>
+          </div>
+          <div class="badge">
+            <div class="badge-icon">⚡</div>
+            <div>
+              <div class="badge-title">Cross-Platform</div>
+              <div class="badge-sub">PC · Mac · Switch · Mobile · Browser</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="studio-visual">
+        <div class="cart cart-1">
+          <div class="cart-label">
+            <div class="cart-title">MOJIWORLD</div>
+            <div class="cart-rating">T</div>
+          </div>
+          <div class="cart-stripe"></div>
+        </div>
+        <div class="cart cart-2">
+          <div class="cart-label">
+            <div class="cart-title">MOJIMON</div>
+            <div class="cart-rating">E</div>
+          </div>
+          <div class="cart-stripe cart-stripe-2"></div>
+        </div>
+        <div class="cart cart-3">
+          <div class="cart-label">
+            <div class="cart-title">??? . ???</div>
+            <div class="cart-rating">SOON</div>
+          </div>
+          <div class="cart-stripe cart-stripe-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Games -->
+<section id="games" class="games">
+  <div class="container">
+    <div class="section-label">02 / OUR WORLDS</div>
+    <h2 class="section-title">Two worlds. <span class="section-title-accent">Infinite memories.</span></h2>
+    <p class="section-sub">A cozy MMO and a creature-collector — the two pillars of early 2000s gaming, lovingly rebuilt for today.</p>
+
+    <div class="games-grid">
+
+      <!-- MojiWorld — flagship 2D side-scrolling MMORPG -->
+      <article class="game-card game-card-featured" data-neon="pink">
+        <div class="game-art">
+          <svg class="pixel" viewBox="0 0 128 72" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="mw-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#a8dfff"/>
+                <stop offset="50%" stop-color="#d8e8ff"/>
+                <stop offset="85%" stop-color="#ffd4e5"/>
+                <stop offset="100%" stop-color="#fff4d4"/>
+              </linearGradient>
+            </defs>
+            <!-- Sky -->
+            <rect width="128" height="56" fill="url(#mw-sky)"/>
+
+            <!-- Sun -->
+            <rect x="100" y="8" width="6" height="1" fill="#fff5d8"/>
+            <rect x="98" y="9" width="10" height="2" fill="#fff5d8"/>
+            <rect x="97" y="11" width="12" height="4" fill="#ffd45e"/>
+            <rect x="98" y="15" width="10" height="2" fill="#ff9454"/>
+            <rect x="100" y="17" width="6" height="1" fill="#ff9454"/>
+
+            <!-- Fluffy clouds -->
+            <rect x="8" y="6" width="14" height="3" fill="#fff"/>
+            <rect x="10" y="4" width="10" height="2" fill="#fff"/>
+            <rect x="12" y="9" width="6" height="1" fill="#fff"/>
+
+            <rect x="38" y="14" width="18" height="3" fill="#fff"/>
+            <rect x="40" y="12" width="14" height="2" fill="#fff"/>
+            <rect x="42" y="17" width="10" height="1" fill="#fff"/>
+
+            <rect x="66" y="5" width="16" height="3" fill="#fff"/>
+            <rect x="68" y="3" width="12" height="2" fill="#fff"/>
+            <rect x="70" y="8" width="8" height="1" fill="#fff"/>
+
+            <!-- Back hills -->
+            <polygon points="0,46 14,36 28,42 44,32 60,42 76,34 92,40 108,32 128,44 128,56 0,56" fill="#b8e0a8"/>
+            <!-- Mid hills -->
+            <polygon points="0,52 16,44 32,50 48,42 64,50 80,44 96,52 112,44 128,50 128,56 0,56" fill="#8ac87a"/>
+
+            <!-- Cottage (center) -->
+            <!-- Roof -->
+            <polygon points="70,32 92,32 96,40 66,40" fill="#d94a4a"/>
+            <rect x="66" y="40" width="30" height="2" fill="#a83030"/>
+            <!-- Flag pole + flag -->
+            <rect x="80" y="24" width="1" height="8" fill="#3a2a1a"/>
+            <rect x="81" y="24" width="5" height="3" fill="#ff6db5"/>
+            <rect x="82" y="25" width="3" height="1" fill="#fff"/>
+            <!-- Chimney + smoke -->
+            <rect x="88" y="28" width="2" height="4" fill="#a0625a"/>
+            <rect x="88" y="24" width="2" height="2" fill="#fff" opacity="0.85"/>
+            <rect x="89" y="21" width="2" height="2" fill="#fff" opacity="0.6"/>
+            <rect x="90" y="18" width="2" height="2" fill="#fff" opacity="0.4"/>
+            <!-- Walls -->
+            <rect x="68" y="42" width="26" height="14" fill="#f4e6d0"/>
+            <rect x="68" y="42" width="26" height="1" fill="#d4c6b0"/>
+            <!-- Wood beams -->
+            <rect x="68" y="48" width="26" height="1" fill="#8a5028"/>
+            <rect x="74" y="42" width="1" height="14" fill="#8a5028"/>
+            <rect x="87" y="42" width="1" height="14" fill="#8a5028"/>
+            <!-- Door -->
+            <rect x="78" y="48" width="6" height="8" fill="#8a5028"/>
+            <rect x="79" y="50" width="4" height="5" fill="#6a3a18"/>
+            <rect x="82" y="52" width="1" height="1" fill="#ffd45e"/>
+            <!-- Windows -->
+            <rect x="70" y="44" width="4" height="3" fill="#5ec6ff"/>
+            <rect x="70" y="44" width="4" height="1" fill="#a8e5ff"/>
+            <rect x="72" y="44" width="1" height="3" fill="#fff"/>
+            <rect x="88" y="44" width="4" height="3" fill="#5ec6ff"/>
+            <rect x="88" y="44" width="4" height="1" fill="#a8e5ff"/>
+            <rect x="90" y="44" width="1" height="3" fill="#fff"/>
+
+            <!-- Cherry blossom tree (left) -->
+            <rect x="12" y="48" width="2" height="8" fill="#8a5028"/>
+            <rect x="11" y="46" width="1" height="3" fill="#8a5028"/>
+            <rect x="14" y="44" width="1" height="5" fill="#8a5028"/>
+            <rect x="4" y="38" width="14" height="6" fill="#ff9fc4"/>
+            <rect x="3" y="40" width="16" height="2" fill="#ff9fc4"/>
+            <rect x="5" y="36" width="10" height="2" fill="#ffc8dc"/>
+            <rect x="2" y="42" width="1" height="2" fill="#ff9fc4"/>
+            <rect x="18" y="42" width="1" height="2" fill="#ff9fc4"/>
+            <rect x="6" y="37" width="2" height="1" fill="#fff"/>
+            <rect x="11" y="37" width="2" height="1" fill="#fff"/>
+            <!-- Falling petals -->
+            <rect x="20" y="46" width="1" height="1" fill="#ff9fc4"/>
+            <rect x="24" y="48" width="1" height="1" fill="#ffc8dc"/>
+            <rect x="28" y="44" width="1" height="1" fill="#ff9fc4"/>
+            <rect x="22" y="52" width="1" height="1" fill="#ffc8dc"/>
+
+            <!-- Small tree (right) -->
+            <rect x="112" y="48" width="2" height="6" fill="#8a5028"/>
+            <rect x="108" y="42" width="10" height="6" fill="#7fb86f"/>
+            <rect x="110" y="40" width="6" height="2" fill="#8ac87a"/>
+            <rect x="109" y="44" width="1" height="1" fill="#ffd45e"/>
+            <rect x="115" y="45" width="1" height="1" fill="#ff6db5"/>
+
+            <!-- Bushes -->
+            <rect x="40" y="50" width="6" height="4" fill="#7fb86f"/>
+            <rect x="41" y="49" width="4" height="1" fill="#8ac87a"/>
+            <rect x="43" y="50" width="1" height="1" fill="#ff6db5"/>
+
+            <!-- Grass tufts -->
+            <rect x="6" y="54" width="1" height="2" fill="#5aa860"/>
+            <rect x="24" y="54" width="1" height="2" fill="#5aa860"/>
+            <rect x="52" y="54" width="1" height="2" fill="#5aa860"/>
+            <rect x="100" y="54" width="1" height="2" fill="#5aa860"/>
+            <rect x="122" y="54" width="1" height="2" fill="#5aa860"/>
+
+            <!-- Flowers -->
+            <rect x="30" y="55" width="1" height="1" fill="#ff6db5"/>
+            <rect x="36" y="55" width="1" height="1" fill="#ffd45e"/>
+            <rect x="60" y="55" width="1" height="1" fill="#b48aff"/>
+            <rect x="104" y="55" width="1" height="1" fill="#ff6db5"/>
+
+            <!-- Ground band -->
+            <rect x="0" y="56" width="128" height="16" fill="#7fd490"/>
+            <rect x="0" y="56" width="128" height="1" fill="#5aa860"/>
+            <rect x="0" y="57" width="128" height="1" fill="#6cc070"/>
+
+            <!-- Chibi warrior (pink hair) -->
+            <rect x="28" y="46" width="6" height="2" fill="#ff6db5"/>
+            <rect x="27" y="48" width="8" height="2" fill="#ff6db5"/>
+            <rect x="29" y="50" width="4" height="3" fill="#ffe4c4"/>
+            <rect x="28" y="50" width="1" height="2" fill="#ff6db5"/>
+            <rect x="33" y="50" width="1" height="2" fill="#ff6db5"/>
+            <rect x="30" y="51" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="32" y="51" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="31" y="52" width="1" height="1" fill="#ff4d8d"/>
+            <rect x="28" y="53" width="6" height="3" fill="#ff4d8d"/>
+            <rect x="27" y="54" width="1" height="2" fill="#ff4d8d"/>
+            <rect x="34" y="54" width="1" height="2" fill="#ff4d8d"/>
+            <rect x="28" y="56" width="6" height="1" fill="#ffd45e"/>
+            <rect x="28" y="57" width="2" height="3" fill="#3a6a30"/>
+            <rect x="32" y="57" width="2" height="3" fill="#3a6a30"/>
+            <!-- Sword -->
+            <rect x="35" y="50" width="1" height="6" fill="#e8f0ff"/>
+            <rect x="35" y="51" width="1" height="1" fill="#fff"/>
+            <rect x="34" y="56" width="3" height="1" fill="#8a5028"/>
+            <rect x="35" y="57" width="1" height="1" fill="#ffd45e"/>
+            <!-- HP bar -->
+            <rect x="27" y="43" width="9" height="2" fill="#fff"/>
+            <rect x="28" y="44" width="7" height="1" fill="#6fd490"/>
+            <rect x="28" y="42" width="1" height="1" fill="#fff"/>
+
+            <!-- Chibi mage (blue hair) -->
+            <rect x="50" y="44" width="6" height="2" fill="#5ec6ff"/>
+            <rect x="49" y="46" width="8" height="2" fill="#5ec6ff"/>
+            <rect x="50" y="48" width="6" height="1" fill="#5ec6ff"/>
+            <rect x="51" y="49" width="4" height="3" fill="#ffe4c4"/>
+            <rect x="52" y="50" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="54" y="50" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="53" y="51" width="1" height="1" fill="#ff6db5"/>
+            <rect x="50" y="52" width="6" height="5" fill="#b48aff"/>
+            <rect x="49" y="53" width="1" height="4" fill="#b48aff"/>
+            <rect x="56" y="53" width="1" height="4" fill="#b48aff"/>
+            <rect x="52" y="53" width="2" height="1" fill="#ffd45e"/>
+            <rect x="50" y="57" width="6" height="3" fill="#8864a8"/>
+            <rect x="50" y="60" width="2" height="2" fill="#2a1f3d"/>
+            <rect x="54" y="60" width="2" height="2" fill="#2a1f3d"/>
+            <!-- Staff -->
+            <rect x="57" y="47" width="1" height="12" fill="#8a5028"/>
+            <rect x="56" y="46" width="3" height="1" fill="#ffd45e"/>
+            <rect x="57" y="45" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="58" y="45" width="1" height="1" fill="#fff"/>
+            <!-- Chat bubble over mage -->
+            <rect x="58" y="38" width="16" height="5" fill="#fff"/>
+            <rect x="59" y="37" width="14" height="1" fill="#fff"/>
+            <rect x="59" y="43" width="14" height="1" fill="#fff"/>
+            <rect x="57" y="39" width="1" height="3" fill="#fff"/>
+            <rect x="74" y="39" width="1" height="3" fill="#fff"/>
+            <rect x="56" y="40" width="1" height="1" fill="#fff"/>
+            <rect x="75" y="40" width="1" height="1" fill="#fff"/>
+            <rect x="60" y="39" width="1" height="1" fill="#ff6db5"/>
+            <rect x="63" y="39" width="1" height="1" fill="#ff6db5"/>
+            <rect x="66" y="39" width="1" height="1" fill="#ff6db5"/>
+            <rect x="69" y="39" width="1" height="1" fill="#ff6db5"/>
+            <rect x="72" y="39" width="1" height="1" fill="#ff6db5"/>
+            <rect x="60" y="41" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="63" y="41" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="66" y="41" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="69" y="41" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="59" y="44" width="2" height="1" fill="#fff"/>
+            <rect x="58" y="45" width="1" height="1" fill="#fff"/>
+
+            <!-- Chibi archer (green hair) -->
+            <rect x="96" y="45" width="6" height="2" fill="#7fd490"/>
+            <rect x="95" y="47" width="8" height="2" fill="#7fd490"/>
+            <rect x="97" y="49" width="4" height="3" fill="#ffe4c4"/>
+            <rect x="96" y="49" width="1" height="2" fill="#7fd490"/>
+            <rect x="101" y="49" width="1" height="2" fill="#7fd490"/>
+            <rect x="98" y="50" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="100" y="50" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="99" y="51" width="1" height="1" fill="#ff6db5"/>
+            <rect x="96" y="52" width="6" height="4" fill="#5aa860"/>
+            <rect x="95" y="53" width="1" height="3" fill="#5aa860"/>
+            <rect x="102" y="53" width="1" height="3" fill="#5aa860"/>
+            <rect x="96" y="56" width="6" height="1" fill="#8a5028"/>
+            <rect x="96" y="57" width="2" height="3" fill="#5aa860"/>
+            <rect x="100" y="57" width="2" height="3" fill="#5aa860"/>
+            <!-- Bow -->
+            <rect x="93" y="47" width="1" height="9" fill="#8a5028"/>
+            <rect x="92" y="48" width="1" height="1" fill="#8a5028"/>
+            <rect x="92" y="55" width="1" height="1" fill="#8a5028"/>
+            <rect x="94" y="51" width="1" height="1" fill="#e8f0ff"/>
+
+            <!-- Sparkles / butterflies -->
+            <rect x="36" y="26" width="1" height="1" fill="#ff6db5"/>
+            <rect x="60" y="22" width="1" height="1" fill="#ffd45e"/>
+            <rect x="118" y="22" width="1" height="1" fill="#b48aff"/>
+            <rect x="30" y="36" width="1" height="1" fill="#fff"/>
+            <rect x="55" y="30" width="1" height="1" fill="#5ec6ff"/>
+
+            <!-- Small butterfly -->
+            <rect x="46" y="34" width="1" height="1" fill="#ff6db5"/>
+            <rect x="48" y="34" width="1" height="1" fill="#ff6db5"/>
+            <rect x="47" y="35" width="1" height="1" fill="#2a1f3d"/>
+            <rect x="46" y="36" width="1" height="1" fill="#ff6db5"/>
+            <rect x="48" y="36" width="1" height="1" fill="#ff6db5"/>
+          </svg>
+          <div class="game-art-overlay"></div>
+          <span class="game-tag">FLAGSHIP · ONLINE</span>
+        </div>
+        <div class="game-info">
+          <div class="game-meta">2D SIDE-SCROLLING MMORPG · 2026</div>
+          <h3 class="game-title">MojiWorld</h3>
+          <p>A 2D side-scrolling MMORPG built in the spirit of the classics you loved. Pick a class. Join a guild. Fish at dawn, raid at dusk, chat in town, fall in love with a pixel world that remembers your name.</p>
+          <div class="game-stats">
+            <span>8 CONTINENTS</span>
+            <span>12 CLASSES</span>
+            <span>CROSS-PLATFORM</span>
+          </div>
+          <a href="#" class="game-link">Enter the World →</a>
+        </div>
+      </article>
+
+      <!-- MojiMon — monster-breeding RPG -->
+      <article class="game-card game-card-featured" data-neon="cyan">
+        <div class="game-art">
+          <svg class="pixel" viewBox="0 0 128 72" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="mm-sky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#d8e8ff"/>
+                <stop offset="55%" stop-color="#ffd4e5"/>
+                <stop offset="100%" stop-color="#fff4d4"/>
+              </linearGradient>
+            </defs>
+            <!-- Sky -->
+            <rect width="128" height="56" fill="url(#mm-sky)"/>
+
+            <!-- Clouds -->
+            <rect x="10" y="6" width="16" height="3" fill="#fff"/>
+            <rect x="12" y="4" width="12" height="2" fill="#fff"/>
+            <rect x="14" y="9" width="8" height="1" fill="#fff"/>
+            <rect x="92" y="10" width="18" height="3" fill="#fff"/>
+            <rect x="94" y="8" width="14" height="2" fill="#fff"/>
+            <rect x="96" y="13" width="10" height="1" fill="#fff"/>
+
+            <!-- Big sparkle left -->
+            <rect x="14" y="22" width="1" height="1" fill="#ffd45e"/>
+            <rect x="13" y="23" width="3" height="1" fill="#ffd45e" opacity="0.6"/>
+            <rect x="14" y="24" width="1" height="1" fill="#ffd45e"/>
+            <rect x="12" y="23" width="1" height="1" fill="#ffd45e" opacity="0.4"/>
+            <rect x="16" y="23" width="1" height="1" fill="#ffd45e" opacity="0.4"/>
+
+            <!-- Big sparkle right -->
+            <rect x="110" y="30" width="1" height="1" fill="#b48aff"/>
+            <rect x="109" y="31" width="3" height="1" fill="#b48aff" opacity="0.6"/>
+            <rect x="110" y="32" width="1" height="1" fill="#b48aff"/>
+
+            <!-- Hearts floating -->
+            <rect x="100" y="20" width="1" height="1" fill="#ff6db5"/>
+            <rect x="102" y="20" width="1" height="1" fill="#ff6db5"/>
+            <rect x="99" y="21" width="5" height="1" fill="#ff6db5"/>
+            <rect x="100" y="22" width="3" height="1" fill="#ff6db5"/>
+            <rect x="101" y="23" width="1" height="1" fill="#ff6db5"/>
+
+            <rect x="20" y="36" width="1" height="1" fill="#ff6db5"/>
+            <rect x="22" y="36" width="1" height="1" fill="#ff6db5"/>
+            <rect x="19" y="37" width="5" height="1" fill="#ff6db5"/>
+            <rect x="20" y="38" width="3" height="1" fill="#ff6db5"/>
+            <rect x="21" y="39" width="1" height="1" fill="#ff6db5"/>
+
+            <!-- Grass band -->
+            <rect x="0" y="56" width="128" height="16" fill="#8ac87a"/>
+            <rect x="0" y="56" width="128" height="1" fill="#5aa860"/>
+            <rect x="0" y="57" width="128" height="1" fill="#7fb86f"/>
+
+            <!-- Flowers -->
+            <rect x="8" y="60" width="2" height="1" fill="#ff6db5"/>
+            <rect x="9" y="61" width="1" height="1" fill="#ffd45e"/>
+            <rect x="116" y="61" width="2" height="1" fill="#b48aff"/>
+            <rect x="117" y="62" width="1" height="1" fill="#ffd45e"/>
+            <rect x="118" y="66" width="2" height="1" fill="#ff6db5"/>
+            <rect x="119" y="67" width="1" height="1" fill="#ffd45e"/>
+            <rect x="6" y="66" width="2" height="1" fill="#5ec6ff"/>
+            <rect x="7" y="67" width="1" height="1" fill="#ffd45e"/>
+
+            <!-- Grass tufts -->
+            <rect x="18" y="55" width="1" height="2" fill="#5aa860"/>
+            <rect x="36" y="55" width="1" height="2" fill="#5aa860"/>
+            <rect x="94" y="55" width="1" height="2" fill="#5aa860"/>
+            <rect x="112" y="55" width="1" height="2" fill="#5aa860"/>
+
+            <!-- MONSTER: rounded pink slime-dragon, centered -->
+            <!-- Ears -->
+            <rect x="48" y="18" width="4" height="3" fill="#ff9fc4"/>
+            <rect x="46" y="20" width="2" height="2" fill="#ff9fc4"/>
+            <rect x="76" y="18" width="4" height="3" fill="#ff9fc4"/>
+            <rect x="80" y="20" width="2" height="2" fill="#ff9fc4"/>
+            <rect x="49" y="19" width="2" height="1" fill="#ff6db5"/>
+            <rect x="77" y="19" width="2" height="1" fill="#ff6db5"/>
+
+            <!-- Body rounded: top to bottom -->
+            <rect x="54" y="20" width="20" height="2" fill="#ff9fc4"/>
+            <rect x="50" y="22" width="28" height="2" fill="#ff9fc4"/>
+            <rect x="48" y="24" width="32" height="4" fill="#ff9fc4"/>
+            <rect x="46" y="28" width="36" height="16" fill="#ff9fc4"/>
+            <rect x="48" y="44" width="32" height="6" fill="#ff9fc4"/>
+            <rect x="50" y="50" width="28" height="4" fill="#ff9fc4"/>
+            <rect x="54" y="54" width="20" height="2" fill="#ff9fc4"/>
+
+            <!-- Darker pink shading (right side) -->
+            <rect x="72" y="26" width="8" height="18" fill="#ff6db5"/>
+            <rect x="76" y="22" width="6" height="28" fill="#ff6db5"/>
+            <rect x="74" y="44" width="6" height="6" fill="#ff6db5"/>
+            <rect x="54" y="54" width="20" height="2" fill="#ff6db5"/>
+
+            <!-- Belly (cream) -->
+            <rect x="54" y="40" width="20" height="10" fill="#fff5d8"/>
+            <rect x="56" y="42" width="16" height="6" fill="#ffe8b8"/>
+            <rect x="52" y="42" width="2" height="6" fill="#fff5d8"/>
+
+            <!-- White highlights (left side) -->
+            <rect x="48" y="26" width="4" height="2" fill="#fff"/>
+            <rect x="46" y="30" width="2" height="6" fill="#fff"/>
+            <rect x="47" y="36" width="1" height="3" fill="#fff" opacity="0.6"/>
+
+            <!-- Big cute eyes -->
+            <rect x="54" y="26" width="8" height="10" fill="#fff"/>
+            <rect x="66" y="26" width="8" height="10" fill="#fff"/>
+            <rect x="56" y="28" width="6" height="8" fill="#3a2a5a"/>
+            <rect x="68" y="28" width="6" height="8" fill="#3a2a5a"/>
+            <rect x="57" y="30" width="4" height="5" fill="#5ec6ff"/>
+            <rect x="69" y="30" width="4" height="5" fill="#5ec6ff"/>
+            <rect x="58" y="31" width="2" height="3" fill="#2a1f3d"/>
+            <rect x="70" y="31" width="2" height="3" fill="#2a1f3d"/>
+            <!-- Eye sparkles -->
+            <rect x="59" y="31" width="1" height="1" fill="#fff"/>
+            <rect x="71" y="31" width="1" height="1" fill="#fff"/>
+            <rect x="58" y="34" width="1" height="1" fill="#fff"/>
+            <rect x="70" y="34" width="1" height="1" fill="#fff"/>
+
+            <!-- Cheek blush -->
+            <rect x="48" y="38" width="5" height="3" fill="#ff4d8d" opacity="0.7"/>
+            <rect x="75" y="38" width="5" height="3" fill="#ff4d8d" opacity="0.7"/>
+
+            <!-- Mouth (cute smile with fangs) -->
+            <rect x="60" y="40" width="1" height="1" fill="#3a2a5a"/>
+            <rect x="67" y="40" width="1" height="1" fill="#3a2a5a"/>
+            <rect x="61" y="41" width="6" height="1" fill="#3a2a5a"/>
+            <rect x="62" y="42" width="4" height="1" fill="#ff4d8d"/>
+            <rect x="61" y="41" width="1" height="1" fill="#fff"/>
+            <rect x="66" y="41" width="1" height="1" fill="#fff"/>
+
+            <!-- Monster's tiny feet -->
+            <rect x="54" y="56" width="6" height="2" fill="#ff6db5"/>
+            <rect x="68" y="56" width="6" height="2" fill="#ff6db5"/>
+
+            <!-- Pokeball / Moji-ball on the right side -->
+            <rect x="104" y="46" width="10" height="1" fill="#ff4d8d"/>
+            <rect x="103" y="47" width="12" height="3" fill="#ff4d8d"/>
+            <rect x="103" y="50" width="12" height="1" fill="#3a2a1a"/>
+            <rect x="107" y="50" width="4" height="1" fill="#ffd45e"/>
+            <rect x="108" y="49" width="2" height="3" fill="#ffd45e"/>
+            <rect x="103" y="51" width="12" height="3" fill="#fff"/>
+            <rect x="104" y="54" width="10" height="1" fill="#fff"/>
+            <rect x="104" y="48" width="2" height="1" fill="#ff9fc4"/>
+            <rect x="104" y="52" width="2" height="1" fill="#ffe8b8"/>
+
+            <!-- Baby monster (tiny egg) left side -->
+            <rect x="18" y="48" width="6" height="1" fill="#fff"/>
+            <rect x="17" y="49" width="8" height="3" fill="#fff"/>
+            <rect x="16" y="52" width="10" height="3" fill="#fff"/>
+            <rect x="19" y="50" width="2" height="1" fill="#ff6db5"/>
+            <rect x="22" y="51" width="1" height="1" fill="#5ec6ff"/>
+            <rect x="18" y="53" width="1" height="1" fill="#ffd45e"/>
+            <rect x="23" y="53" width="1" height="1" fill="#b48aff"/>
+            <rect x="16" y="55" width="10" height="1" fill="#e8e8f0"/>
+
+            <!-- Sparkles on monster -->
+            <rect x="38" y="34" width="1" height="1" fill="#fff"/>
+            <rect x="87" y="30" width="1" height="1" fill="#ffd45e"/>
+          </svg>
+          <div class="game-art-overlay"></div>
+          <span class="game-tag game-tag-cyan">BREED · BATTLE · BOND</span>
+        </div>
+        <div class="game-info">
+          <div class="game-meta">CREATURE-BREEDING RPG · 2026</div>
+          <h3 class="game-title">MojiMon</h3>
+          <p>Raise, breed, and battle 240+ hand-pixeled creatures. Every Mojimon has a personality, a lineage, and a future. Trade online, train at home, and watch your party grow across generations.</p>
+          <div class="game-stats">
+            <span>240+ SPECIES</span>
+            <span>GENETICS SYSTEM</span>
+            <span>ONLINE TRADING</span>
+          </div>
+          <a href="#" class="game-link">View Game →</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- The Craft -->
+<section id="craft" class="craft">
+  <div class="container">
+    <div class="section-label">03 / THE CRAFT</div>
+    <h2 class="section-title">How the magic gets made.</h2>
+
+    <div class="craft-grid">
+      <div class="craft-card">
+        <div class="craft-num">01</div>
+        <h3>Chibi Pixel Art</h3>
+        <p>Every sprite is hand-placed by human artists — big heads, big eyes, tiny bodies. The <em>MapleStory-era</em> charm is non-negotiable.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-num">02</div>
+        <h3>Early-2000s Soundscape</h3>
+        <p>In-house composers writing in the spirit of the early MMO era — chiptune, FM synth, and warm MIDI. Soundtracks that feel like a town you grew up in.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-num">03</div>
+        <h3>Cozy-First Design</h3>
+        <p>We build for the 3am crafting session, the quiet fishing spot, the guild that's more family than raid group. <em>The feeling is the product.</em></p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-num">04</div>
+        <h3>Persistent Worlds</h3>
+        <p>Real servers. Real players. Worlds that remember what you did yesterday. Moji worlds are <em>places</em>, not products.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-num">05</div>
+        <h3>Community First</h3>
+        <p>Closed alphas, open betas, and direct lines to our devs. We build <em>with</em> players, not at them.</p>
+      </div>
+      <div class="craft-card">
+        <div class="craft-num">06</div>
+        <h3>Ship When Ready</h3>
+        <p>We don't ship dates — we ship worlds. Quality is the deadline. Always has been.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Meet the Mojis -->
+<section id="mascots" class="mascots">
+  <div class="container">
+    <div class="section-label">04 / THE CAST</div>
+    <h2 class="section-title">Meet the <span class="section-title-accent">Mojis</span>.</h2>
+    <p class="section-sub">A growing cast of hand-animated characters who show up across our games, trailers, and merch. Endlessly squishable. Aggressively lovable.</p>
+
+    <div class="mascots-grid">
+      <article class="mascot-card">
+        <div class="mascot-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Moji mascot animation 1">
+            <source src="moji-mascot-1.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="mascot-info">
+          <span class="mascot-tag">HYPE SQUAD</span>
+          <h3>Tobi</h3>
+          <p>Can't keep still. Bandaged from minor battle damage. Full commitment, questionable execution, maximum adorable.</p>
+        </div>
+      </article>
+
+      <article class="mascot-card">
+        <div class="mascot-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Moji mascot animation 2">
+            <source src="moji-mascot-2.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div class="mascot-info">
+          <span class="mascot-tag">CHIEF MASCOT</span>
+          <h3>Lil Moji</h3>
+          <p>Wears the logo like a t-shirt. Chief Smile Officer. Will absolutely stare into your soul if you don't smile back.</p>
+        </div>
+      </article>
+
+      <article class="mascot-card">
+        <div class="mascot-still">
+          <img src="moji-chick.png" alt="Pippin the Moji chick" loading="lazy" />
+        </div>
+        <div class="mascot-info">
+          <span class="mascot-tag">BRAND GUARDIAN</span>
+          <h3>Pippin</h3>
+          <p>The Moji sticker that started it all. Found on merch, launchers, business cards, and probably the back of your laptop by next year.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Press / Testimonials -->
+<section class="press">
+  <div class="container">
+    <div class="section-label">05 / THE PRESS</div>
+    <div class="press-grid">
+      <blockquote class="press-quote">
+        <p>"Moji Studios isn't imitating the early 2000s — they're <em>living</em> there, and they're building something beautiful."</p>
+        <cite>— Edge Magazine</cite>
+      </blockquote>
+      <blockquote class="press-quote">
+        <p>"MojiWorld is the cozy-MMO revival we've been waiting a <em>decade</em> for. It hits like a warm memory."</p>
+        <cite>— IGN</cite>
+      </blockquote>
+      <blockquote class="press-quote">
+        <p>"If MapleStory and Pokémon had a studio that loved them back, it would be this one."</p>
+        <cite>— Polygon</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / Contact -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-panel">
+      <div class="section-label">06 / JOIN US</div>
+      <h2 class="section-title">Insert coin to continue.</h2>
+      <p class="lead">Whether you're a publisher, press, player, or a future Moji — we'd love to hear from you.</p>
+
+      <form class="contact-form" onsubmit="return handleSubmit(event)">
+        <div class="form-row">
+          <label>
+            <span>Player 1</span>
+            <input type="text" name="name" required placeholder="Your name" />
+          </label>
+          <label>
+            <span>Channel</span>
+            <input type="email" name="email" required placeholder="you@domain.com" />
+          </label>
+        </div>
+        <label>
+          <span>Quest Type</span>
+          <select name="type">
+            <option>General Inquiry</option>
+            <option>Press & Media</option>
+            <option>Publishing</option>
+            <option>Careers</option>
+            <option>Fan Mail</option>
+          </select>
+        </label>
+        <label>
+          <span>Your Message</span>
+          <textarea name="message" rows="5" required placeholder="Tell us your story..."></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary btn-block">
+          <span class="btn-arrow">▶</span> Transmit Message
+        </button>
+        <div id="form-success" class="form-success" role="status" hidden>
+          ✓ MESSAGE RECEIVED. A MOJI WILL REPLY SHORTLY.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-row">
+          <img class="footer-chick" src="moji-chick.png" alt="" aria-hidden="true" />
+          <div class="nav-logo">
+            <span class="logo-text">MOJI<span class="logo-text-accent">STUDIOS</span></span>
+          </div>
+        </div>
+        <p>Dedicated to the early-2000s gaming era. EST. 2026.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Studio</h4>
+        <a href="#studio">About</a>
+        <a href="#mascots">The Cast</a>
+        <a href="#craft">The Craft</a>
+        <a href="#">Careers</a>
+      </div>
+      <div class="footer-col">
+        <h4>Games</h4>
+        <a href="#games">Catalog</a>
+        <a href="#">Merchandise</a>
+        <a href="#">Soundtracks</a>
+        <a href="#">Roadmap</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <a href="#">Discord</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">YouTube</a>
+        <a href="#">Steam</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 MOJI STUDIOS — EST. 2026. ALL WORLDS RESERVED.</div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Press Kit</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
