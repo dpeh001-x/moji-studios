@@ -1396,6 +1396,14 @@ section {
   border-bottom: 3px solid var(--ink);
 }
 .contact-panel .lead { margin-bottom: 2.5rem; margin-top: 0.5rem; }
+.contact-email {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 2px dashed var(--accent);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.contact-email:hover { color: var(--accent-4); border-bottom-color: var(--accent-4); }
 .contact-form { text-align: left; }
 .form-row {
   display: grid;
