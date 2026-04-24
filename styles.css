@@ -916,6 +916,36 @@ section {
 .game-tag-cyan { background: var(--accent-2); }
 .game-tag-green { background: var(--accent-5); }
 .game-tag-yellow { background: var(--brand-yellow); color: var(--ink); }
+.game-tag-wip {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd84d 0 12px,
+    #2a1910 12px 24px
+  );
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+  letter-spacing: 0.08em;
+}
+
+/* WIP stripes overlay: diagonal caution pattern on the art */
+.wip-stripes {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 18px;
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd84d 0 14px,
+    #2a1910 14px 28px
+  );
+  border-top: 3px solid var(--ink);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* WIP card: slight dim + hue shift so it reads secondary */
+.is-wip .game-art video { filter: saturate(0.85) brightness(0.92); }
+.is-wip:hover .game-art video { filter: none; }
+.is-wip .game-meta { color: var(--accent-3); }
 
 .game-info {
   padding: 2rem 2rem 2.25rem;
