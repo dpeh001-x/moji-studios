@@ -422,6 +422,182 @@ body {
   overflow: hidden;
 }
 .merch-card[data-merch="plush"]   .merch-art { background: linear-gradient(135deg, #ffe9c4 0%, #ffd4e5 100%); }
+
+/* ---------- Plushie card cinematic effects ---------- */
+.merch-art-plush {
+  background: radial-gradient(ellipse at 50% 60%, #2a1910 0%, #1a0f08 60%, #0a0604 100%) !important;
+  isolation: isolate;
+}
+.merch-art-plush .merch-art-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  z-index: 3;
+  /* Plushie video sits between halo (z=2) and embers (z=4) */
+}
+
+/* 1) Pulsing gold halo behind the subject */
+.fx-halo {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 78%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 50% 50%,
+    rgba(255,212,94, 0.65) 0%,
+    rgba(255,180,60, 0.45) 30%,
+    rgba(255,148,84, 0.18) 55%,
+    transparent 75%);
+  border-radius: 50%;
+  filter: blur(6px);
+  z-index: 2;
+  animation: fx-halo-pulse 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes fx-halo-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+  50%      { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+/* 2) Two bokeh drift layers — large soft orbs + small sharp sparks */
+.fx-bokeh {
+  position: absolute;
+  inset: -10%;
+  z-index: 1;
+  pointer-events: none;
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  will-change: transform;
+}
+.fx-bokeh-orbs {
+  background-image:
+    radial-gradient(circle at 18% 32%, rgba(255,225,140, 0.55), transparent 35%),
+    radial-gradient(circle at 72% 18%, rgba(255,200, 90, 0.45), transparent 40%),
+    radial-gradient(circle at 88% 78%, rgba(255,235,170, 0.50), transparent 38%),
+    radial-gradient(circle at 28% 86%, rgba(255,210,110, 0.40), transparent 42%);
+  filter: blur(28px);
+  animation: fx-bokeh-drift 22s linear infinite;
+}
+.fx-bokeh-sparks {
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255,250,200, 0.95), transparent 18%),
+    radial-gradient(circle at 64% 44%, rgba(255,240,180, 0.85), transparent 14%),
+    radial-gradient(circle at 30% 70%, rgba(255,245,200, 0.90), transparent 16%),
+    radial-gradient(circle at 82% 88%, rgba(255,250,220, 0.85), transparent 12%),
+    radial-gradient(circle at 50% 12%, rgba(255,235,160, 0.80), transparent 14%);
+  filter: blur(2px);
+  animation: fx-bokeh-drift-rev 26s linear infinite;
+}
+@keyframes fx-bokeh-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-400px, 200px, 0); }
+}
+@keyframes fx-bokeh-drift-rev {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(400px, -200px, 0); }
+}
+
+/* 3) God-ray light sweep crossing the screen (11s) */
+.fx-godray {
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(115deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(255,225,140, 0.10) 45%,
+    rgba(255,235,180, 0.22) 50%,
+    rgba(255,225,140, 0.10) 55%,
+    transparent 65%,
+    transparent 100%);
+  filter: blur(8px);
+  z-index: 5;
+  pointer-events: none;
+  animation: fx-godray-sweep 11s linear infinite;
+}
+@keyframes fx-godray-sweep {
+  0%   { transform: translateX(0)     skewX(-12deg); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { transform: translateX(280%) skewX(-12deg); opacity: 0; }
+}
+
+/* 4) 12 floating gold embers rising from the bottom with staggered delays */
+.fx-embers {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  overflow: hidden;
+}
+.fx-embers span {
+  position: absolute;
+  bottom: -8%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,240,180, 0.95) 0%, rgba(255,200, 80, 0.55) 60%, transparent 100%);
+  box-shadow: 0 0 8px rgba(255,220,120, 0.85), 0 0 18px rgba(255,180, 60, 0.55);
+  animation: fx-ember-rise 7s ease-in infinite;
+  will-change: transform, opacity;
+}
+.fx-embers span:nth-child(1)  { left:  6%; animation-delay: 0.0s;  animation-duration: 6.5s; }
+.fx-embers span:nth-child(2)  { left: 14%; animation-delay: 1.2s;  animation-duration: 8.0s; width: 4px; height: 4px; }
+.fx-embers span:nth-child(3)  { left: 24%; animation-delay: 2.4s;  animation-duration: 7.2s; }
+.fx-embers span:nth-child(4)  { left: 32%; animation-delay: 0.6s;  animation-duration: 9.0s; width: 5px; height: 5px; }
+.fx-embers span:nth-child(5)  { left: 40%; animation-delay: 3.6s;  animation-duration: 6.8s; }
+.fx-embers span:nth-child(6)  { left: 48%; animation-delay: 1.8s;  animation-duration: 8.4s; width: 7px; height: 7px; }
+.fx-embers span:nth-child(7)  { left: 56%; animation-delay: 4.2s;  animation-duration: 7.0s; }
+.fx-embers span:nth-child(8)  { left: 64%; animation-delay: 2.8s;  animation-duration: 9.2s; width: 4px; height: 4px; }
+.fx-embers span:nth-child(9)  { left: 72%; animation-delay: 0.9s;  animation-duration: 6.6s; }
+.fx-embers span:nth-child(10) { left: 80%; animation-delay: 3.2s;  animation-duration: 8.2s; width: 5px; height: 5px; }
+.fx-embers span:nth-child(11) { left: 88%; animation-delay: 5.0s;  animation-duration: 7.4s; }
+.fx-embers span:nth-child(12) { left: 94%; animation-delay: 2.0s;  animation-duration: 8.8s; width: 6px; height: 6px; }
+@keyframes fx-ember-rise {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  10%  { opacity: 1; }
+  85%  { opacity: 0.7; }
+  100% { transform: translateY(-600%) translateX(20px) scale(1.1); opacity: 0; }
+}
+
+/* 5) Vignette + 6) top/bottom darkening for text contrast */
+.fx-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 90% 75% at 50% 50%, transparent 0%, transparent 55%, rgba(0,0,0, 0.45) 100%),
+    linear-gradient(180deg,
+      rgba(0,0,0, 0.38) 0%,
+      transparent 22%,
+      transparent 78%,
+      rgba(0,0,0, 0.38) 100%);
+}
+
+/* Override the default merch-art-img animation since we use a video here */
+.merch-art-plush .merch-art-img { display: none; }
+
+/* Reduced-motion: pause every effect for users who opt out */
+@media (prefers-reduced-motion: reduce) {
+  .fx-halo,
+  .fx-bokeh,
+  .fx-bokeh-orbs,
+  .fx-bokeh-sparks,
+  .fx-godray,
+  .fx-embers span {
+    animation: none !important;
+  }
+  .merch-art-plush .merch-art-video {
+    /* keep video paused too — autoplay still loads first frame as a poster */
+  }
+}
 .merch-card[data-merch="sticker"] .merch-art { background: linear-gradient(135deg, #d4eaff 0%, #ffd4e5 100%); }
 .merch-card[data-merch="tee"]     .merch-art { background: linear-gradient(135deg, #ffd4e5 0%, #ffe9c4 100%); }
 .merch-art-img {
@@ -452,6 +628,7 @@ body {
 .merch-tag {
   position: absolute;
   top: 1rem; left: 1rem;
+  z-index: 8;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.7rem;
