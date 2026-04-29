@@ -85,8 +85,9 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#games"><span class="nav-num">01</span> Games</a>
-      <a href="#mascots"><span class="nav-num">02</span> The Cast</a>
-      <a href="#manifesto"><span class="nav-num">03</span> Why Moji</a>
+      <a href="#services"><span class="nav-num">02</span> Design</a>
+      <a href="#mascots"><span class="nav-num">03</span> The Cast</a>
+      <a href="#merch"><span class="nav-num">04</span> Merch</a>
       <a href="#contact" class="nav-cta">Press Start</a>
     </nav>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
@@ -182,22 +183,37 @@
             </defs>
             <!-- sky -->
             <rect width="200" height="105" fill="url(#cb-sky)"/>
-            <!-- clouds -->
-            <ellipse cx="35" cy="20" rx="14" ry="5" fill="#fff" opacity="0.95"/>
-            <ellipse cx="42" cy="23" rx="10" ry="4" fill="#fff" opacity="0.95"/>
-            <ellipse cx="160" cy="35" rx="16" ry="6" fill="#fff" opacity="0.9"/>
-            <ellipse cx="170" cy="38" rx="10" ry="4" fill="#fff" opacity="0.9"/>
+            <!-- drifting clouds -->
+            <g class="cb-clouds">
+              <ellipse cx="35"  cy="20" rx="14" ry="5" fill="#fff" opacity="0.95"/>
+              <ellipse cx="42"  cy="23" rx="10" ry="4" fill="#fff" opacity="0.95"/>
+              <ellipse cx="160" cy="35" rx="16" ry="6" fill="#fff" opacity="0.9"/>
+              <ellipse cx="170" cy="38" rx="10" ry="4" fill="#fff" opacity="0.9"/>
+              <ellipse cx="235" cy="22" rx="14" ry="5" fill="#fff" opacity="0.95"/>
+              <ellipse cx="242" cy="25" rx="10" ry="4" fill="#fff" opacity="0.95"/>
+              <ellipse cx="360" cy="33" rx="16" ry="6" fill="#fff" opacity="0.9"/>
+              <ellipse cx="370" cy="36" rx="10" ry="4" fill="#fff" opacity="0.9"/>
+            </g>
             <!-- ground -->
             <rect y="105" width="200" height="25" fill="#7fd490"/>
             <rect y="105" width="200" height="3" fill="#5aa860"/>
-            <!-- pipe top -->
-            <rect x="138" y="0" width="28" height="38" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-            <rect x="133" y="34" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-            <rect x="141" y="2" width="3" height="36" fill="#9ed592"/>
-            <!-- pipe bottom -->
-            <rect x="138" y="68" width="28" height="37" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-            <rect x="133" y="62" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-            <rect x="141" y="74" width="3" height="32" fill="#9ed592"/>
+            <!-- scrolling pipes — two identical pairs spaced 220px apart for seamless loop -->
+            <g class="cb-pipes">
+              <!-- pair 1 -->
+              <rect x="138" y="0"  width="28" height="38" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="133" y="34" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="141" y="2"  width="3"  height="36" fill="#9ed592"/>
+              <rect x="138" y="68" width="28" height="37" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="133" y="62" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="141" y="74" width="3"  height="32" fill="#9ed592"/>
+              <!-- pair 2 (offscreen right) -->
+              <rect x="358" y="0"  width="28" height="48" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="353" y="44" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="361" y="2"  width="3"  height="46" fill="#9ed592"/>
+              <rect x="358" y="78" width="28" height="27" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="353" y="72" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
+              <rect x="361" y="84" width="3"  height="22" fill="#9ed592"/>
+            </g>
             <!-- score badge -->
             <rect x="76" y="8" width="48" height="14" rx="3" fill="#fff" stroke="#2a1910" stroke-width="2"/>
             <text x="100" y="18" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="9" fill="#2a1910">SCORE: 99</text>
@@ -285,10 +301,37 @@
   </div>
 </section>
 
+<!-- What we do — two main gigs -->
+<section id="services" class="services">
+  <div class="container">
+    <div class="section-label">★ WHAT WE DO ★</div>
+    <h2 class="section-title">Two main gigs. <span class="section-title-accent">One studio.</span></h2>
+    <p class="section-sub">Moji Studios is half cozy retro game-maker, half digital design agency. Both halves love each other.</p>
+
+    <div class="services-grid">
+      <article class="service-card" data-service="games">
+        <div class="service-num">01</div>
+        <div class="service-icon" aria-hidden="true">🎮</div>
+        <h3>Game Studio</h3>
+        <p>Cozy retro games inspired by the early 2000s — 2D side-scrolling MMOs, creature-collectors, casual arcade. <strong>MojiWorld</strong>, <strong>Bitmon</strong>, and <strong>Chubby Bird</strong> all live here.</p>
+        <a href="#games" class="service-link">See the games →</a>
+      </article>
+
+      <article class="service-card" data-service="design">
+        <div class="service-num">02</div>
+        <div class="service-icon" aria-hidden="true">✏️</div>
+        <h3>Digital Design</h3>
+        <p>Brand identity, web design, illustration, and pixel art for clients who want their projects to feel as charming as ours. Always taking new commissions — let's make something good.</p>
+        <a href="mailto:admin@moji-studios.com?subject=Design%20inquiry" class="service-link">Hire us →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- Meet the Mojis -->
 <section id="mascots" class="mascots">
   <div class="container">
-    <div class="section-label">02 / THE CAST</div>
+    <div class="section-label">03 / THE CAST</div>
     <h2 class="section-title">Meet <span class="section-title-accent">Guguma</span>.</h2>
     <p class="section-sub">Our one-and-only mascot. Named after sweet potatoes, because obviously.</p>
 
@@ -315,6 +358,73 @@
   </div>
 </section>
 
+<!-- Merch (in production) -->
+<section id="merch" class="merch">
+  <div class="container">
+    <div class="section-label">03 / MERCH</div>
+    <h2 class="section-title">Stickers, plushies, <span class="section-title-accent">soon-ies</span>.</h2>
+    <p class="section-sub">A little Moji merch family is in production right now — Guguma plushies, Bitmon sticker packs, "Cozy Retro" tees. We're folding boxes and pressing vinyl as we speak.</p>
+
+    <div class="merch-grid">
+      <article class="merch-card" data-merch="plush">
+        <div class="merch-art">
+          <img class="merch-art-img" src="moji-logo-chick.png" alt="" aria-hidden="true" />
+          <span class="merch-tag">🚧 IN PRODUCTION</span>
+        </div>
+        <div class="merch-info">
+          <div class="merch-meta">PLUSH</div>
+          <h3>Guguma Plushie</h3>
+          <p>20 cm of pure squish. 100% cotton, 0% reasonable thoughts. Cuddle on contact.</p>
+        </div>
+      </article>
+
+      <article class="merch-card" data-merch="sticker">
+        <div class="merch-art">
+          <svg class="merch-art-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <circle cx="35" cy="55" r="26" fill="#ff8ab0" stroke="#2a1910" stroke-width="3" transform="rotate(-12 35 55)"/>
+            <circle cx="65" cy="40" r="24" fill="#5ec6ff" stroke="#2a1910" stroke-width="3" transform="rotate(8 65 40)"/>
+            <circle cx="55" cy="68" r="22" fill="#ffd84d" stroke="#2a1910" stroke-width="3" transform="rotate(-3 55 68)"/>
+            <text x="35" y="60" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="14" fill="#2a1910" transform="rotate(-12 35 60)">moji</text>
+            <text x="65" y="45" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="11" fill="#2a1910" transform="rotate(8 65 45)">★</text>
+            <text x="55" y="74" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="11" fill="#2a1910" transform="rotate(-3 55 74)">♥</text>
+          </svg>
+          <span class="merch-tag">🚧 IN PRODUCTION</span>
+        </div>
+        <div class="merch-info">
+          <div class="merch-meta">STICKER PACK</div>
+          <h3>Moji Sticker Set</h3>
+          <p>Vinyl die-cut, weatherproof. 12 designs — Guguma, Bitmon, Pippin, plus a few secrets.</p>
+        </div>
+      </article>
+
+      <article class="merch-card" data-merch="tee">
+        <div class="merch-art">
+          <svg class="merch-art-svg" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M 25 28 L 38 22 Q 50 30 62 22 L 75 28 L 80 42 L 70 46 L 70 82 Q 70 86 66 86 L 34 86 Q 30 86 30 82 L 30 46 L 20 42 Z"
+                  fill="#ffd4e5" stroke="#2a1910" stroke-width="3.5" stroke-linejoin="round"/>
+            <ellipse cx="50" cy="60" rx="11" ry="10" fill="#ffd84d" stroke="#2a1910" stroke-width="2"/>
+            <ellipse cx="46" cy="58" rx="1.4" ry="1.8" fill="#2a1910"/>
+            <ellipse cx="54" cy="58" rx="1.4" ry="1.8" fill="#2a1910"/>
+            <path d="M 47 63 Q 50 65 53 63" stroke="#2a1910" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+          </svg>
+          <span class="merch-tag">🚧 IN PRODUCTION</span>
+        </div>
+        <div class="merch-info">
+          <div class="merch-meta">APPAREL</div>
+          <h3>Cozy Retro Tee</h3>
+          <p>Heavy 240gsm cotton, screen-printed Moji crest. Pink, yellow, mint. Unisex S–XXL.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="merch-cta">
+      <a href="mailto:admin@moji-studios.com?subject=Merch%20waitlist" class="btn btn-primary magnetic">
+        <span class="btn-arrow">▶</span> Notify Me When It Drops
+      </a>
+    </div>
+  </div>
+</section>
+
 <!-- Closing oversize statement -->
 <section class="closing-statement">
   <div class="closing-inner">
@@ -327,7 +437,7 @@
 <section id="contact" class="contact">
   <div class="container">
     <div class="contact-panel">
-      <div class="section-label">03 / JOIN US</div>
+      <div class="section-label">05 / JOIN US</div>
       <h2 class="section-title">Insert coin to continue.</h2>
       <p class="lead">Whether you're a publisher, press, player, or a future Moji — we'd love to hear from you. Drop a line any time at <a href="mailto:admin@moji-studios.com" class="contact-email">admin@moji-studios.com</a>.</p>
 
