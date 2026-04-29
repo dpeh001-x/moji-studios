@@ -234,39 +234,44 @@ const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
   const chips = document.querySelectorAll('.video-chip');
   if (!chips.length) return;
 
+  const handle = (chip) => {
+    const targetId = chip.dataset.videoTarget;
+    const newSrc   = chip.dataset.videoSrc;
+    if (!targetId || !newSrc) return;
+
+    const video = document.getElementById(targetId);
+    if (!video) return;
+
+    // Update active state for chips in the same picker
+    const picker = chip.closest('.video-picker');
+    if (picker) {
+      picker.querySelectorAll('.video-chip').forEach((c) => {
+        c.classList.remove('is-active');
+        c.setAttribute('aria-pressed', 'false');
+      });
+    }
+    chip.classList.add('is-active');
+    chip.setAttribute('aria-pressed', 'true');
+
+    // SYNCHRONOUS swap — must stay inside the user's tap so iOS Safari
+    // allows video.play(). Any setTimeout/await between tap and play()
+    // breaks the gesture chain on mobile.
+    const source = video.querySelector('source');
+    if (source) source.setAttribute('src', newSrc);
+    video.src = newSrc;            // direct setter triggers reload
+    video.load();
+    const p = video.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  };
+
   chips.forEach((chip) => {
-    chip.addEventListener('click', () => {
-      const targetId = chip.dataset.videoTarget;
-      const newSrc   = chip.dataset.videoSrc;
-      if (!targetId || !newSrc) return;
-
-      const video = document.getElementById(targetId);
-      if (!video) return;
-      const source = video.querySelector('source');
-      if (!source) return;
-
-      // Update active state for chips in the same picker
-      const picker = chip.closest('.video-picker');
-      if (picker) {
-        picker.querySelectorAll('.video-chip').forEach((c) => {
-          c.classList.remove('is-active');
-          c.setAttribute('aria-pressed', 'false');
-        });
-      }
-      chip.classList.add('is-active');
-      chip.setAttribute('aria-pressed', 'true');
-
-      // Cross-fade swap
-      video.style.transition = 'opacity 0.18s ease';
-      video.style.opacity = '0';
-      setTimeout(() => {
-        source.setAttribute('src', newSrc);
-        video.load();
-        const p = video.play();
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-        video.style.opacity = '';
-      }, 180);
-    });
+    chip.addEventListener('click', () => handle(chip));
+    // Some mobile browsers don't fire click reliably with custom cursors —
+    // pick up taps too. (touchend stays inside the gesture, click fires after.)
+    chip.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      handle(chip);
+    }, { passive: false });
   });
 })();
 
