@@ -72,11 +72,9 @@
     // Progress 0..1 as the section travels through the viewport
     const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
     const clamped = Math.max(0, Math.min(1, progress));
-    // Drift the pattern -10% to +10% vertically as the section scrolls past
-    const offsetPct = (clamped - 0.5) * 20;
-    // Subtle scale 1.05 -> 1.14 over the journey
-    const scale = 1.05 + clamped * 0.09;
-    v.style.transform = `translateY(${offsetPct.toFixed(2)}%) scale(${scale.toFixed(3)})`;
+    // Drift the pattern -5% to +5% vertically (small range so edges never reveal)
+    const offsetPct = (clamped - 0.5) * 10;
+    v.style.transform = `translateY(${offsetPct.toFixed(2)}%)`;
   };
   window.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
