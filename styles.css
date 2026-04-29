@@ -136,7 +136,7 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -2;
-  opacity: 0.32;
+  opacity: 0.7;
   pointer-events: none;
   will-change: transform, opacity;
   /* slight base scale so parallax never reveals edges */
@@ -149,13 +149,14 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* warm yellow tint that lets the pattern peek through but keeps brand color dominant */
+  /* light yellow tint — kept gentle so the pattern reads through clearly */
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.35), rgba(252,196,28, 0.6) 60%),
-    linear-gradient(180deg, rgba(252,196,28, 0.5) 0%, rgba(252,196,28, 0.62) 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.10), rgba(252,196,28, 0.18) 60%),
+    linear-gradient(180deg, rgba(252,196,28, 0.14) 0%, rgba(252,196,28, 0.22) 100%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg-pattern { display: none; }
+  /* Don't hide entirely — just lower opacity so motion is muted but pattern still visible */
+  .bg-pattern { opacity: 0.25; }
 }
 .pixel, .pixel * { image-rendering: pixelated; }
 

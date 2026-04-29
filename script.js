@@ -75,8 +75,8 @@
     const scale = 1.08 + Math.min(y / 6000, 0.10);
     // Tilt the pattern very slightly with scroll for an interactive feel
     const tilt = Math.min(y / 220, 4); // up to 4deg
-    // Faint opacity breathing (translucent throughout — slightly more visible mid-page)
-    const op = Math.max(0.18, 0.32 - Math.abs(y - 1200) / 9000);
+    // Opacity breathing (visible throughout — slightly stronger mid-page)
+    const op = Math.max(0.45, 0.72 - Math.abs(y - 1200) / 9000);
 
     v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
     v.style.opacity = op.toFixed(2);
