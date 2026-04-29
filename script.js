@@ -21,6 +21,44 @@
   }, 90);
 })();
 
+// ---------- Background video: scroll parallax + breathing opacity ----------
+(function () {
+  const v = document.getElementById('bg-video');
+  if (!v) return;
+  // Skip motion if user prefers reduced motion
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+
+  let raf = 0;
+  const update = () => {
+    const y = window.scrollY;
+    // Slow upward parallax
+    const offset = y * -0.18;
+    // Subtle zoom as you scroll (1.08 -> ~1.18 at full scroll depth)
+    const scale = 1.08 + Math.min(y / 6000, 0.10);
+    // Tilt the pattern very slightly with scroll for an interactive feel
+    const tilt = Math.min(y / 220, 4); // up to 4deg
+    // Faint opacity breathing (more visible at top, slightly fades down)
+    const op = Math.max(0.26, 0.42 - y / 5500);
+
+    v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
+    v.style.opacity = op.toFixed(2);
+  };
+  window.addEventListener('scroll', () => {
+    cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(update);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+
+  // Pause when tab is hidden — saves battery + bandwidth
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) v.pause();
+    else v.play().catch(() => {});
+  });
+
+  update();
+})();
+
 // ---------- Scroll progress bar ----------
 (function () {
   const bar = document.getElementById('scroll-progress');

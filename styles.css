@@ -70,17 +70,53 @@ html { scroll-behavior: smooth; }
 body {
   font-family: var(--font-sans);
   color: var(--ink);
-  background: var(--bg);
-  background-image:
-    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
+  /* yellow base + radial gradients moved to .bg-base for layering with bg-video */
+  background: transparent;
   min-height: 100vh;
   line-height: 1.65;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-weight: 400;
+}
+
+/* ---------- Translucent animated background ---------- */
+.bg-base {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
+}
+.bg-video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.42;
+  pointer-events: none;
+  will-change: transform, opacity;
+  /* slight base scale so parallax never reveals edges */
+  transform: translate3d(0, 0, 0) scale(1.08);
+}
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* warm yellow tint that lets the pattern peek through but keeps brand color dominant */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.35), rgba(252,196,28, 0.6) 60%),
+    linear-gradient(180deg, rgba(252,196,28, 0.5) 0%, rgba(252,196,28, 0.62) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-video { display: none; }
 }
 .pixel, .pixel * { image-rendering: pixelated; }
 
@@ -277,9 +313,9 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  /* Hero is transparent so the bg-video pattern shines through fully here */
   background:
-    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), transparent 70%),
-    var(--bg);
+    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(255,255,255,0.25), transparent 70%);
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
@@ -634,7 +670,9 @@ section {
 
 /* ---------- Studio ---------- */
 .studio {
-  background: #fff;
+  background: rgba(255,255,255, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border-top: 3px solid var(--ink);
   position: relative;
@@ -843,7 +881,9 @@ section {
 
 /* ---------- Games ---------- */
 .games {
-  background: var(--bg-cream);
+  background: rgba(255,244,212, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-top: 3px solid var(--ink);
   position: relative;
 }
@@ -1120,7 +1160,9 @@ section {
 
 /* ---------- Mascots / Cast ---------- */
 .mascots {
-  background: #fff;
+  background: rgba(255,255,255, 0.86);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-top: 3px solid var(--ink);
   position: relative;
   overflow: hidden;
@@ -1429,7 +1471,9 @@ section {
 /* ---------- Contact ---------- */
 .contact {
   padding: 6rem 0 8rem;
-  background: var(--bg);
+  background: rgba(252, 196, 28, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 3px solid var(--ink);
 }
 .contact-panel {
