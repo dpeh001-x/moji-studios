@@ -136,7 +136,7 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -2;
-  opacity: 0.55;
+  opacity: 0.92;
   pointer-events: none;
   will-change: transform;
   transform: translate3d(0, 0, 0) scale(1.06);
@@ -146,21 +146,21 @@ body {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  /* gentle warm tint so the pattern reads as theme but the brand color stays felt */
+  /* very light tint — pattern dominates */
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.10), rgba(252,196,28, 0.18) 60%),
-    linear-gradient(180deg, rgba(252,196,28, 0.16) 0%, rgba(252,196,28, 0.22) 100%);
+    radial-gradient(ellipse at 50% 0%, transparent, rgba(252,196,28, 0.05) 70%),
+    linear-gradient(180deg, rgba(252,196,28, 0.04) 0%, rgba(252,196,28, 0.08) 100%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg-pattern { opacity: 0.22; }
+  .bg-pattern { opacity: 0.4; }
 }
 
 /* ---------- Manifesto break (oversize editorial statement) ---------- */
 .manifesto {
   padding: 9rem 2rem;
-  background: rgba(252, 196, 28, 0.62);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(252, 196, 28, 0.32);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-top: 3px solid var(--ink);
   border-bottom: 3px solid var(--ink);
   text-align: center;
@@ -245,9 +245,9 @@ body {
 .closing-statement {
   padding: 7rem 2rem;
   background:
-    linear-gradient(180deg, rgba(255,244,212, 0.78) 0%, rgba(252,196,28, 0.6) 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+    linear-gradient(180deg, rgba(255,244,212, 0.5) 0%, rgba(252,196,28, 0.35) 100%);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-top: 3px solid var(--ink);
   text-align: center;
   position: relative;
@@ -499,9 +499,12 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  /* light yellow wash so pattern shows through behind hero too */
   background:
-    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), transparent 70%),
-    var(--bg);
+    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 60%, transparent 80%),
+    rgba(252, 196, 28, 0.45);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
@@ -856,9 +859,9 @@ section {
 
 /* ---------- Studio ---------- */
 .studio {
-  background: rgba(255,255,255, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255,255,255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border-top: 3px solid var(--ink);
   position: relative;
@@ -1095,9 +1098,9 @@ section {
 
 /* ---------- Games ---------- */
 .games {
-  background: rgba(255,244,212, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255,244,212, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-top: 3px solid var(--ink);
   position: relative;
 }
@@ -1375,9 +1378,7 @@ section {
 /* ---------- Mascots / Cast ---------- */
 /* Cast is the pattern's strongest moment — barely tinted, pattern shines through */
 .mascots {
-  background: rgba(252, 196, 28, 0.18);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: rgba(252, 196, 28, 0.05);
   border-top: 3px solid var(--ink);
   border-bottom: 3px solid var(--ink);
   position: relative;
@@ -1695,9 +1696,9 @@ section {
 /* ---------- Contact ---------- */
 .contact {
   padding: 6rem 0 8rem;
-  background: rgba(252, 196, 28, 0.7);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(252, 196, 28, 0.4);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-top: 3px solid var(--ink);
 }
 .contact-panel {
