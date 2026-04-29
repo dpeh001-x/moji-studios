@@ -1275,6 +1275,8 @@ section {
   margin-top: 1.25rem;
   flex-wrap: wrap;
   align-items: center;
+  position: relative;
+  z-index: 5;
 }
 .mood-label {
   font-family: var(--font-display);
@@ -1300,6 +1302,9 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 6;
 }
 .mood-chip:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
 .mood-chip:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--ink); }
