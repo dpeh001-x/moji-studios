@@ -499,12 +499,12 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* light yellow wash so pattern shows through behind hero too */
+  /* very thin yellow wash + soft white radial — pattern shines through */
   background:
-    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 60%, transparent 80%),
-    rgba(252, 196, 28, 0.45);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), rgba(255,255,255,0.05) 60%, transparent 80%),
+    rgba(252, 196, 28, 0.10);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
