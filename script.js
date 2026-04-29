@@ -62,6 +62,33 @@
 // Pattern is position: fixed in CSS — the GIF still animates internally,
 // but it should NOT move with scroll. So no scroll listener here.
 
+// ---------- Cookie consent banner ----------
+(function () {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  const STORAGE_KEY = 'moji-cookie-consent';
+
+  // Check existing preference (essential storage — exempt from consent)
+  let consent = null;
+  try { consent = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  if (consent === 'accept' || consent === 'decline') return; // already decided
+
+  // Show banner after a short delay so it doesn't slap the user on load
+  setTimeout(() => {
+    banner.hidden = false;
+    requestAnimationFrame(() => banner.classList.add('is-visible'));
+  }, 1200);
+
+  banner.addEventListener('click', (e) => {
+    const action = e.target && e.target.dataset && e.target.dataset.cookieAction;
+    if (!action) return;
+    try { localStorage.setItem(STORAGE_KEY, action); } catch (err) {}
+    banner.classList.remove('is-visible');
+    // Hide from a11y tree after the slide-out animation
+    setTimeout(() => { banner.hidden = true; }, 450);
+  });
+})();
+
 // ---------- Scroll progress bar ----------
 (function () {
   const bar = document.getElementById('scroll-progress');
