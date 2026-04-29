@@ -21,9 +21,9 @@
   }, 90);
 })();
 
-// ---------- Background video: scroll parallax + breathing opacity ----------
+// ---------- Background pattern GIF: scroll parallax + breathing opacity ----------
 (function () {
-  const v = document.getElementById('bg-video');
+  const v = document.getElementById('bg-pattern');
   if (!v) return;
   // Skip motion if user prefers reduced motion
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -38,8 +38,8 @@
     const scale = 1.08 + Math.min(y / 6000, 0.10);
     // Tilt the pattern very slightly with scroll for an interactive feel
     const tilt = Math.min(y / 220, 4); // up to 4deg
-    // Faint opacity breathing (more visible at top, slightly fades down)
-    const op = Math.max(0.26, 0.42 - y / 5500);
+    // Faint opacity breathing (translucent throughout — slightly more visible mid-page)
+    const op = Math.max(0.18, 0.32 - Math.abs(y - 1200) / 9000);
 
     v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
     v.style.opacity = op.toFixed(2);
@@ -49,13 +49,6 @@
     raf = requestAnimationFrame(update);
   }, { passive: true });
   window.addEventListener('resize', update);
-
-  // Pause when tab is hidden — saves battery + bandwidth
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) v.pause();
-    else v.play().catch(() => {});
-  });
-
   update();
 })();
 

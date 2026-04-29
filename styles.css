@@ -92,18 +92,20 @@ body {
     radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
     radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
 }
-.bg-video {
+.bg-pattern {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
   object-fit: cover;
   z-index: -2;
-  opacity: 0.42;
+  opacity: 0.32;
   pointer-events: none;
   will-change: transform, opacity;
   /* slight base scale so parallax never reveals edges */
   transform: translate3d(0, 0, 0) scale(1.08);
+  /* image rendering — GIF needs to look crisp */
+  image-rendering: auto;
 }
 .bg-overlay {
   position: fixed;
@@ -116,7 +118,7 @@ body {
     linear-gradient(180deg, rgba(252,196,28, 0.5) 0%, rgba(252,196,28, 0.62) 100%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .bg-video { display: none; }
+  .bg-pattern { display: none; }
 }
 .pixel, .pixel * { image-rendering: pixelated; }
 
@@ -313,9 +315,11 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Hero is transparent so the bg-video pattern shines through fully here */
+  /* Hero is fully opaque — bg pattern should NOT be visible behind the hero */
   background:
-    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(255,255,255,0.25), transparent 70%);
+    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), transparent 70%),
+    var(--bg);
+  isolation: isolate;
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
