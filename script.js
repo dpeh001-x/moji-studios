@@ -58,28 +58,25 @@
   });
 })();
 
-// ---------- Background pattern GIF: scroll parallax + breathing opacity ----------
+// ---------- Showreel pattern: scroll parallax (subtle inside-section drift) ----------
 (function () {
-  const v = document.getElementById('bg-pattern');
-  if (!v) return;
-  // Skip motion if user prefers reduced motion
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) return;
+  const v = document.getElementById('showreel-pattern');
+  const stage = v && v.closest('.showreel-stage');
+  if (!v || !stage) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   let raf = 0;
   const update = () => {
-    const y = window.scrollY;
-    // Slow upward parallax
-    const offset = y * -0.18;
-    // Subtle zoom as you scroll (1.08 -> ~1.18 at full scroll depth)
-    const scale = 1.08 + Math.min(y / 6000, 0.10);
-    // Tilt the pattern very slightly with scroll for an interactive feel
-    const tilt = Math.min(y / 220, 4); // up to 4deg
-    // Opacity breathing (visible throughout — slightly stronger mid-page)
-    const op = Math.max(0.45, 0.72 - Math.abs(y - 1200) / 9000);
-
-    v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
-    v.style.opacity = op.toFixed(2);
+    const rect = stage.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // Progress 0..1 as the section travels through the viewport
+    const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
+    const clamped = Math.max(0, Math.min(1, progress));
+    // Drift the pattern -8% to +8% vertically as the section scrolls past
+    const offsetPct = (clamped - 0.5) * 16; // -8 .. +8
+    // Subtle scale 1.05 -> 1.12 over the journey
+    const scale = 1.05 + clamped * 0.07;
+    v.style.transform = `translateY(${offsetPct.toFixed(2)}%) scale(${scale.toFixed(3)})`;
   };
   window.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);

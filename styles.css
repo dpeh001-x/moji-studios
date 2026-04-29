@@ -107,8 +107,11 @@ textarea, select, [role="button"], [tabindex] {
 body {
   font-family: var(--font-sans);
   color: var(--ink);
-  /* yellow base + radial gradients moved to .bg-base for layering with bg-video */
-  background: transparent;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
   min-height: 100vh;
   line-height: 1.65;
   overflow-x: hidden;
@@ -117,46 +120,82 @@ body {
   font-weight: 400;
 }
 
-/* ---------- Translucent animated background ---------- */
-.bg-base {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
-  pointer-events: none;
+/* ---------- Showreel: animated pattern banner in the middle of the page ---------- */
+.showreel {
+  padding: 0;
+  position: relative;
+  border-top: 4px solid var(--ink);
+  border-bottom: 4px solid var(--ink);
   background: var(--bg);
-  background-image:
-    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
 }
-.bg-pattern {
-  position: fixed;
+.showreel-stage {
+  position: relative;
+  width: 100%;
+  height: clamp(360px, 56vh, 560px);
+  overflow: hidden;
+}
+.showreel-pattern {
+  position: absolute;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  z-index: -2;
-  opacity: 0.7;
-  pointer-events: none;
-  will-change: transform, opacity;
-  /* slight base scale so parallax never reveals edges */
-  transform: translate3d(0, 0, 0) scale(1.08);
-  /* image rendering — GIF needs to look crisp */
-  image-rendering: auto;
+  display: block;
+  will-change: transform;
+  transform: scale(1.05);
 }
-.bg-overlay {
-  position: fixed;
+.showreel-overlay {
+  position: absolute;
   inset: 0;
-  z-index: -1;
   pointer-events: none;
-  /* light yellow tint — kept gentle so the pattern reads through clearly */
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.10), rgba(252,196,28, 0.18) 60%),
-    linear-gradient(180deg, rgba(252,196,28, 0.14) 0%, rgba(252,196,28, 0.22) 100%);
+    radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, rgba(252,196,28, 0.15) 70%, rgba(252,196,28, 0.35) 100%),
+    linear-gradient(180deg, rgba(42,25,16, 0.18) 0%, transparent 25%, transparent 75%, rgba(42,25,16, 0.18) 100%);
 }
-@media (prefers-reduced-motion: reduce) {
-  /* Don't hide entirely — just lower opacity so motion is muted but pattern still visible */
-  .bg-pattern { opacity: 0.25; }
+.showreel-caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 2rem;
+  z-index: 2;
+  pointer-events: none;
+}
+.showreel-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+  background: #fff;
+  padding: 0.55rem 1.25rem;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 5px 0 var(--ink);
+  margin-bottom: 1.25rem;
+}
+.showreel-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow:
+    -3px -3px 0 var(--ink),
+     3px -3px 0 var(--ink),
+    -3px  3px 0 var(--ink),
+     3px  3px 0 var(--ink),
+     0 10px 0 rgba(0,0,0,0.35);
+  max-width: 800px;
+}
+.showreel-title em {
+  font-style: normal;
+  color: var(--brand-yellow);
 }
 .pixel, .pixel * { image-rendering: pixelated; }
 
@@ -353,9 +392,9 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Transparent — bg-pattern plays through the hero, behind the tag + title */
   background:
-    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(255,255,255,0.20), transparent 70%);
+    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), transparent 70%),
+    var(--bg);
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
@@ -710,9 +749,7 @@ section {
 
 /* ---------- Studio ---------- */
 .studio {
-  background: rgba(255,255,255, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #fff;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border-top: 3px solid var(--ink);
   position: relative;
@@ -949,9 +986,7 @@ section {
 
 /* ---------- Games ---------- */
 .games {
-  background: rgba(255,244,212, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: var(--bg-cream);
   border-top: 3px solid var(--ink);
   position: relative;
 }
@@ -1228,9 +1263,7 @@ section {
 
 /* ---------- Mascots / Cast ---------- */
 .mascots {
-  background: rgba(255,255,255, 0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #fff;
   border-top: 3px solid var(--ink);
   position: relative;
   overflow: hidden;
@@ -1539,9 +1572,7 @@ section {
 /* ---------- Contact ---------- */
 .contact {
   padding: 6rem 0 8rem;
-  background: rgba(252, 196, 28, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--bg);
   border-top: 3px solid var(--ink);
 }
 .contact-panel {
