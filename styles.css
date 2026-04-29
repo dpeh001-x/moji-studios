@@ -120,82 +120,28 @@ body {
   font-weight: 400;
 }
 
-/* ---------- Showreel: animated pattern banner in the middle of the page ---------- */
-.showreel {
-  padding: 0;
-  position: relative;
-  border-top: 4px solid var(--ink);
-  border-bottom: 4px solid var(--ink);
-  background: var(--bg);
-}
-.showreel-stage {
-  position: relative;
-  width: 100%;
-  height: clamp(360px, 56vh, 560px);
-  overflow: hidden;
-}
-.showreel-pattern {
+/* ---------- Mascots section bg pattern (animated GIF stretched edge-to-edge) ---------- */
+.mascots-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
   will-change: transform;
   transform: scale(1.05);
 }
-.showreel-overlay {
+.mascots-bg-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
   pointer-events: none;
+  /* Soften the busy pattern toward yellow/dark so the Guguma card pops on top */
   background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, rgba(252,196,28, 0.15) 70%, rgba(252,196,28, 0.35) 100%),
-    linear-gradient(180deg, rgba(42,25,16, 0.18) 0%, transparent 25%, transparent 75%, rgba(42,25,16, 0.18) 100%);
-}
-.showreel-caption {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 2rem;
-  z-index: 2;
-  pointer-events: none;
-}
-.showreel-tag {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9rem;
-  letter-spacing: 0.18em;
-  color: var(--ink);
-  background: #fff;
-  padding: 0.55rem 1.25rem;
-  border: 3px solid var(--ink);
-  border-radius: 999px;
-  box-shadow: 0 5px 0 var(--ink);
-  margin-bottom: 1.25rem;
-}
-.showreel-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: #fff;
-  text-shadow:
-    -3px -3px 0 var(--ink),
-     3px -3px 0 var(--ink),
-    -3px  3px 0 var(--ink),
-     3px  3px 0 var(--ink),
-     0 10px 0 rgba(0,0,0,0.35);
-  max-width: 800px;
-}
-.showreel-title em {
-  font-style: normal;
-  color: var(--brand-yellow);
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(252,196,28, 0.25), rgba(252,196,28, 0.45) 60%, rgba(252,196,28, 0.55) 100%),
+    linear-gradient(180deg, rgba(42,25,16, 0.10) 0%, transparent 30%, transparent 70%, rgba(42,25,16, 0.10) 100%);
 }
 .pixel, .pixel * { image-rendering: pixelated; }
 
@@ -1263,35 +1209,44 @@ section {
 
 /* ---------- Mascots / Cast ---------- */
 .mascots {
-  background: #fff;
+  background: var(--bg);
   border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
   position: relative;
   overflow: hidden;
 }
-.mascots::before {
-  content: '';
-  position: absolute;
-  top: 60px; right: -60px;
-  width: 180px; height: 180px;
-  background: var(--bg-2);
-  border: 3px solid var(--ink);
-  border-radius: 50%;
-  box-shadow: 0 6px 0 var(--ink);
-  z-index: 0;
+/* (decorative circle pseudos removed — the GIF pattern is the new backdrop) */
+.mascots > .container { position: relative; z-index: 2; }
+
+/* Make headings readable against the busy pattern */
+.mascots .section-title {
+  color: #fff;
+  text-shadow:
+    -2px -2px 0 var(--ink),
+     2px -2px 0 var(--ink),
+    -2px  2px 0 var(--ink),
+     2px  2px 0 var(--ink),
+     0 6px 0 rgba(0,0,0,0.3);
 }
-.mascots::after {
-  content: '';
-  position: absolute;
-  bottom: 80px; left: -80px;
-  width: 220px; height: 220px;
-  background: var(--accent-2);
-  border: 3px solid var(--ink);
-  border-radius: 50%;
-  box-shadow: 0 6px 0 var(--ink);
-  z-index: 0;
-  opacity: 0.5;
+.mascots .section-title em,
+.mascots .section-title-accent {
+  color: var(--brand-yellow);
+  text-shadow:
+    -2px -2px 0 var(--ink),
+     2px -2px 0 var(--ink),
+    -2px  2px 0 var(--ink),
+     2px  2px 0 var(--ink);
 }
-.mascots > .container { position: relative; z-index: 1; }
+.mascots .section-sub {
+  color: var(--ink);
+  background: rgba(255,255,255, 0.85);
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 2px solid var(--ink);
+  box-shadow: 0 4px 0 var(--ink);
+  max-width: 640px;
+}
 .mascots-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

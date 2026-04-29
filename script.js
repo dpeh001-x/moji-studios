@@ -58,24 +58,24 @@
   });
 })();
 
-// ---------- Showreel pattern: scroll parallax (subtle inside-section drift) ----------
+// ---------- Mascots-section bg pattern: subtle scroll parallax ----------
 (function () {
-  const v = document.getElementById('showreel-pattern');
-  const stage = v && v.closest('.showreel-stage');
-  if (!v || !stage) return;
+  const v = document.getElementById('mascots-bg');
+  const section = v && v.closest('.mascots');
+  if (!v || !section) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   let raf = 0;
   const update = () => {
-    const rect = stage.getBoundingClientRect();
+    const rect = section.getBoundingClientRect();
     const vh = window.innerHeight;
     // Progress 0..1 as the section travels through the viewport
     const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
     const clamped = Math.max(0, Math.min(1, progress));
-    // Drift the pattern -8% to +8% vertically as the section scrolls past
-    const offsetPct = (clamped - 0.5) * 16; // -8 .. +8
-    // Subtle scale 1.05 -> 1.12 over the journey
-    const scale = 1.05 + clamped * 0.07;
+    // Drift the pattern -10% to +10% vertically as the section scrolls past
+    const offsetPct = (clamped - 0.5) * 20;
+    // Subtle scale 1.05 -> 1.14 over the journey
+    const scale = 1.05 + clamped * 0.09;
     v.style.transform = `translateY(${offsetPct.toFixed(2)}%) scale(${scale.toFixed(3)})`;
   };
   window.addEventListener('scroll', () => {
