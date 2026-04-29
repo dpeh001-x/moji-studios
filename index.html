@@ -200,7 +200,7 @@
       <!-- Bitmon — flagship creature-breeding RPG -->
       <article class="game-card game-card-featured tilt-card" data-neon="cyan">
         <div class="game-art game-art-video">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="Bitmon creature-collecting game trailer">
+          <video id="bitmon-video" autoplay muted loop playsinline preload="metadata" aria-label="Bitmon creature-collecting game trailer">
             <source src="bitmon-promo.mp4" type="video/mp4" />
           </video>
           <div class="game-art-overlay"></div>
@@ -214,6 +214,11 @@
             <span>240+ SPECIES</span>
             <span>GENETICS SYSTEM</span>
             <span>ONLINE TRADING</span>
+          </div>
+          <div class="video-picker" role="tablist" aria-label="Bitmon trailer">
+            <span class="video-picker-label">Trailer:</span>
+            <button type="button" class="video-chip is-active" data-video-target="bitmon-video" data-video-src="bitmon-promo.mp4" aria-pressed="true">🎮 Pixel</button>
+            <button type="button" class="video-chip" data-video-target="bitmon-video" data-video-src="bitmon-promo-2.mp4" aria-pressed="false">✨ 3D</button>
           </div>
           <a href="#" class="game-link">View Game →</a>
         </div>

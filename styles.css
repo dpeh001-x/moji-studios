@@ -1268,6 +1268,53 @@ section {
   will-change: transform;
 }
 
+/* ---------- Generic video picker (used inside game cards) ---------- */
+.video-picker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  position: relative;
+  z-index: 5;
+}
+.video-picker-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  margin-right: 0.25rem;
+}
+.video-chip {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.4rem 0.85rem;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.25s ease, color 0.25s ease;
+  box-shadow: 0 3px 0 var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  pointer-events: auto;
+  position: relative;
+  z-index: 6;
+}
+.video-chip:hover  { transform: translateY(-2px); box-shadow: 0 5px 0 var(--ink); }
+.video-chip:active { transform: translateY(2px);  box-shadow: 0 1px 0 var(--ink); }
+.video-chip.is-active {
+  background: var(--accent-2);
+  color: #fff;
+}
+/* Cyan tint for picker on cards with data-neon="cyan" (Bitmon) */
+.game-card[data-neon="cyan"] .video-chip.is-active { background: var(--accent-2); }
+
 /* ---------- Mood picker (interactive Guguma) ---------- */
 .mood-picker {
   display: flex;

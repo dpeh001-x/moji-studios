@@ -229,6 +229,47 @@ const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches
   });
 })();
 
+// ---------- Generic video picker (chips that swap a target <video>'s source) ----------
+(function () {
+  const chips = document.querySelectorAll('.video-chip');
+  if (!chips.length) return;
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const targetId = chip.dataset.videoTarget;
+      const newSrc   = chip.dataset.videoSrc;
+      if (!targetId || !newSrc) return;
+
+      const video = document.getElementById(targetId);
+      if (!video) return;
+      const source = video.querySelector('source');
+      if (!source) return;
+
+      // Update active state for chips in the same picker
+      const picker = chip.closest('.video-picker');
+      if (picker) {
+        picker.querySelectorAll('.video-chip').forEach((c) => {
+          c.classList.remove('is-active');
+          c.setAttribute('aria-pressed', 'false');
+        });
+      }
+      chip.classList.add('is-active');
+      chip.setAttribute('aria-pressed', 'true');
+
+      // Cross-fade swap
+      video.style.transition = 'opacity 0.18s ease';
+      video.style.opacity = '0';
+      setTimeout(() => {
+        source.setAttribute('src', newSrc);
+        video.load();
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+        video.style.opacity = '';
+      }, 180);
+    });
+  });
+})();
+
 // ---------- Interactive Guguma — mood picker ----------
 (function () {
   const video = document.getElementById('guguma-video');
