@@ -54,6 +54,43 @@
 
 html { scroll-behavior: smooth; }
 
+/* ---------- Custom cursor (pixel-art strawberry cake) ---------- */
+html, body {
+  cursor: url('cursor-cake.png') 16 4, auto;
+}
+a, button, .btn, .game-card, .mascot-card, .mood-chip, .nav-cta,
+.game-link, .magnetic, .scroll-indicator, label, summary, input,
+textarea, select, [role="button"], [tabindex] {
+  cursor: url('cursor-cake.png') 16 4, pointer;
+}
+
+/* ---------- Cursor-following glow (futuristic accent) ---------- */
+.cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(255,109,181,0.32) 0%,
+    rgba(94,198,255,0.18) 35%,
+    transparent 70%);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  mix-blend-mode: screen;
+  filter: blur(28px);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  will-change: left, top;
+}
+.cursor-glow.is-active { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow { display: none; }
+}
+@media (hover: none) {
+  .cursor-glow { display: none; }
+}
+
 /* ---------- Scroll progress bar ---------- */
 .scroll-progress {
   position: fixed;
@@ -830,11 +867,39 @@ section {
   transform-style: preserve-3d;
   transition: transform 0.15s cubic-bezier(.2,.9,.3,1.05), box-shadow 0.3s ease;
   will-change: transform;
+  position: relative;
 }
 .tilt-card > * { transform-style: preserve-3d; }
 .tilt-card .game-art, .tilt-card .mascot-video, .tilt-card .mascot-still { transform: translateZ(18px); }
 .tilt-card .game-info, .tilt-card .mascot-info { transform: translateZ(10px); }
 .tilt-card .game-tag, .tilt-card .mascot-tag { transform: translateZ(30px); }
+
+/* ---------- Holographic gradient border (futuristic shimmer on hover) ---------- */
+.tilt-card::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: conic-gradient(
+    from 0deg,
+    var(--accent),
+    var(--accent-2),
+    var(--accent-5),
+    var(--brand-yellow),
+    var(--accent-4),
+    var(--accent)
+  );
+  z-index: -1;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.4s ease;
+  animation: holo-spin 6s linear infinite;
+  pointer-events: none;
+}
+.tilt-card:hover::after { opacity: 0.85; }
+@keyframes holo-spin {
+  to { transform: rotate(360deg); }
+}
 
 /* ---------- Magnetic buttons ---------- */
 .magnetic {

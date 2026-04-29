@@ -21,6 +21,43 @@
   }, 90);
 })();
 
+// ---------- Cursor-following glow (futuristic accent) ----------
+(function () {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const glow = document.createElement('div');
+  glow.className = 'cursor-glow';
+  document.body.appendChild(glow);
+
+  let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+  let cx = tx, cy = ty;
+  let raf = 0;
+
+  const loop = () => {
+    // Lerp toward target for smooth, slightly laggy follow
+    cx += (tx - cx) * 0.18;
+    cy += (ty - cy) * 0.18;
+    glow.style.left = cx + 'px';
+    glow.style.top = cy + 'px';
+    raf = requestAnimationFrame(loop);
+  };
+
+  window.addEventListener('mousemove', (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    if (!glow.classList.contains('is-active')) {
+      glow.classList.add('is-active');
+      raf = requestAnimationFrame(loop);
+    }
+  }, { passive: true });
+
+  window.addEventListener('mouseleave', () => {
+    glow.classList.remove('is-active');
+    cancelAnimationFrame(raf);
+  });
+})();
+
 // ---------- Background pattern GIF: scroll parallax + breathing opacity ----------
 (function () {
   const v = document.getElementById('bg-pattern');
