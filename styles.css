@@ -353,11 +353,9 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  /* Hero is fully opaque — bg pattern should NOT be visible behind the hero */
+  /* Transparent — bg-pattern plays through the hero, behind the tag + title */
   background:
-    radial-gradient(ellipse 60% 40% at 50% 20%, rgba(255,255,255,0.25), transparent 70%),
-    var(--bg);
-  isolation: isolate;
+    radial-gradient(ellipse 70% 50% at 50% 25%, rgba(255,255,255,0.20), transparent 70%);
 }
 .hero-grid, .hero-sun, .hero-stars, .hero-hills, .hero-console { display: none; }
 
