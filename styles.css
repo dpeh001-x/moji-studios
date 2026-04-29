@@ -107,11 +107,8 @@ textarea, select, [role="button"], [tabindex] {
 body {
   font-family: var(--font-sans);
   color: var(--ink);
-  background: var(--bg);
-  background-image:
-    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
-    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
-    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
+  /* yellow base + radial gradients moved to .bg-base for layering with bg-pattern */
+  background: transparent;
   min-height: 100vh;
   line-height: 1.65;
   overflow-x: hidden;
@@ -120,10 +117,50 @@ body {
   font-weight: 400;
 }
 
+/* ---------- Page-wide background theme (wallpaper visible across all sections) ---------- */
+.bg-base {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  pointer-events: none;
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 10% 0%,  rgba(255,255,255,0.25), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.18), transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(229,159,13,0.25), transparent 60%);
+}
+.bg-pattern {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+  opacity: 0.55;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, 0, 0) scale(1.06);
+}
+.bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* gentle warm tint so the pattern reads as theme but the brand color stays felt */
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(252,196,28, 0.10), rgba(252,196,28, 0.18) 60%),
+    linear-gradient(180deg, rgba(252,196,28, 0.16) 0%, rgba(252,196,28, 0.22) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-pattern { opacity: 0.22; }
+}
+
 /* ---------- Manifesto break (oversize editorial statement) ---------- */
 .manifesto {
   padding: 9rem 2rem;
-  background: var(--bg);
+  background: rgba(252, 196, 28, 0.62);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border-top: 3px solid var(--ink);
   border-bottom: 3px solid var(--ink);
   text-align: center;
@@ -207,7 +244,10 @@ body {
 /* ---------- Closing oversize statement (before contact) ---------- */
 .closing-statement {
   padding: 7rem 2rem;
-  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg) 100%);
+  background:
+    linear-gradient(180deg, rgba(255,244,212, 0.78) 0%, rgba(252,196,28, 0.6) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-top: 3px solid var(--ink);
   text-align: center;
   position: relative;
@@ -249,29 +289,7 @@ body {
   50%      { transform: translateY(-10px) rotate(4deg); }
 }
 
-/* ---------- Mascots section bg pattern (animated GIF stretched edge-to-edge) ---------- */
-.mascots-bg {
-  position: absolute;
-  inset: -10%;        /* extend past edges so parallax can't reveal seams */
-  width: 120%;
-  height: 120%;
-  object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-  user-select: none;
-  will-change: transform;
-  image-rendering: auto;
-}
-.mascots-bg-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  /* Light vignette only — let the pattern dominate the section */
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 50%, transparent 0%, transparent 50%, rgba(42,25,16, 0.18) 100%),
-    linear-gradient(180deg, rgba(42,25,16, 0.12) 0%, transparent 18%, transparent 82%, rgba(42,25,16, 0.12) 100%);
-}
+/* (mascots-bg removed — pattern now lives at body level as a page-wide theme) */
 .pixel, .pixel * { image-rendering: pixelated; }
 
 .container {
@@ -838,7 +856,9 @@ section {
 
 /* ---------- Studio ---------- */
 .studio {
-  background: #fff;
+  background: rgba(255,255,255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border-top: 3px solid var(--ink);
   position: relative;
@@ -1075,7 +1095,9 @@ section {
 
 /* ---------- Games ---------- */
 .games {
-  background: var(--bg-cream);
+  background: rgba(255,244,212, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-top: 3px solid var(--ink);
   position: relative;
 }
@@ -1351,8 +1373,11 @@ section {
 }
 
 /* ---------- Mascots / Cast ---------- */
+/* Cast is the pattern's strongest moment — barely tinted, pattern shines through */
 .mascots {
-  background: var(--bg);
+  background: rgba(252, 196, 28, 0.18);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   border-top: 3px solid var(--ink);
   border-bottom: 3px solid var(--ink);
   position: relative;
@@ -1670,7 +1695,9 @@ section {
 /* ---------- Contact ---------- */
 .contact {
   padding: 6rem 0 8rem;
-  background: var(--bg);
+  background: rgba(252, 196, 28, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-top: 3px solid var(--ink);
 }
 .contact-panel {

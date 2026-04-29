@@ -58,23 +58,22 @@
   });
 })();
 
-// ---------- Mascots-section bg pattern: subtle scroll parallax ----------
+// ---------- Page-wide bg pattern: subtle scroll parallax ----------
 (function () {
-  const v = document.getElementById('mascots-bg');
-  const section = v && v.closest('.mascots');
-  if (!v || !section) return;
+  const v = document.getElementById('bg-pattern');
+  if (!v) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   let raf = 0;
   const update = () => {
-    const rect = section.getBoundingClientRect();
-    const vh = window.innerHeight;
-    // Progress 0..1 as the section travels through the viewport
-    const progress = 1 - (rect.top + rect.height) / (vh + rect.height);
-    const clamped = Math.max(0, Math.min(1, progress));
-    // Drift the pattern -5% to +5% vertically (small range so edges never reveal)
-    const offsetPct = (clamped - 0.5) * 10;
-    v.style.transform = `translateY(${offsetPct.toFixed(2)}%)`;
+    const y = window.scrollY;
+    // Slow upward drift as you scroll — gentle parallax
+    const offset = y * -0.12;
+    // Subtle scale 1.06 -> 1.16 over scroll depth
+    const scale = 1.06 + Math.min(y / 7000, 0.10);
+    // Gentle rotation up to 2.5deg for "alive" feel
+    const tilt = Math.min(y / 320, 2.5);
+    v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
   };
   window.addEventListener('scroll', () => {
     cancelAnimationFrame(raf);
