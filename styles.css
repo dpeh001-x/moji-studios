@@ -649,7 +649,7 @@ body {
 
 .hero-title {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 800;
   font-size: clamp(2.4rem, 6.5vw, 4.6rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -660,29 +660,49 @@ body {
      3px -3px 0 var(--ink),
     -3px  3px 0 var(--ink),
      3px  3px 0 var(--ink),
-     0 10px 0 rgba(42,25,16,0.3);
+    -4px  0 0 var(--ink),
+     4px  0 0 var(--ink),
+     0 -4px 0 var(--ink),
+     0  4px 0 var(--ink),
+     0 10px 0 rgba(42,25,16,0.35);
 }
 .hero-title-accent {
   display: block;
   color: var(--accent);
-  text-shadow:
-    -3px -3px 0 var(--ink),
-     3px -3px 0 var(--ink),
-    -3px  3px 0 var(--ink),
-     3px  3px 0 var(--ink),
-     0 10px 0 rgba(42,25,16,0.3);
+  /* inherit the same chunky outline from .hero-title */
+  text-shadow: inherit;
   margin-top: 0.3rem;
+  font-weight: 800;
 }
-.glitch { position: relative; display: inline-block; }
+/* "Early 2000s," span — inherits the chunky outline from .hero-title */
+.hero-title .glitch {
+  position: relative;
+  display: inline-block;
+  color: inherit;
+  text-shadow: inherit;
+  font-weight: inherit;
+}
 .glitch::before, .glitch::after { display: none; }
 
 .hero-sub {
-  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
-  color: var(--ink-dim);
-  max-width: 720px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+  color: #fff;
+  max-width: 760px;
   margin: 0 auto 2.5rem;
-  line-height: 1.7;
-  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  text-shadow:
+    -2px -2px 0 var(--ink),
+     2px -2px 0 var(--ink),
+    -2px  2px 0 var(--ink),
+     2px  2px 0 var(--ink),
+    -3px  0 0 var(--ink),
+     3px  0 0 var(--ink),
+     0 -3px 0 var(--ink),
+     0  3px 0 var(--ink),
+     0 6px 0 rgba(42,25,16,0.3);
 }
 
 .hero-actions {
