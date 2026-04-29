@@ -430,6 +430,15 @@ body {
   filter: drop-shadow(0 8px 0 rgba(0,0,0,0.2));
   animation: merch-bob 3.2s ease-in-out infinite;
 }
+.merch-art-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
 .merch-art-svg {
   width: 70%;
   height: 70%;
