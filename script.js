@@ -58,30 +58,9 @@
   });
 })();
 
-// ---------- Page-wide bg pattern: subtle scroll parallax ----------
-(function () {
-  const v = document.getElementById('bg-pattern');
-  if (!v) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  let raf = 0;
-  const update = () => {
-    const y = window.scrollY;
-    // Slow upward drift as you scroll — gentle parallax
-    const offset = y * -0.12;
-    // Subtle scale 1.06 -> 1.16 over scroll depth
-    const scale = 1.06 + Math.min(y / 7000, 0.10);
-    // Gentle rotation up to 2.5deg for "alive" feel
-    const tilt = Math.min(y / 320, 2.5);
-    v.style.transform = `translate3d(0, ${offset.toFixed(1)}px, 0) scale(${scale.toFixed(3)}) rotate(${tilt.toFixed(2)}deg)`;
-  };
-  window.addEventListener('scroll', () => {
-    cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(update);
-  }, { passive: true });
-  window.addEventListener('resize', update);
-  update();
-})();
+// ---------- Page-wide bg pattern: lock in place (no scroll motion) ----------
+// Pattern is position: fixed in CSS — the GIF still animates internally,
+// but it should NOT move with scroll. So no scroll listener here.
 
 // ---------- Scroll progress bar ----------
 (function () {
