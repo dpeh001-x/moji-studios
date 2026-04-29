@@ -120,6 +120,135 @@ body {
   font-weight: 400;
 }
 
+/* ---------- Manifesto break (oversize editorial statement) ---------- */
+.manifesto {
+  padding: 9rem 2rem;
+  background: var(--bg);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.manifesto::before,
+.manifesto::after {
+  content: '';
+  position: absolute;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 3px solid var(--ink);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.manifesto::before {
+  top: -100px; left: -120px;
+  background: var(--accent);
+}
+.manifesto::after {
+  bottom: -120px; right: -140px;
+  background: var(--accent-2);
+}
+.manifesto-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 880px;
+  margin: 0 auto;
+}
+.manifesto-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.25em;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+.manifesto-statement {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+.manifesto-statement em {
+  font-style: normal;
+  color: var(--accent);
+  text-shadow:
+    -3px -3px 0 var(--ink),
+     3px -3px 0 var(--ink),
+    -3px  3px 0 var(--ink),
+     3px  3px 0 var(--ink);
+}
+.manifesto-body {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+  line-height: 1.65;
+  color: var(--ink-dim);
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+}
+.manifesto-body em {
+  font-style: italic;
+  color: var(--ink);
+  font-weight: 600;
+}
+.manifesto-tagline {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+/* ---------- Closing oversize statement (before contact) ---------- */
+.closing-statement {
+  padding: 7rem 2rem;
+  background: linear-gradient(180deg, var(--bg-cream) 0%, var(--bg) 100%);
+  border-top: 3px solid var(--ink);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.closing-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.closing-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.5rem, 11vw, 8rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin: 0;
+}
+.closing-text em {
+  font-style: normal;
+  color: var(--accent);
+  text-shadow:
+    -4px -4px 0 var(--ink),
+     4px -4px 0 var(--ink),
+    -4px  4px 0 var(--ink),
+     4px  4px 0 var(--ink),
+     0 14px 0 rgba(0,0,0,0.15);
+}
+.closing-chick {
+  width: 120px;
+  height: auto;
+  margin-top: 2rem;
+  filter: drop-shadow(0 8px 0 rgba(0,0,0,0.2));
+  animation: closing-bob 2.6s ease-in-out infinite;
+}
+@keyframes closing-bob {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50%      { transform: translateY(-10px) rotate(4deg); }
+}
+
 /* ---------- Mascots section bg pattern (animated GIF stretched edge-to-edge) ---------- */
 .mascots-bg {
   position: absolute;
@@ -296,6 +425,20 @@ body {
 .nav-links a:not(.nav-cta):hover::after { width: 100%; }
 .nav-links a.is-current { color: var(--accent); }
 .nav-links a.is-current:not(.nav-cta)::after { width: 100%; background: var(--accent); }
+
+/* Numbered nav prefix (rewildyourself-style 01, 02, 03...) */
+.nav-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-right: 0.35rem;
+  vertical-align: 0.15em;
+  display: inline-block;
+}
+.nav-links a:hover .nav-num { color: var(--ink); }
+.nav-links a.is-current .nav-num { color: var(--accent-4); }
 
 .nav-cta {
   font-family: var(--font-display) !important;
