@@ -177,52 +177,10 @@
 
       <!-- Chubby Bird — playable browser game (out now) -->
       <article class="game-card game-card-featured tilt-card" data-neon="green">
-        <div class="game-art game-art-chubby">
-          <svg class="chubby-scene" viewBox="0 0 200 130" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <defs>
-              <linearGradient id="cb-sky" x1="0" x2="0" y1="0" y2="1">
-                <stop offset="0%" stop-color="#7fc7e8"/>
-                <stop offset="80%" stop-color="#c0e3f4"/>
-              </linearGradient>
-            </defs>
-            <!-- sky -->
-            <rect width="200" height="105" fill="url(#cb-sky)"/>
-            <!-- drifting clouds -->
-            <g class="cb-clouds">
-              <ellipse cx="35"  cy="20" rx="14" ry="5" fill="#fff" opacity="0.95"/>
-              <ellipse cx="42"  cy="23" rx="10" ry="4" fill="#fff" opacity="0.95"/>
-              <ellipse cx="160" cy="35" rx="16" ry="6" fill="#fff" opacity="0.9"/>
-              <ellipse cx="170" cy="38" rx="10" ry="4" fill="#fff" opacity="0.9"/>
-              <ellipse cx="235" cy="22" rx="14" ry="5" fill="#fff" opacity="0.95"/>
-              <ellipse cx="242" cy="25" rx="10" ry="4" fill="#fff" opacity="0.95"/>
-              <ellipse cx="360" cy="33" rx="16" ry="6" fill="#fff" opacity="0.9"/>
-              <ellipse cx="370" cy="36" rx="10" ry="4" fill="#fff" opacity="0.9"/>
-            </g>
-            <!-- ground -->
-            <rect y="105" width="200" height="25" fill="#7fd490"/>
-            <rect y="105" width="200" height="3" fill="#5aa860"/>
-            <!-- scrolling pipes — two identical pairs spaced 220px apart for seamless loop -->
-            <g class="cb-pipes">
-              <!-- pair 1 -->
-              <rect x="138" y="0"  width="28" height="38" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="133" y="34" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="141" y="2"  width="3"  height="36" fill="#9ed592"/>
-              <rect x="138" y="68" width="28" height="37" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="133" y="62" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="141" y="74" width="3"  height="32" fill="#9ed592"/>
-              <!-- pair 2 (offscreen right) -->
-              <rect x="358" y="0"  width="28" height="48" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="353" y="44" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="361" y="2"  width="3"  height="46" fill="#9ed592"/>
-              <rect x="358" y="78" width="28" height="27" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="353" y="72" width="38" height="10" fill="#5fb851" stroke="#2a1910" stroke-width="2.5"/>
-              <rect x="361" y="84" width="3"  height="22" fill="#9ed592"/>
-            </g>
-            <!-- score badge -->
-            <rect x="76" y="8" width="48" height="14" rx="3" fill="#fff" stroke="#2a1910" stroke-width="2"/>
-            <text x="100" y="18" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="9" fill="#2a1910">SCORE: 99</text>
-          </svg>
-          <img class="chubby-chick" src="moji-logo-chick.png" alt="" aria-hidden="true" />
+        <div class="game-art game-art-video">
+          <video autoplay muted loop playsinline preload="metadata" aria-label="Chubby Bird game promo">
+            <source src="chubbybird-promo.mp4" type="video/mp4" />
+          </video>
           <div class="game-art-overlay"></div>
           <span class="game-tag game-tag-green">PLAY NOW · BROWSER</span>
         </div>
