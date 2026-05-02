@@ -9,7 +9,7 @@
     />
     <link rel="canonical" href="https://moji-studios.com/chubbybird/" />
     <title>Chubby Bird - Moji Studios</title>
-    <link rel="stylesheet" href="styles.css?v=mobile-perf-1" />
+    <link rel="stylesheet" href="styles.css?v=leaderboard-1" />
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341433285023457"
@@ -34,6 +34,24 @@
         </div>
       </section>
 
+      <section id="leaderboardPanel" class="leaderboard-panel" aria-labelledby="leaderboardTitle">
+        <div class="leaderboard-heading">
+          <h2 id="leaderboardTitle">Weekly Top 20</h2>
+          <button id="refreshLeaderboard" class="mini-button" type="button">Refresh</button>
+        </div>
+        <ol id="leaderboardList" class="leaderboard-list">
+          <li class="empty-score">Loading scores...</li>
+        </ol>
+        <p id="leaderboardStatus" class="leaderboard-status">Current week</p>
+        <form id="scoreSubmitForm" class="score-submit hidden">
+          <label for="playerName">Save Score</label>
+          <div>
+            <input id="playerName" name="playerName" type="text" maxlength="12" autocomplete="nickname" placeholder="Your name" />
+            <button id="scoreSubmitButton" type="submit">Save <span id="scoreSubmitValue">0</span></button>
+          </div>
+        </form>
+      </section>
+
       <section id="overlay" class="overlay">
         <h1>Chubby Bird</h1>
         <p>Tap or Space to flap. Swipe up for a super jump. Swipe right or double-tap Right to dash. Pace cycles from 1.0x to 1.5x.</p>
@@ -41,6 +59,6 @@
       </section>
     </main>
 
-    <script src="game.js?v=smooth-audit-1"></script>
+    <script src="game.js?v=leaderboard-1"></script>
   </body>
 </html>
