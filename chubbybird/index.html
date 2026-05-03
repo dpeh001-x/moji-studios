@@ -9,11 +9,30 @@
     />
     <link rel="canonical" href="https://moji-studios.com/chubbybird/" />
     <title>Chubby Bird - Moji Studios</title>
-    <link rel="stylesheet" href="styles.css?v=mobile-smooth-1" />
+    <link rel="stylesheet" href="styles.css?v=mobile-android-2" />
 
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341433285023457"
-         crossorigin="anonymous"></script>
+    <script>
+      window.addEventListener("load", () => {
+        const loadAds = () => {
+          if (document.querySelector("script[data-chubby-ads]")) return;
+          const script = document.createElement("script");
+          script.async = true;
+          script.crossOrigin = "anonymous";
+          script.dataset.chubbyAds = "true";
+          script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2341433285023457";
+          document.head.appendChild(script);
+        };
+        const loadAdsWhenIdle = () => {
+          const overlay = document.querySelector("#overlay");
+          if (overlay && overlay.classList.contains("hidden")) {
+            window.setTimeout(loadAdsWhenIdle, 5000);
+            return;
+          }
+          loadAds();
+        };
+        window.setTimeout(loadAdsWhenIdle, 10000);
+      });
+    </script>
   </head>
   <body>
     <main class="game-shell">
@@ -59,6 +78,6 @@
       </section>
     </main>
 
-    <script src="game.js?v=mobile-smooth-1"></script>
+    <script src="game.js?v=mobile-android-2"></script>
   </body>
 </html>
