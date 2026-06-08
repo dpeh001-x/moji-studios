@@ -1683,6 +1683,7 @@ section {
   text-transform: uppercase;
 }
 .game-tag-cyan { background: var(--accent-2); }
+.game-tag-pink { background: var(--accent); }
 .game-tag-green { background: var(--accent-5); }
 .game-tag-yellow { background: var(--brand-yellow); color: var(--ink); }
 .game-tag-wip {
