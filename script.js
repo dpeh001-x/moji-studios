@@ -402,3 +402,76 @@ function handleSubmit(event) {
 
   return false;
 }
+
+// ---------- Video lightbox (enlarge + audio) ----------
+(function () {
+  const lightbox = document.getElementById('video-lightbox');
+  const player = document.getElementById('video-lightbox-player');
+  const titleEl = document.getElementById('video-lightbox-title');
+  const triggers = document.querySelectorAll('[data-video-expand]');
+  if (!lightbox || !player || !triggers.length) return;
+
+  let lastFocused = null;
+  const pausedCardVideos = [];
+
+  function openLightbox(src, title) {
+    if (!src) return;
+    lastFocused = document.activeElement;
+
+    // Pause any autoplaying card videos so audio doesn't overlap
+    document.querySelectorAll('.game-art-video video').forEach((v) => {
+      if (!v.paused) { v.pause(); pausedCardVideos.push(v); }
+    });
+
+    player.src = src;
+    player.currentTime = 0;
+    player.muted = false;
+    player.volume = 1;
+    if (titleEl) titleEl.textContent = title || '';
+
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    const playPromise = player.play();
+    if (playPromise && typeof playPromise.catch === 'function') {
+      // If autoplay-with-sound is blocked, controls are visible so the user can hit play
+      playPromise.catch(() => {});
+    }
+
+    const closeBtn = lightbox.querySelector('.video-lightbox-close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeLightbox() {
+    if (lightbox.hidden) return;
+    player.pause();
+    player.removeAttribute('src');
+    player.load();
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+
+    // Resume card videos we paused
+    pausedCardVideos.forEach((v) => {
+      const p = v.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    });
+    pausedCardVideos.length = 0;
+
+    if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+  }
+
+  triggers.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openLightbox(btn.dataset.videoExpand, btn.dataset.videoTitle);
+    });
+  });
+
+  lightbox.querySelectorAll('[data-lightbox-close]').forEach((el) => {
+    el.addEventListener('click', closeLightbox);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+})();

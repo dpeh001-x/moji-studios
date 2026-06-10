@@ -200,10 +200,14 @@
       <!-- MojiWorld — first Steam release (single-player adventure) -->
       <article class="game-card game-card-featured tilt-card" data-neon="pink">
         <div class="game-art game-art-video">
-          <video autoplay muted loop playsinline preload="metadata" aria-label="MojiWorld 2D side-scrolling adventure gameplay">
-            <source src="mojiworld-promo.mp4" type="video/mp4" />
+          <video autoplay muted loop playsinline preload="metadata" poster="moji-logo-poster.png" aria-label="MojiWorld teaser">
+            <source src="mojiworld_teaser.mp4" type="video/mp4" />
           </video>
           <div class="game-art-overlay"></div>
+          <button type="button" class="video-expand" data-video-expand="mojiworld_teaser.mp4" data-video-title="MojiWorld — Teaser" aria-label="Watch the MojiWorld teaser fullscreen with sound">
+            <span class="video-expand-icon" aria-hidden="true">⛶</span>
+            <span class="video-expand-text">Watch with sound</span>
+          </button>
           <span class="game-tag game-tag-pink">🎮 STEAM · ~1–2 MONTHS</span>
         </div>
         <div class="game-info">
@@ -502,6 +506,18 @@
       <button type="button" class="cookie-btn cookie-decline" data-cookie-action="decline">Decline</button>
       <button type="button" class="cookie-btn cookie-accept" data-cookie-action="accept">Accept All</button>
     </div>
+  </div>
+</div>
+
+<!-- Video lightbox (enlarge + audio) -->
+<div id="video-lightbox" class="video-lightbox" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+  <div class="video-lightbox-backdrop" data-lightbox-close></div>
+  <div class="video-lightbox-inner">
+    <div class="video-lightbox-bar">
+      <span class="video-lightbox-title" id="video-lightbox-title"></span>
+      <button type="button" class="video-lightbox-close" data-lightbox-close aria-label="Close video">✕</button>
+    </div>
+    <video id="video-lightbox-player" class="video-lightbox-player" controls playsinline preload="metadata"></video>
   </div>
 </div>
 
