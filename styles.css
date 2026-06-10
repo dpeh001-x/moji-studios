@@ -1562,7 +1562,7 @@ section {
 }
 .games-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   margin-top: 1rem;
 }
@@ -1582,6 +1582,26 @@ section {
   box-shadow: 14px 16px 0 var(--ink);
 }
 .game-card-featured { grid-column: span 1; }
+
+/* ---------- Hero (main game) card: full-width, larger ---------- */
+.game-card--hero { grid-column: 1 / -1; }
+.game-card--hero:hover { transform: translate(-5px,-7px); box-shadow: 16px 20px 0 var(--ink); }
+@media (min-width: 721px) {
+  .game-card--hero { flex-direction: row; align-items: stretch; }
+  .game-card--hero .game-art {
+    flex: 1 1 60%;
+    min-height: 480px;
+    border-bottom: none;
+    border-right: 4px solid var(--ink);
+  }
+  .game-card--hero .game-info {
+    flex: 1 1 40%;
+    justify-content: center;
+    padding: 2.5rem;
+  }
+  .game-card--hero.game-card-featured .game-title { font-size: 2.6rem; }
+  .game-card--hero .game-info p { font-size: 1.05rem; }
+}
 
 .game-art {
   min-height: 320px;
