@@ -1,0 +1,25 @@
+# Moji Studios
+
+> Indie game studio (est. 2026) crafting early-2000s-style retro games with hand-pixeled art. Main game: MojiWorld, a 2D side-scrolling adventure launching first as a single-player game on Steam (expected July–August 2026), with a full online MMORPG planned after launch. Also: Bitmon (creature-breeding RPG, in development) and Chubby Bird (free browser arcade game, live now).
+
+Key facts:
+- MojiWorld: hand-pixeled 2D side-scrolling adventure; single-player first on Steam, expected July–August 2026; full MMORPG after launch; 12 classes; 8 continents planned; price TBA.
+- Bitmon: creature-breeding RPG; 240+ hand-pixeled creatures; genetics, lineage and personality systems; online trading; in development, release date TBA.
+- Chubby Bird: free one-button casual arcade game, playable now in the browser at https://moji-studios.com/chubbybird/.
+- Mascot: Guguma (named after sweet potatoes).
+- Contact: admin@moji-studios.com · Instagram: https://www.instagram.com/mojistudios.official/
+
+## Games
+
+- [Games hub](https://moji-studios.com/games/): overview of all Moji Studios games
+- [MojiWorld](https://moji-studios.com/games/mojiworld/): release window, FAQ, single-player-first explanation
+- [Bitmon](https://moji-studios.com/games/bitmon/): creature-breeding RPG details and status
+- [Chubby Bird](https://moji-studios.com/games/chubby-bird/): about the free browser game
+- [Play Chubby Bird](https://moji-studios.com/chubbybird/): the playable game itself
+- [MojiWorld vs Bitmon](https://moji-studios.com/games/mojiworld-vs-bitmon/): side-by-side comparison
+
+## Studio
+
+- [Homepage](https://moji-studios.com/): studio overview, games, mascot, merch, contact
+- [Press kit](https://moji-studios.com/press/): boilerplate, fact sheets, media assets
+- [Privacy policy](https://moji-studios.com/privacy/)

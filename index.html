@@ -21,7 +21,7 @@
 <meta property="og:url" content="https://moji-studios.com/" />
 <meta property="og:title" content="Moji Studios — Early 2000s, Reborn." />
 <meta property="og:description" content="A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and Bitmon." />
-<meta property="og:image" content="https://moji-studios.com/og-image.svg" />
+<meta property="og:image" content="https://moji-studios.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="Moji Studios — Early 2000s, Reborn." />
@@ -30,7 +30,7 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Moji Studios — Early 2000s, Reborn." />
 <meta name="twitter:description" content="A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and Bitmon." />
-<meta name="twitter:image" content="https://moji-studios.com/og-image.svg" />
+<meta name="twitter:image" content="https://moji-studios.com/og-image.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -41,13 +41,55 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Moji Studios",
-  "url": "https://moji-studios.com",
-  "logo": "https://moji-studios.com/favicon.svg",
-  "foundingDate": "2026",
-  "description": "A game company dedicated to crafting early 2000s retro games. Home of MojiWorld and Bitmon.",
-  "sameAs": []
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://moji-studios.com/#org",
+      "name": "Moji Studios",
+      "url": "https://moji-studios.com",
+      "logo": "https://moji-studios.com/moji-logo-poster.png",
+      "foundingDate": "2026",
+      "email": "admin@moji-studios.com",
+      "description": "An indie game company dedicated to crafting early 2000s retro games. Home of MojiWorld, Bitmon, and Chubby Bird.",
+      "sameAs": ["https://www.instagram.com/mojistudios.official/"]
+    },
+    {
+      "@type": "WebSite",
+      "name": "Moji Studios",
+      "url": "https://moji-studios.com",
+      "publisher": { "@id": "https://moji-studios.com/#org" }
+    },
+    {
+      "@type": "VideoGame",
+      "name": "MojiWorld",
+      "url": "https://moji-studios.com/games/mojiworld/",
+      "description": "Hand-pixeled 2D side-scrolling adventure launching first as a single-player game on Steam, with a full online MMORPG planned after launch.",
+      "genre": ["Adventure", "Side-scroller", "MMORPG"],
+      "gamePlatform": ["PC", "Steam"],
+      "playMode": "SinglePlayer",
+      "publisher": { "@id": "https://moji-studios.com/#org" },
+      "image": "https://moji-studios.com/og-image.png"
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Bitmon",
+      "url": "https://moji-studios.com/games/bitmon/",
+      "description": "Creature-breeding RPG with 240+ hand-pixeled creatures, a genetics system, and online trading. In development.",
+      "genre": ["RPG", "Creature collection"],
+      "publisher": { "@id": "https://moji-studios.com/#org" }
+    },
+    {
+      "@type": "VideoGame",
+      "name": "Chubby Bird",
+      "url": "https://moji-studios.com/games/chubby-bird/",
+      "description": "Free one-button casual arcade game, playable in the browser right now.",
+      "genre": ["Casual", "Arcade"],
+      "gamePlatform": "Web browser",
+      "playMode": "SinglePlayer",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "publisher": { "@id": "https://moji-studios.com/#org" }
+    }
+  ]
 }
 </script>
 
@@ -197,7 +239,7 @@
             <span>ON STEAM</span>
             <span>~1–2 MONTHS</span>
           </div>
-          <a href="mailto:admin@moji-studios.com?subject=MojiWorld%20Steam%20launch" class="game-link">Get Launch Updates →</a>
+          <a href="/games/mojiworld/" class="game-link">Explore MojiWorld →</a>
         </div>
       </article>
 
@@ -246,7 +288,7 @@
             <button type="button" class="video-chip is-active" data-video-target="bitmon-video" data-video-src="bitmon-promo.mp4" aria-pressed="true">🎮 Pixel</button>
             <button type="button" class="video-chip" data-video-target="bitmon-video" data-video-src="bitmon-promo-2.mp4" aria-pressed="false">✨ 3D</button>
           </div>
-          <a href="#" class="game-link">View Game →</a>
+          <a href="/games/bitmon/" class="game-link">View Game →</a>
         </div>
       </article>
 
@@ -478,10 +520,17 @@
         <p>Dedicated to the early-2000s gaming era. EST. 2026.</p>
       </div>
       <div class="footer-col">
+        <h4>Games</h4>
+        <a href="/games/mojiworld/">MojiWorld</a>
+        <a href="/games/bitmon/">Bitmon</a>
+        <a href="/chubbybird/">Chubby Bird (Play)</a>
+        <a href="/games/mojiworld-vs-bitmon/">MojiWorld vs Bitmon</a>
+      </div>
+      <div class="footer-col">
         <h4>Explore</h4>
-        <a href="#games">Games</a>
         <a href="#mascots">The Cast</a>
         <a href="#contact">Say Hi</a>
+        <a href="/press/">Press Kit</a>
         <a href="mailto:admin@moji-studios.com">Email Us</a>
       </div>
       <div class="footer-col">
@@ -496,8 +545,7 @@
       <div>© 2026 MOJI STUDIOS — EST. 2026. ALL WORLDS RESERVED.</div>
       <div class="footer-links">
         <a href="/privacy/">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Press Kit</a>
+        <a href="/press/">Press Kit</a>
       </div>
     </div>
   </div>
