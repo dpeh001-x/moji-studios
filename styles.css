@@ -2351,6 +2351,44 @@ section {
   transition: color 0.2s ease, border-color 0.2s ease;
 }
 .contact-email:hover { color: var(--accent-4); border-bottom-color: var(--accent-4); }
+
+/* ---------- Social CTA (Instagram) ---------- */
+.contact-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin: -1.25rem 0 2.5rem;
+}
+.contact-social-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  box-shadow: 0 4px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.social-link:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--ink); }
+.social-link:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.social-link-icon { font-size: 1.05rem; }
+.social-link-ig {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
 .contact-form { text-align: left; }
 .form-row {
   display: grid;
