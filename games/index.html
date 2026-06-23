@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Mark JS-enabled before paint so reveal animations only apply with JS (no-JS stays visible) -->
+<script>document.documentElement.className += ' ga-js';</script>
 <title>Games by Moji Studios — MojiWorld, Bitmon &amp; Chubby Bird</title>
 <meta name="description" content="All Moji Studios games: Chubby Bird (free, live in browser), MojiWorld (Steam single-player, expected July–August 2026), and Bitmon (creature-breeding RPG)." />
 <meta name="author" content="Moji Studios" />
@@ -31,6 +33,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&family=VT323&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/styles.css?v=20260613i" />
+<link rel="stylesheet" href="/games.css?v=20260624b" />
 
 <script type="application/ld+json">
 {
@@ -129,7 +132,10 @@
 }
 </script>
 </head>
-<body class="subpage">
+<body class="games-aaa">
+
+<!-- Living candy sky (scroll-driven color shift) -->
+<div class="ga-canvas" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="nav-inner">
@@ -152,131 +158,245 @@
   </div>
 </header>
 
-<main class="subpage-main">
-  <nav class="breadcrumbs" aria-label="Breadcrumb">
-    <a href="/">Home</a> <span class="crumb-sep">›</span>
-    <span class="crumb-here">Games</span>
-  </nav>
-
-  <h1 class="page-headline">Games by Moji Studios</h1>
-  <div class="article-meta">
-    <span>By <strong>the Moji Studios team</strong></span>
-    <span>Updated <strong>June 13, 2026</strong></span>
-    <span>Lineup: <strong>3 games — 1 playable right now</strong></span>
-  </div>
-
-  <div class="answer-box">
-    <span class="answer-label">⚡ Quick answer</span>
-    <p><strong>Moji Studios currently has three games: Chubby Bird, a free casual arcade game live now in your browser; MojiWorld, the studio's main game — a hand-pixeled 2D side-scrolling adventure launching first as a single-player game on Steam, expected July–August 2026; and Bitmon, a creature-breeding RPG in development</strong> with 240+ hand-pixeled creatures and no announced release date yet.</p>
-  </div>
-
-  <table class="facts-table">
-    <tbody>
-      <tr><th>Game</th><td><strong>Status · Platform · Price</strong></td></tr>
-      <tr><th><a href="/games/mojiworld/">MojiWorld</a></th><td>Main game — single-player Steam launch expected July–August 2026 · PC (Steam) · price TBA</td></tr>
-      <tr><th><a href="/games/bitmon/">Bitmon</a></th><td>In development, no release date — "stay tuned for updates" · platform TBA · price TBA</td></tr>
-      <tr><th><a href="/games/chubby-bird/">Chubby Bird</a></th><td>Live now · web browser (no install) · free</td></tr>
-    </tbody>
-  </table>
-
-  <section class="content-section">
-    <h2>MojiWorld — the main game</h2>
-    <p><a href="/games/mojiworld/">MojiWorld</a> is the heart of Moji Studios: a hand-pixeled 2D side-scrolling adventure in the spirit of early-2000s side-scrolling MMOs, built around 12 classes and 8 planned continents. It launches first as a single-player game on Steam — expected July–August 2026 — and the full online MMORPG version follows after launch. PC via Steam is the only confirmed platform; price is to be announced.</p>
-    <div class="subpage-video">
-      <video controls playsinline preload="metadata" poster="/moji-logo-poster.png" aria-label="MojiWorld official teaser">
-        <source src="/mojiworld_teaser.mp4" type="video/mp4" />
-      </video>
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="ga-hero" data-sky-top="#ffb3d9" data-sky-bot="#7ec8ff" aria-label="Games by Moji Studios">
+    <div class="ga-hero-layers" aria-hidden="true">
+      <div class="ga-layer ga-sun" data-parallax-speed="0.22" data-mouse-depth="0.015"></div>
+      <div class="ga-layer ga-cloud ga-cloud-a" data-parallax-speed="0.16" data-mouse-depth="0.03"></div>
+      <div class="ga-layer ga-cloud ga-cloud-b" data-parallax-speed="0.12" data-mouse-depth="0.045"></div>
+      <div class="ga-layer ga-cloud ga-cloud-c" data-parallax-speed="0.08" data-mouse-depth="0.06"></div>
+      <div class="ga-layer ga-hills" data-parallax-speed="-0.06" data-mouse-depth="0.02">
+        <div class="ga-hill ga-hill-back"></div>
+        <div class="ga-hill ga-hill-mid"></div>
+        <div class="ga-hill ga-hill-front"></div>
+      </div>
+      <div class="ga-layer ga-mascot" data-parallax-speed="-0.14" data-mouse-depth="0.08">
+        <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/moji-mascot-1.mp4" type="video/mp4" />
+        </video>
+      </div>
     </div>
-    <p><a href="/games/mojiworld/">Read the full MojiWorld page →</a></p>
-  </section>
 
-  <section class="content-section">
-    <h2>Bitmon — creature-breeding RPG</h2>
-    <p><a href="/games/bitmon/">Bitmon</a> is a creature-breeding RPG in development, where you raise, breed, and battle 240+ hand-pixeled creatures. Every Bitmon has a personality and a lineage, backed by a genetics system, and you can trade online. No platform, price, or release date has been announced — the official word is "stay tuned for updates."</p>
-    <p><a href="/games/bitmon/">Read the full Bitmon page →</a></p>
-  </section>
-
-  <section class="content-section">
-    <h2>Chubby Bird — play free right now</h2>
-    <p><a href="/chubbybird/">Chubby Bird</a> is the one you can play today: a free casual arcade game that runs in your browser with no install. One button, tap to flap, starring the Moji chick — and a leaderboard to climb. It's the studio's only live release so far.</p>
-    <p><a href="/chubbybird/">Play Chubby Bird now →</a> or <a href="/games/chubby-bird/">read the Chubby Bird page →</a></p>
-  </section>
-
-  <section class="content-section">
-    <h2>Which one is for you?</h2>
-    <div class="verdict-box">
-      <div class="verdict-label">The short version</div>
-      <p>Want to play something <em>right now</em>? Open <a href="/chubbybird/">Chubby Bird</a> in your browser — it's free. Waiting for the big one? <a href="/games/mojiworld/">MojiWorld</a> hits Steam as a single-player adventure, expected July–August 2026, with the MMORPG to follow. Love creature collectors? Keep an eye on <a href="/games/bitmon/">Bitmon</a> — 240+ creatures, genetics and all, still in development.</p>
+    <div class="ga-hero-content">
+      <span class="ga-kicker" data-hero-reveal>▶ Moji Studios Presents</span>
+      <h1 class="ga-hero-title">
+        <span class="ga-line"><span>OUR</span></span>
+        <span class="ga-line"><span>GAMES</span></span>
+      </h1>
+      <p class="ga-hero-sub" data-hero-reveal>Three hand-pixeled worlds, born from the early 2000s. One you can play right now — two on the way. Scroll in. 🌀</p>
+      <div class="ga-hero-cta-row" data-hero-reveal>
+        <a href="#mojiworld" class="ga-btn">Enter the worlds ↓</a>
+        <a href="/chubbybird/" class="ga-btn ga-btn-ghost">▶ Play free now</a>
+      </div>
     </div>
-    <table class="compare-table">
-      <thead>
-        <tr><th></th><th>MojiWorld</th><th>Bitmon</th><th>Chubby Bird</th></tr>
-      </thead>
-      <tbody>
-        <tr><th>Genre</th><td>2D side-scrolling adventure → MMORPG after launch</td><td>Creature-breeding RPG</td><td>Casual arcade</td></tr>
-        <tr><th>Status</th><td>Steam launch expected July–August 2026</td><td>In development</td><td>Live now</td></tr>
-        <tr><th>Platform</th><td>PC (Steam)</td><td>To be announced</td><td>Web browser</td></tr>
-        <tr><th>Price</th><td>To be announced</td><td>To be announced</td><td>Free</td></tr>
-      </tbody>
-    </table>
-  </section>
 
-  <section class="content-section">
-    <h2>Frequently asked questions</h2>
-    <div class="faq-list">
-      <details>
-        <summary>Which Moji Studios game can I play right now?</summary>
-        <p><a href="/chubbybird/">Chubby Bird</a> — a free one-button arcade game, live in your browser with no install and a leaderboard.</p>
-      </details>
-      <details>
-        <summary>What is Moji Studios' main game?</summary>
-        <p><a href="/games/mojiworld/">MojiWorld</a>, a hand-pixeled 2D side-scrolling adventure launching first as a single-player game on Steam, expected July–August 2026, with a full online MMORPG planned after launch.</p>
-      </details>
-      <details>
-        <summary>When does Bitmon come out?</summary>
-        <p>No release date, platform, or price has been announced for <a href="/games/bitmon/">Bitmon</a> yet — it's in development, and the official word is "stay tuned for updates."</p>
-      </details>
-      <details>
-        <summary>How much do Moji Studios games cost?</summary>
-        <p>Chubby Bird is free in the browser. MojiWorld's price is to be announced, and Bitmon's price hasn't been announced either.</p>
-      </details>
-      <details>
-        <summary>How are MojiWorld and Bitmon different?</summary>
-        <p>MojiWorld is a 2D side-scrolling adventure (then MMORPG); Bitmon is a creature-breeding RPG. See the full <a href="/games/mojiworld-vs-bitmon/">MojiWorld vs Bitmon comparison</a>.</p>
-      </details>
+    <div class="ga-scrollcue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="chev"></span>
     </div>
   </section>
 
-  <div class="page-cta">
-    <p class="page-cta-title">Never miss a launch 🚀</p>
-    <a href="mailto:admin@moji-studios.com?subject=Moji%20Studios%20game%20updates" class="btn btn-primary"><span class="btn-arrow">▶</span> Get Game Updates</a>
-    <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer" class="social-link social-link-ig"><span class="social-link-icon" aria-hidden="true">📸</span> @mojistudios.official</a>
+  <!-- ============ MARQUEE ============ -->
+  <div class="ga-marquee" aria-hidden="true">
+    <div class="ga-marquee-track">
+      <span>★ 3 WORLDS</span><span>1 PLAYABLE NOW</span><span>HAND-PIXELED</span><span>EARLY 2000s FOREVER</span><span>240+ CREATURES</span><span>STEAM SOON</span><span>COZY RETRO</span>
+      <span>★ 3 WORLDS</span><span>1 PLAYABLE NOW</span><span>HAND-PIXELED</span><span>EARLY 2000s FOREVER</span><span>240+ CREATURES</span><span>STEAM SOON</span><span>COZY RETRO</span>
+    </div>
   </div>
 
-  <section class="content-section">
-    <h2>About Moji Studios</h2>
-    <p>Moji Studios is an indie game studio (est. 2026) dedicated to the early-2000s gaming era — hand-pixeled art, cozy retro vibes, and chibi-forward character design, fronted by its mascot Guguma. It's half game studio, half digital design agency. Say hi at <a href="mailto:admin@moji-studios.com">admin@moji-studios.com</a>.</p>
+  <!-- ============ CHAPTER 1 — MOJIWORLD ============ -->
+  <section class="ga-chapter" data-accent="pink" id="mojiworld" data-sky-top="#ff8fc0" data-sky-bot="#b48aff">
+    <div class="ga-chapter-inner">
+      <div class="ga-stage" data-reveal>
+        <div class="ga-screen">
+          <img src="/moji-logo-poster.png" alt="MojiWorld key art" loading="lazy" />
+          <span class="ga-screen-tag">🎮 Main Game</span>
+          <button type="button" class="ga-watch" data-video-expand="/mojiworld_teaser.mp4" data-video-title="MojiWorld — Teaser" aria-label="Watch the MojiWorld teaser with sound">
+            <span class="ga-watch-play" aria-hidden="true">▶</span>
+            <span>Watch the teaser</span>
+          </button>
+          <div class="ga-screen-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="ga-copy">
+        <div class="ga-chapter-num" data-reveal>Chapter 01 · The Main Game</div>
+        <h2 class="ga-chapter-title" data-reveal>MojiWorld</h2>
+        <p class="ga-chapter-tagline" data-reveal>A hand-pixeled side-scrolling adventure — single-player first, MMORPG after.</p>
+        <div class="ga-chapter-body" data-reveal>
+          <p><a href="/games/mojiworld/">MojiWorld</a> is the heart of Moji Studios: a 2D side-scrolling adventure in the spirit of early-2000s side-scrolling MMOs. Pick a class, explore a hand-pixeled world, and fish at dawn. It launches first as a <strong>single-player game on Steam — expected July–August 2026</strong> — and the full online MMORPG version follows after launch.</p>
+          <div class="ga-stats">
+            <div class="ga-stat"><span class="ga-stat-num" data-count="12">12</span><span class="ga-stat-label">Classes</span></div>
+            <div class="ga-stat"><span class="ga-stat-num" data-count="8">8</span><span class="ga-stat-label">Continents planned</span></div>
+            <div class="ga-stat"><span class="ga-stat-num">'26</span><span class="ga-stat-label">Steam launch</span></div>
+          </div>
+          <ul class="ga-features">
+            <li>Single-player first</li><li>On Steam</li><li>12 classes</li><li>MMORPG to follow</li>
+          </ul>
+          <div class="ga-cta-row">
+            <a href="/games/mojiworld/" class="ga-btn">Explore MojiWorld →</a>
+            <a href="mailto:admin@moji-studios.com?subject=MojiWorld%20Steam%20launch" class="ga-btn ga-btn-ghost">Get launch updates</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="content-section">
-    <h2>Sources</h2>
-    <ul class="cite-list">
-      <li>Moji Studios — <a href="/#games">official games announcement</a> (moji-studios.com, June 2026)</li>
-      <li>MojiWorld — <a href="/mojiworld_teaser.mp4">official teaser video</a> (June 2026)</li>
-      <li>Bitmon — <a href="/bitmon-promo.mp4">pixel trailer</a> and <a href="/bitmon-promo-2.mp4">3D trailer</a></li>
-      <li>Chubby Bird — <a href="/chubbybird/">play the live game</a> and <a href="/chubbybird-promo.mp4">promo video</a></li>
-      <li>Moji Studios — <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer">Instagram @mojistudios.official</a></li>
-    </ul>
+  <!-- ============ CHAPTER 2 — BITMON ============ -->
+  <section class="ga-chapter is-reversed" data-accent="cyan" id="bitmon" data-sky-top="#5ec6ff" data-sky-bot="#3a7bd5">
+    <div class="ga-chapter-inner">
+      <div class="ga-stage" data-reveal>
+        <div class="ga-screen">
+          <video data-autoplay-inview muted loop playsinline preload="none" poster="/og-image.png" aria-label="Bitmon trailer">
+            <source src="/bitmon-promo.mp4" type="video/mp4" />
+          </video>
+          <span class="ga-screen-tag">🧬 In Development</span>
+          <div class="ga-screen-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="ga-copy">
+        <div class="ga-chapter-num" data-reveal>Chapter 02 · Creature RPG</div>
+        <h2 class="ga-chapter-title" data-reveal>Bitmon</h2>
+        <p class="ga-chapter-tagline" data-reveal>Raise, breed, and battle 240+ hand-pixeled creatures.</p>
+        <div class="ga-chapter-body" data-reveal>
+          <p><a href="/games/bitmon/">Bitmon</a> is a creature-breeding RPG in development. Every Bitmon has a personality and a lineage, backed by a genetics system — and you can trade online. No platform, price, or release date has been announced yet; the official word is <strong>"stay tuned for updates."</strong></p>
+          <div class="ga-stats">
+            <div class="ga-stat"><span class="ga-stat-num" data-count="240" data-count-suffix="+">240+</span><span class="ga-stat-label">Species</span></div>
+            <div class="ga-stat"><span class="ga-stat-num">∞</span><span class="ga-stat-label">Lineages</span></div>
+            <div class="ga-stat"><span class="ga-stat-num">↔</span><span class="ga-stat-label">Online trading</span></div>
+          </div>
+          <ul class="ga-features">
+            <li>Genetics system</li><li>Lineage &amp; personality</li><li>Online trading</li><li>240+ species</li>
+          </ul>
+          <div class="ga-cta-row">
+            <a href="/games/bitmon/" class="ga-btn">Meet the Bitmon →</a>
+            <a href="/games/mojiworld-vs-bitmon/" class="ga-btn ga-btn-ghost">MojiWorld vs Bitmon</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="content-section">
-    <h2>More from Moji Studios</h2>
-    <div class="related-links">
-      <a href="/games/mojiworld/"><span class="related-kicker">Main game</span> MojiWorld — single-player adventure first, MMORPG later</a>
-      <a href="/games/bitmon/"><span class="related-kicker">Game</span> Bitmon — creature-breeding RPG</a>
-      <a href="/games/chubby-bird/"><span class="related-kicker">Play free</span> Chubby Bird — browser arcade game</a>
-      <a href="/games/mojiworld-vs-bitmon/"><span class="related-kicker">Compare</span> MojiWorld vs Bitmon — what's the difference?</a>
-      <a href="/press/"><span class="related-kicker">Press</span> Press kit &amp; media assets</a>
+  <!-- ============ CHAPTER 3 — CHUBBY BIRD ============ -->
+  <section class="ga-chapter" data-accent="mint" id="chubby-bird" data-sky-top="#8fe0a8" data-sky-bot="#5ec6ff">
+    <div class="ga-chapter-inner">
+      <div class="ga-stage" data-reveal>
+        <div class="ga-screen">
+          <video data-autoplay-inview muted loop playsinline preload="none" poster="/og-image.png" aria-label="Chubby Bird gameplay">
+            <source src="/chubbybird-promo.mp4" type="video/mp4" />
+          </video>
+          <span class="ga-screen-tag">🐥 Play Free Now</span>
+          <div class="ga-screen-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="ga-copy">
+        <div class="ga-chapter-num" data-reveal>Chapter 03 · Live Now</div>
+        <h2 class="ga-chapter-title" data-reveal>Chubby Bird</h2>
+        <p class="ga-chapter-tagline" data-reveal>One button. A hundred deaths. Free in your browser, right now.</p>
+        <div class="ga-chapter-body" data-reveal>
+          <p><a href="/chubbybird/">Chubby Bird</a> is the one you can play today: a free casual arcade game that runs in your browser with no install. Tap to flap, dodge the pipes, and climb the leaderboard — starring the Moji chick. It's the studio's only live release so far.</p>
+          <div class="ga-stats">
+            <div class="ga-stat"><span class="ga-stat-num">FREE</span><span class="ga-stat-label">To play</span></div>
+            <div class="ga-stat"><span class="ga-stat-num" data-count="1">1</span><span class="ga-stat-label">Button</span></div>
+            <div class="ga-stat"><span class="ga-stat-num">0s</span><span class="ga-stat-label">To install</span></div>
+          </div>
+          <ul class="ga-features">
+            <li>Free</li><li>One button</li><li>No install</li><li>Leaderboard</li>
+          </ul>
+          <div class="ga-cta-row">
+            <a href="/chubbybird/" class="ga-btn">▶ Play Chubby Bird</a>
+            <a href="/games/chubby-bird/" class="ga-btn ga-btn-ghost">About the game</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DETAILS (crawlable substance) ============ -->
+  <section class="ga-details">
+    <div class="ga-details-inner">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="/">Home</a> <span class="crumb-sep">›</span>
+        <span class="crumb-here">Games</span>
+      </nav>
+
+      <div class="answer-box">
+        <span class="answer-label">⚡ Quick answer</span>
+        <p><strong>Moji Studios currently has three games: Chubby Bird, a free casual arcade game live now in your browser; MojiWorld, the studio's main game — a hand-pixeled 2D side-scrolling adventure launching first as a single-player game on Steam, expected July–August 2026; and Bitmon, a creature-breeding RPG in development</strong> with 240+ hand-pixeled creatures and no announced release date yet.</p>
+      </div>
+
+      <h2>The lineup at a glance</h2>
+      <table class="compare-table">
+        <thead>
+          <tr><th></th><th>MojiWorld</th><th>Bitmon</th><th>Chubby Bird</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>Genre</th><td>2D side-scrolling adventure → MMORPG after launch</td><td>Creature-breeding RPG</td><td>Casual arcade</td></tr>
+          <tr><th>Status</th><td>Steam launch expected July–August 2026</td><td>In development</td><td>Live now</td></tr>
+          <tr><th>Platform</th><td>PC (Steam)</td><td>To be announced</td><td>Web browser</td></tr>
+          <tr><th>Price</th><td>To be announced</td><td>To be announced</td><td>Free</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Which one is for you?</h2>
+      <div class="verdict-box">
+        <div class="verdict-label">The short version</div>
+        <p>Want to play something <em>right now</em>? Open <a href="/chubbybird/">Chubby Bird</a> in your browser — it's free. Waiting for the big one? <a href="/games/mojiworld/">MojiWorld</a> hits Steam as a single-player adventure, expected July–August 2026, with the MMORPG to follow. Love creature collectors? Keep an eye on <a href="/games/bitmon/">Bitmon</a> — 240+ creatures, genetics and all, still in development.</p>
+      </div>
+
+      <h2>Frequently asked questions</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Which Moji Studios game can I play right now?</summary>
+          <p><a href="/chubbybird/">Chubby Bird</a> — a free one-button arcade game, live in your browser with no install and a leaderboard.</p>
+        </details>
+        <details>
+          <summary>What is Moji Studios' main game?</summary>
+          <p><a href="/games/mojiworld/">MojiWorld</a>, a hand-pixeled 2D side-scrolling adventure launching first as a single-player game on Steam, expected July–August 2026, with a full online MMORPG planned after launch.</p>
+        </details>
+        <details>
+          <summary>When does Bitmon come out?</summary>
+          <p>No release date, platform, or price has been announced for <a href="/games/bitmon/">Bitmon</a> yet — it's in development, and the official word is "stay tuned for updates."</p>
+        </details>
+        <details>
+          <summary>How much do Moji Studios games cost?</summary>
+          <p>Chubby Bird is free in the browser. MojiWorld's price is to be announced, and Bitmon's price hasn't been announced either.</p>
+        </details>
+        <details>
+          <summary>How are MojiWorld and Bitmon different?</summary>
+          <p>MojiWorld is a 2D side-scrolling adventure (then MMORPG); Bitmon is a creature-breeding RPG. See the full <a href="/games/mojiworld-vs-bitmon/">MojiWorld vs Bitmon comparison</a>.</p>
+        </details>
+      </div>
+
+      <h2>About Moji Studios</h2>
+      <p>Moji Studios is an indie game studio (est. 2026) dedicated to the early-2000s gaming era — hand-pixeled art, cozy retro vibes, and chibi-forward character design, fronted by its mascot Guguma. It's half game studio, half digital design agency. Say hi at <a href="mailto:admin@moji-studios.com">admin@moji-studios.com</a>.</p>
+
+      <h2>Sources</h2>
+      <ul class="cite-list">
+        <li>Moji Studios — <a href="/#games">official games announcement</a> (moji-studios.com, June 2026)</li>
+        <li>MojiWorld — <a href="/mojiworld_teaser.mp4">official teaser video</a> (June 2026)</li>
+        <li>Bitmon — <a href="/bitmon-promo.mp4">pixel trailer</a> and <a href="/bitmon-promo-2.mp4">3D trailer</a></li>
+        <li>Chubby Bird — <a href="/chubbybird/">play the live game</a> and <a href="/chubbybird-promo.mp4">promo video</a></li>
+        <li>Moji Studios — <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer">Instagram @mojistudios.official</a></li>
+      </ul>
+
+      <h2>More from Moji Studios</h2>
+      <div class="related-links">
+        <a href="/games/mojiworld/"><span class="related-kicker">Main game</span> MojiWorld — single-player adventure first, MMORPG later</a>
+        <a href="/games/bitmon/"><span class="related-kicker">Game</span> Bitmon — creature-breeding RPG</a>
+        <a href="/games/chubby-bird/"><span class="related-kicker">Play free</span> Chubby Bird — browser arcade game</a>
+        <a href="/games/mojiworld-vs-bitmon/"><span class="related-kicker">Compare</span> MojiWorld vs Bitmon — what's the difference?</a>
+        <a href="/press/"><span class="related-kicker">Press</span> Press kit &amp; media assets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINALE CTA ============ -->
+  <section class="ga-finale">
+    <h2 data-reveal>Never miss a launch 🚀</h2>
+    <div class="ga-cta-row" data-reveal>
+      <a href="mailto:admin@moji-studios.com?subject=Moji%20Studios%20game%20updates" class="ga-btn"><span class="btn-arrow">▶</span> Get Game Updates</a>
+      <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer" class="ga-btn ga-btn-ghost"><span aria-hidden="true">📸</span> @mojistudios.official</a>
     </div>
   </section>
 </main>
@@ -316,6 +436,19 @@
   </div>
 </footer>
 
+<!-- Video lightbox (enlarge + audio) -->
+<div id="video-lightbox" class="video-lightbox" role="dialog" aria-modal="true" aria-label="Video player" hidden>
+  <div class="video-lightbox-backdrop" data-lightbox-close></div>
+  <div class="video-lightbox-inner">
+    <div class="video-lightbox-bar">
+      <span class="video-lightbox-title" id="video-lightbox-title"></span>
+      <button type="button" class="video-lightbox-close" data-lightbox-close aria-label="Close video">✕</button>
+    </div>
+    <video id="video-lightbox-player" class="video-lightbox-player" controls playsinline preload="metadata"></video>
+  </div>
+</div>
+
 <script src="/script.js?v=20260613i"></script>
+<script src="/games.js?v=20260624b"></script>
 </body>
 </html>
