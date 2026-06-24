@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>document.documentElement.className += ' ga-js';</script>
 <title>Hire Moji Studios — Websites, Video, Music &amp; Brand Design</title>
 <meta name="description" content="Hire Moji Studios: website creation & hosting, video editing & AI generation, music remakes, and brand design. A full-pipeline creative studio with specialists for any style or theme." />
 <meta name="author" content="Moji Studios" />
@@ -31,6 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&family=VT323&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/styles.css?v=20260613i" />
+<link rel="stylesheet" href="/games.css?v=20260624i" />
 
 <script type="application/ld+json">
 {
@@ -66,24 +68,123 @@
 </script>
 
 <style>
-  /* Services-page-only styling (kept inline so global styles.css/cache stays untouched) */
-  .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 1.25rem 0 0; }
-  .svc-card { background: #fff; border: 3px solid var(--ink); border-radius: var(--radius); box-shadow: 0 5px 0 var(--ink); padding: 1.4rem 1.5rem; }
-  .svc-card .svc-icon { font-size: 1.9rem; line-height: 1; }
-  .svc-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin: 0.6rem 0 0.5rem; }
-  .svc-card p { margin: 0 0 0.6rem; line-height: 1.55; font-size: 0.97rem; }
-  .svc-card ul { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; line-height: 1.6; }
-  .tier-pop th, .tier-pop td { background: rgba(255,109,181,0.12) !important; }
-  .pop-badge { display: inline-block; font-family: var(--font-display); font-weight: 700; font-size: 0.62rem; letter-spacing: 0.05em; text-transform: uppercase; background: var(--accent); color: #fff; border: 2px solid var(--ink); border-radius: 999px; padding: 0.1rem 0.45rem; margin-left: 0.35rem; vertical-align: middle; }
-  .brief-box { background: var(--bg-cream, #fff7e8); border: 3px solid var(--ink); border-radius: var(--radius); box-shadow: 0 5px 0 var(--ink); padding: 1.25rem 1.5rem; margin: 1rem 0 0; }
-  .brief-box pre { margin: 0; white-space: pre-wrap; font-family: var(--font-body, inherit); font-size: 0.95rem; line-height: 1.7; }
-  .process-list { counter-reset: step; list-style: none; padding: 0; margin: 1rem 0 0; }
-  .process-list li { position: relative; padding-left: 2.6rem; margin-bottom: 0.85rem; line-height: 1.55; }
-  .process-list li::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: -2px; width: 1.9rem; height: 1.9rem; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; background: var(--accent); color: #fff; border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 3px 0 var(--ink); }
-  @media (max-width: 640px) { .svc-grid { grid-template-columns: 1fr; } }
+/* ===== /services/ — page-specific components (reuses games.css ga-* engine) ===== */
+.svc-zone { position: relative; z-index: 2; background: var(--bg-cream, #fff7e8); color: var(--ink); border-top: 5px solid var(--ink); border-bottom: 5px solid var(--ink); padding: clamp(3.5rem, 7vw, 6rem) 0; }
+.svc-wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
+.svc-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
+.svc-h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 4.5vw, 3rem); line-height: 1; margin: 0 0 0.6rem; color: var(--ink); text-shadow: 3px 3px 0 rgba(42,25,16,0.12); }
+.svc-lede { font-size: 1.05rem; line-height: 1.6; max-width: 640px; margin: 0 0 2rem; }
+.svc-block { margin-bottom: clamp(3rem, 6vw, 5rem); }
+.svc-block:last-child { margin-bottom: 0; }
+
+/* Opacity-only reveal for interactive cards (so their hover/scale transforms are preserved) */
+.games-aaa [data-fade] { opacity: 1; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .games-aaa [data-fade] { opacity: 0; animation: svc-fade linear both; animation-timeline: view(); animation-range: entry 0% entry 50%; }
+  }
+}
+@keyframes svc-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Service cards */
+.svc2-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.svc2-card { position: relative; background: #fff; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 8px 8px 0 var(--ink); padding: 1.6rem 1.7rem; transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.22s ease; }
+.svc2-card:hover { transform: translate(-3px,-5px) rotate(-0.8deg); box-shadow: 13px 15px 0 var(--ink); }
+.svc2-card[data-c="pink"]   { background: #fff1f8; }
+.svc2-card[data-c="cyan"]   { background: #eefaff; }
+.svc2-card[data-c="mint"]   { background: #f0fcf3; }
+.svc2-card[data-c="lav"]    { background: #f6f1ff; }
+.svc2-icon { width: 3.2rem; height: 3.2rem; display: grid; place-items: center; font-size: 1.7rem; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 4px 0 var(--ink); background: #fff; }
+.svc2-card[data-c="pink"] .svc2-icon { background: var(--accent); }
+.svc2-card[data-c="cyan"] .svc2-icon { background: var(--accent-2); }
+.svc2-card[data-c="mint"] .svc2-icon { background: var(--accent-5); }
+.svc2-card[data-c="lav"]  .svc2-icon { background: var(--accent-4); }
+.svc2-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin: 0.9rem 0 0.45rem; }
+.svc2-card p { margin: 0 0 0.7rem; line-height: 1.5; font-size: 0.97rem; }
+.svc2-card ul { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; line-height: 1.65; }
+
+/* Stat row */
+.svc-stats { display: flex; flex-wrap: wrap; gap: 1rem; }
+.svc-stat { flex: 1 1 120px; background: #fff; border: 3px solid var(--ink); border-radius: 14px; box-shadow: 0 5px 0 var(--ink); padding: 0.9rem 1rem; text-align: center; }
+.svc-stat b { display: block; font-family: var(--font-display); font-weight: 700; font-size: 2rem; line-height: 1; color: var(--accent); }
+.svc-stat span { display: block; margin-top: 0.3rem; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; color: var(--ink); opacity: 0.7; }
+
+/* Pricing tiers as cards */
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; align-items: stretch; }
+.tier { position: relative; background: #fff; border: 4px solid var(--ink); border-radius: 20px; box-shadow: 8px 8px 0 var(--ink); padding: 1.6rem 1.5rem; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.tier:hover { transform: translateY(-5px); box-shadow: 8px 13px 0 var(--ink); }
+.tier-name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; }
+.tier-for { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.6; margin: 0.15rem 0 1rem; font-weight: 600; }
+.tier ul { list-style: none; margin: 0 0 1.25rem; padding: 0; font-size: 0.92rem; line-height: 1.5; flex: 1; }
+.tier li { padding: 0.3rem 0 0.3rem 1.4rem; position: relative; border-bottom: 1px dashed rgba(42,25,16,0.14); }
+.tier li::before { content: "✔"; position: absolute; left: 0; color: var(--accent-5); font-weight: 700; }
+.tier li.no::before { content: "—"; color: rgba(42,25,16,0.3); }
+.tier-pop { background: var(--brand-yellow, #ffd84d); transform: scale(1.04); box-shadow: 10px 12px 0 var(--ink); z-index: 1; }
+.tier-pop:hover { transform: scale(1.04) translateY(-5px); }
+.tier-badge { position: absolute; top: -0.95rem; left: 50%; transform: translateX(-50%) rotate(-3deg); font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; background: var(--accent); color: #fff; border: 3px solid var(--ink); border-radius: 999px; padding: 0.25rem 0.8rem; box-shadow: 0 3px 0 var(--ink); white-space: nowrap; }
+.tier .ga-btn { width: 100%; justify-content: center; font-size: 0.92rem; padding: 0.7rem 1rem; }
+.tier-note { font-size: 0.9rem; opacity: 0.75; margin-top: 1rem; }
+
+/* Process timeline */
+.proc { display: grid; gap: 1rem; }
+.proc-step { display: grid; grid-template-columns: 3.4rem 1fr; gap: 1rem; align-items: start; background: #fff; border: 3px solid var(--ink); border-radius: 16px; box-shadow: 0 5px 0 var(--ink); padding: 1rem 1.2rem; }
+.proc-num { width: 3.4rem; height: 3.4rem; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: #fff; background: var(--accent); border: 3px solid var(--ink); border-radius: 999px; box-shadow: 0 4px 0 var(--ink); }
+.proc-step:nth-child(2) .proc-num { background: var(--accent-2); }
+.proc-step:nth-child(3) .proc-num { background: var(--accent-5); }
+.proc-step:nth-child(4) .proc-num { background: var(--accent-4); }
+.proc-step:nth-child(5) .proc-num { background: var(--accent-3); }
+.proc-step h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin: 0.2rem 0 0.25rem; }
+.proc-step p { margin: 0; font-size: 0.95rem; line-height: 1.5; }
+
+/* Work cards */
+.work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.work-card { background: #fff; border: 4px solid var(--ink); border-radius: 18px; box-shadow: 8px 8px 0 var(--ink); padding: 1.3rem 1.4rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.work-card:hover { transform: translateY(-5px); box-shadow: 8px 13px 0 var(--ink); }
+.work-kicker { font-family: var(--font-display); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.35rem; }
+.work-card h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin: 0 0 0.4rem; }
+.work-card p { margin: 0; font-size: 0.92rem; line-height: 1.55; }
+
+/* FAQ reuse (faq-list already in styles.css) */
+.svc-faq .faq-list { max-width: 760px; }
+
+/* Brief box */
+.brief-box { background: #fff; border: 4px solid var(--ink); border-radius: 16px; box-shadow: 0 6px 0 var(--ink); padding: 1.25rem 1.5rem; margin: 0 auto 1.5rem; max-width: 460px; text-align: left; }
+.brief-box pre { margin: 0; white-space: pre-wrap; font-family: var(--font-body, inherit); font-size: 0.95rem; line-height: 1.75; color: var(--ink); }
+
+/* ===== CONTACT FINALE — the alive closer ===== */
+.svc-finale { position: relative; z-index: 2; overflow: hidden; background: var(--ink); color: #fff; padding: clamp(4.5rem, 10vw, 9rem) 1.5rem; text-align: center; }
+.svc-finale-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(120deg, #ff6db5, #b48aff, #5ec6ff, #7fd490, #ffd84d); background-size: 320% 320%; animation: svc-drift 18s ease-in-out infinite; opacity: 0.26; }
+@keyframes svc-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.svc-finale-shape { position: absolute; z-index: 0; border-radius: 50%; opacity: 0.55; will-change: transform; }
+.svc-finale-shape.s1 { width: 160px; height: 160px; background: var(--accent); top: 10%; left: 8%; }
+.svc-finale-shape.s2 { width: 120px; height: 120px; background: var(--accent-2); top: 20%; right: 10%; }
+.svc-finale-shape.s3 { width: 90px; height: 90px; background: var(--accent-5); bottom: 14%; left: 16%; }
+.svc-finale-shape.s4 { width: 70px; height: 70px; background: var(--brand-yellow, #ffd84d); bottom: 18%; right: 18%; }
+.svc-finale-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+.svc-finale h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(2.4rem, 8vw, 5rem); line-height: 0.98; margin: 0 0 0.4rem; text-shadow: 4px 4px 0 var(--accent); }
+.svc-finale h2 .ga-line { display: block; overflow: hidden; }
+.svc-finale h2 .ga-line > span { display: inline-block; }
+.svc-finale-sub { font-size: 1.1rem; line-height: 1.6; margin: 1rem auto 1.75rem; max-width: 560px; }
+.svc-finale .ga-cta-row { justify-content: center; }
+.svc-trust { margin-top: 1.1rem; font-size: 0.85rem; opacity: 0.85; }
+
+@media (max-width: 820px) {
+  .tier-grid { grid-template-columns: 1fr; }
+  .tier-pop { transform: none; }
+  .tier-pop:hover { transform: translateY(-5px); }
+  .work-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) { .svc2-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) {
+  .svc-finale-bg { animation: none; }
+  .svc2-card, .tier, .work-card { transition: none; }
+}
 </style>
 </head>
-<body class="subpage">
+<body class="games-aaa">
+
+<!-- Candy sky behind the hero -->
+<div class="ga-canvas" aria-hidden="true"></div>
 
 <header class="nav">
   <div class="nav-inner">
@@ -106,131 +207,236 @@
   </div>
 </header>
 
-<main class="subpage-main">
-  <nav class="breadcrumbs" aria-label="Breadcrumb">
-    <a href="/">Home</a> <span class="crumb-sep">›</span>
-    <span class="crumb-here">Hire Us</span>
-  </nav>
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="ga-hero" data-sky-top="#ffd1e8" data-sky-bot="#8fd4ff" aria-label="Hire Moji Studios">
+    <div class="ga-hero-layers" aria-hidden="true">
+      <div class="ga-layer ga-sun" data-parallax-speed="0.22" data-mouse-depth="0.015"></div>
+      <div class="ga-layer ga-cloud ga-cloud-a" data-parallax-speed="0.16" data-mouse-depth="0.03"></div>
+      <div class="ga-layer ga-cloud ga-cloud-b" data-parallax-speed="0.12" data-mouse-depth="0.045"></div>
+      <div class="ga-layer ga-cloud ga-cloud-c" data-parallax-speed="0.08" data-mouse-depth="0.06"></div>
+      <div class="ga-layer ga-hills" data-parallax-speed="-0.06" data-mouse-depth="0.02">
+        <div class="ga-hill ga-hill-back"></div>
+        <div class="ga-hill ga-hill-mid"></div>
+        <div class="ga-hill ga-hill-front"></div>
+      </div>
+      <div class="ga-layer ga-mascot" data-parallax-speed="-0.14" data-mouse-depth="0.08">
+        <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source src="/moji-mascot-1.mp4" type="video/mp4" />
+        </video>
+      </div>
+    </div>
 
-  <h1 class="page-headline">Hire Moji Studios</h1>
-  <div class="article-meta">
-    <span>Creative studio for hire</span>
-    <span>Worldwide · remote</span>
-    <span>Always taking new commissions</span>
+    <div class="ga-hero-content">
+      <span class="ga-kicker" data-hero-reveal>▶ Creative Studio for Hire</span>
+      <h1 class="ga-hero-title">
+        <span class="ga-line"><span>LET'S MAKE</span></span>
+        <span class="ga-line"><span>SOMETHING GOOD</span></span>
+      </h1>
+      <p class="ga-hero-sub" data-hero-reveal>Websites &amp; hosting · video &amp; AI · music · brand. One studio, full pipeline, any style — we make your project look and sound as charming as ours. ✨</p>
+      <div class="ga-hero-cta-row" data-hero-reveal>
+        <a href="#contact" class="ga-btn magnetic">Start your project ↓</a>
+        <a href="#services" class="ga-btn ga-btn-ghost">See services</a>
+      </div>
+    </div>
+
+    <div class="ga-scrollcue" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="chev"></span>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="ga-marquee" aria-hidden="true">
+    <div class="ga-marquee-track">
+      <span>★ HIRE US</span><span>WEBSITES</span><span>VIDEO &amp; AI</span><span>MUSIC</span><span>BRAND</span><span>HOSTING</span><span>ANY THEME</span>
+      <span>★ HIRE US</span><span>WEBSITES</span><span>VIDEO &amp; AI</span><span>MUSIC</span><span>BRAND</span><span>HOSTING</span><span>ANY THEME</span>
+    </div>
   </div>
 
-  <div class="answer-box">
-    <span class="answer-label">⚡ What we do</span>
-    <p><strong>Moji Studios is a full-pipeline creative studio.</strong> We build &amp; host websites, edit &amp; AI-generate video, remake &amp; remix music, and craft brand identities — with specialists across each craft, so whatever style or theme you have in mind, we can match it. One studio, start to finish.</p>
+  <!-- ============ CREAM ZONE: services / pricing / process / work / faq ============ -->
+  <div class="svc-zone">
+    <div class="svc-wrap">
+
+      <!-- Services -->
+      <section class="svc-block" id="services">
+        <p class="svc-eyebrow" data-reveal>What we make</p>
+        <h2 class="svc-h2" data-reveal>Four crafts, one studio</h2>
+        <p class="svc-lede" data-reveal><strong>Moji Studios is a full-pipeline creative studio.</strong> We build &amp; host websites, edit &amp; AI-generate video, remake &amp; remix music, and craft brand identities — with specialists for any style or theme.</p>
+        <div class="svc2-grid">
+          <article class="svc2-card" data-c="pink" data-fade>
+            <div class="svc2-icon" aria-hidden="true">🌐</div>
+            <h3>Websites — built &amp; hosted</h3>
+            <p>Fast, modern, mobile-friendly sites with the hosting and domain handled for you.</p>
+            <ul><li>Web design &amp; development</li><li>Hosting, domain &amp; maintenance</li><li>Landing pages → full animated sites</li><li>On-page SEO &amp; speed</li></ul>
+          </article>
+          <article class="svc2-card" data-c="cyan" data-fade>
+            <div class="svc2-icon" aria-hidden="true">🎬</div>
+            <h3>Video — editing &amp; AI generation</h3>
+            <p>Polished edits and AI-generated footage for promos, ads, social, and intros.</p>
+            <ul><li>Video editing &amp; color</li><li>AI video &amp; visuals</li><li>Promos, ads, reels &amp; trailers</li><li>Motion graphics &amp; captions</li></ul>
+          </article>
+          <article class="svc2-card" data-c="mint" data-fade>
+            <div class="svc2-icon" aria-hidden="true">🎵</div>
+            <h3>Music — remakes &amp; remixes</h3>
+            <p>Custom remakes, covers, and reworks tuned to your project's mood and brand.</p>
+            <ul><li>Song remakes &amp; covers</li><li>Remixes &amp; custom tracks</li><li>Theme-based composition</li><li>Audio for video</li></ul>
+          </article>
+          <article class="svc2-card" data-c="lav" data-fade>
+            <div class="svc2-icon" aria-hidden="true">✏️</div>
+            <h3>Brand &amp; design</h3>
+            <p>Identity systems and artwork that make your project feel as charming as ours.</p>
+            <ul><li>Brand identity &amp; logos</li><li>Illustration &amp; pixel art</li><li>UI/UX &amp; graphic design</li><li>Creative direction</li></ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- Pricing -->
+      <section class="svc-block">
+        <p class="svc-eyebrow" data-reveal>Website packages</p>
+        <h2 class="svc-h2" data-reveal>Simple, honest tiers</h2>
+        <p class="svc-lede" data-reveal>Three tiers to start a website — video, music, and brand work are scoped to your project with a custom quote.</p>
+        <div class="tier-grid">
+          <article class="tier" data-fade>
+            <div class="tier-name">Starter</div>
+            <div class="tier-for">A clean one-pager</div>
+            <ul>
+              <li>1 page</li>
+              <li>Modern template design</li>
+              <li>Mobile-friendly</li>
+              <li class="no">Hosting + domain</li>
+              <li>Basic SEO</li>
+              <li>1 revision</li>
+            </ul>
+            <a href="#contact" class="ga-btn ga-btn-ghost">Get a quote</a>
+          </article>
+          <article class="tier tier-pop" data-fade>
+            <span class="tier-badge">★ Most loved ★</span>
+            <div class="tier-name">Business</div>
+            <div class="tier-for">Most small businesses</div>
+            <ul>
+              <li>Up to 5 pages</li>
+              <li>Custom design</li>
+              <li>Mobile-friendly</li>
+              <li>Hosting + domain setup</li>
+              <li>On-page SEO</li>
+              <li>3 revisions</li>
+            </ul>
+            <a href="#contact" class="ga-btn magnetic">Start my project →</a>
+          </article>
+          <article class="tier" data-fade>
+            <div class="tier-name">Pro</div>
+            <div class="tier-for">The full package</div>
+            <ul>
+              <li>Up to 10 pages</li>
+              <li>Premium custom + animation</li>
+              <li>Mobile-friendly</li>
+              <li>Hosting + domain setup</li>
+              <li>Full SEO + speed</li>
+              <li>Unlimited revisions</li>
+            </ul>
+            <a href="#contact" class="ga-btn ga-btn-ghost">Get a quote</a>
+          </article>
+        </div>
+        <p class="tier-note" data-reveal>🎬 🎵 ✏️ Video, music &amp; brand work are quoted per project — tell us your scope below and we'll price it clearly.</p>
+      </section>
+
+      <!-- Why us + stats -->
+      <section class="svc-block">
+        <p class="svc-eyebrow" data-reveal>Why Moji Studios</p>
+        <h2 class="svc-h2" data-reveal>One team, brand to launch</h2>
+        <p class="svc-lede" data-reveal>Instead of juggling five freelancers, you get one studio that takes a project from idea to launch — web, video, music, and design under one roof. We're makers ourselves: <a href="/games/">our own games</a> and brand work are the proof.</p>
+        <div class="svc-stats">
+          <div class="svc-stat" data-reveal><b data-count="4">4</b><span>Crafts in-house</span></div>
+          <div class="svc-stat" data-reveal><b data-count="24" data-count-suffix="h">24h</b><span>Typical reply</span></div>
+          <div class="svc-stat" data-reveal><b>∞</b><span>Themes &amp; styles</span></div>
+          <div class="svc-stat" data-reveal><b>1</b><span>Studio, full pipeline</span></div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section class="svc-block">
+        <p class="svc-eyebrow" data-reveal>How it works</p>
+        <h2 class="svc-h2" data-reveal>From brief to launch</h2>
+        <div class="proc">
+          <div class="proc-step" data-reveal><div class="proc-num">1</div><div><h4>Brief</h4><p>You share your project and goals using the quick form below.</p></div></div>
+          <div class="proc-step" data-reveal><div class="proc-num">2</div><div><h4>Quote</h4><p>We confirm scope, timeline, and a clear price — no surprises.</p></div></div>
+          <div class="proc-step" data-reveal><div class="proc-num">3</div><div><h4>Create</h4><p>Our specialists build it in your style, keeping you in the loop.</p></div></div>
+          <div class="proc-step" data-reveal><div class="proc-num">4</div><div><h4>Revise</h4><p>We refine together until it's exactly right.</p></div></div>
+          <div class="proc-step" data-reveal><div class="proc-num">5</div><div><h4>Launch &amp; care</h4><p>We deliver — and can keep hosting &amp; updates running for you.</p></div></div>
+        </div>
+      </section>
+
+      <!-- Recent work -->
+      <section class="svc-block">
+        <p class="svc-eyebrow" data-reveal>Recent work</p>
+        <h2 class="svc-h2" data-reveal>A few things we've made</h2>
+        <div class="work-grid">
+          <article class="work-card" data-fade>
+            <span class="work-kicker">Personal brand · web</span>
+            <h4>drdarylpeh.com</h4>
+            <p>A cinematic personal brand built around <em>"where medicine meets the muse"</em> — a calm, premium visual language with a video-forward, scroll-led experience.</p>
+          </article>
+          <article class="work-card" data-fade>
+            <span class="work-kicker">Brand · web</span>
+            <h4>nutridex.info</h4>
+            <p>Cuts through supplement hype with evidence-based research — we infused modern web design with scientific rigor to turn peer-reviewed data into something that feels like art.</p>
+          </article>
+          <article class="work-card" data-fade>
+            <span class="work-kicker">Games · brand</span>
+            <h4>Moji Studios games</h4>
+            <p><a href="/games/mojiworld/">MojiWorld</a>, <a href="/games/bitmon/">Bitmon</a> &amp; <a href="/chubbybird/">Chubby Bird</a> — our own hand-pixeled worlds, branding and all.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="svc-block svc-faq">
+        <p class="svc-eyebrow" data-reveal>Good to know</p>
+        <h2 class="svc-h2" data-reveal>FAQ</h2>
+        <div class="faq-list" data-reveal>
+          <details>
+            <summary>What does it cost?</summary>
+            <p>Websites start from our Starter package; video, music, and brand work are quoted per project. Send your brief and we'll give you a clear price — no surprises.</p>
+          </details>
+          <details>
+            <summary>How fast is delivery?</summary>
+            <p>It depends on scope, but most small projects turn around in days, not weeks. We'll confirm a timeline with your quote.</p>
+          </details>
+          <details>
+            <summary>Do you handle hosting and upkeep?</summary>
+            <p>Yes — we can host your site, set up the domain, and keep it updated with an optional monthly care plan, so you never touch the technical side.</p>
+          </details>
+          <details>
+            <summary>Can you match a specific style or theme?</summary>
+            <p>That's the point. We have specialists across web, video, music, and design, so we can adapt to whatever look and feel you're going for.</p>
+          </details>
+          <details>
+            <summary>Who owns the final work?</summary>
+            <p>You do, on delivery. Usage rights and licensing are confirmed up front in your quote.</p>
+          </details>
+        </div>
+      </section>
+
+    </div>
   </div>
 
-  <section class="content-section">
-    <h2>Services</h2>
-    <div class="svc-grid">
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">🌐</div>
-        <h3>Websites — built &amp; hosted</h3>
-        <p>Fast, modern, mobile-friendly sites with the hosting and domain handled for you.</p>
-        <ul>
-          <li>Web design &amp; development</li>
-          <li>Hosting, domain &amp; maintenance</li>
-          <li>Landing pages → full animated sites</li>
-          <li>On-page SEO &amp; speed</li>
-        </ul>
-      </article>
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">🎬</div>
-        <h3>Video — editing &amp; AI generation</h3>
-        <p>Polished edits and AI-generated footage for promos, ads, social, and intros.</p>
-        <ul>
-          <li>Video editing &amp; color</li>
-          <li>AI video &amp; visuals</li>
-          <li>Promos, ads, reels &amp; trailers</li>
-          <li>Motion graphics &amp; captions</li>
-        </ul>
-      </article>
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">🎵</div>
-        <h3>Music — remakes &amp; remixes</h3>
-        <p>Custom remakes, covers, and reworks tuned to your project's mood and brand.</p>
-        <ul>
-          <li>Song remakes &amp; covers</li>
-          <li>Remixes &amp; custom tracks</li>
-          <li>Theme-based composition</li>
-          <li>Audio for video</li>
-        </ul>
-      </article>
-      <article class="svc-card">
-        <div class="svc-icon" aria-hidden="true">✏️</div>
-        <h3>Brand &amp; design</h3>
-        <p>Identity systems and artwork that make your project feel as charming as ours.</p>
-        <ul>
-          <li>Brand identity &amp; logos</li>
-          <li>Illustration &amp; pixel art</li>
-          <li>UI/UX &amp; graphic design</li>
-          <li>Creative direction</li>
-        </ul>
-      </article>
-    </div>
-  </section>
+  <!-- ============ CONTACT FINALE — the alive closer ============ -->
+  <section class="svc-finale" id="contact" aria-label="Get started">
+    <div class="svc-finale-bg" aria-hidden="true"></div>
+    <div class="svc-finale-shape s1" data-mouse-depth="0.06" aria-hidden="true"></div>
+    <div class="svc-finale-shape s2" data-mouse-depth="0.09" aria-hidden="true"></div>
+    <div class="svc-finale-shape s3" data-mouse-depth="0.05" aria-hidden="true"></div>
+    <div class="svc-finale-shape s4" data-mouse-depth="0.11" aria-hidden="true"></div>
 
-  <section class="content-section">
-    <h2>Website packages</h2>
-    <p>Three simple tiers to start — video, music, and brand work are scoped to your project with a custom quote.</p>
-    <table class="compare-table">
-      <thead>
-        <tr>
-          <th>What's included</th>
-          <th>Starter</th>
-          <th class="tier-pop">Business <span class="pop-badge">Popular</span></th>
-          <th>Pro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><th>Pages</th><td>1 page</td><td class="tier-pop">Up to 5</td><td>Up to 10</td></tr>
-        <tr><th>Design</th><td>Modern template</td><td class="tier-pop">Custom design</td><td>Premium custom + animation</td></tr>
-        <tr><th>Mobile-friendly</th><td>✅</td><td class="tier-pop">✅</td><td>✅</td></tr>
-        <tr><th>Hosting + domain setup</th><td>—</td><td class="tier-pop">✅</td><td>✅</td></tr>
-        <tr><th>SEO</th><td>Basic</td><td class="tier-pop">On-page SEO</td><td>Full SEO + speed</td></tr>
-        <tr><th>Revisions</th><td>1</td><td class="tier-pop">3</td><td>Unlimited</td></tr>
-      </tbody>
-    </table>
-    <div class="page-cta">
-      <p class="page-cta-title">Not sure which fits? Tell us your project 👇</p>
-      <a href="#contact" class="btn btn-primary"><span class="btn-arrow">▶</span> Get a Free Quote</a>
-    </div>
-  </section>
+    <div class="svc-finale-inner">
+      <h2 data-reveal="line">
+        <span class="ga-line"><span>Let's make</span></span>
+        <span class="ga-line"><span>something good</span></span>
+      </h2>
+      <p class="svc-finale-sub" data-reveal>Welcome to Moji Studios! We're delighted to help bring your project to life — drop us a few quick details and we'll take it from there. 👋</p>
 
-  <section class="content-section">
-    <h2>Why Moji Studios</h2>
-    <div class="verdict-box">
-      <div class="verdict-label">One studio, full pipeline</div>
-      <p>Instead of juggling five freelancers, you get one team that takes a project from <strong>brand to launch</strong> — web, video, music, and design under one roof, with specialists for any style or theme. We're makers ourselves: <a href="/games/">our own games</a> and brand work are the proof.</p>
-    </div>
-  </section>
-
-  <section class="content-section">
-    <h2>How it works</h2>
-    <ol class="process-list">
-      <li><strong>Brief</strong> — you share your project and goals (form below).</li>
-      <li><strong>Quote</strong> — we confirm scope, timeline, and a clear price.</li>
-      <li><strong>Create</strong> — our specialists build it in your style.</li>
-      <li><strong>Revise</strong> — we refine together until it's right.</li>
-      <li><strong>Launch &amp; care</strong> — we deliver, and can keep hosting &amp; updates running.</li>
-    </ol>
-  </section>
-
-  <section class="content-section">
-    <h2>Recent work</h2>
-    <p><strong>drdarylpeh.com</strong> — a cinematic personal brand built around <em>"where medicine meets the muse,"</em> pairing a calm, premium visual language with a video-forward, scroll-led experience.</p>
-    <p><strong>nutridex.info</strong> — a project of ours that cuts through supplement hype with evidence-based research, where we infused modern web design with scientific rigor to turn peer-reviewed data into something that feels like art.</p>
-    <p><strong>Moji Studios games</strong> — <a href="/games/mojiworld/">MojiWorld</a>, <a href="/games/bitmon/">Bitmon</a>, and <a href="/chubbybird/">Chubby Bird</a> — our own hand-pixeled worlds, branding and all.</p>
-  </section>
-
-  <section class="content-section" id="contact">
-    <h2>Get started</h2>
-    <p>Welcome to Moji Studios! We're delighted to help bring your project to life — just send us a few quick details and we'll take it from there. ✨</p>
-    <div class="brief-box">
+      <div class="brief-box" data-reveal>
 <pre>Moji Studios — Project Brief
 Name/Brand:
 What you do:
@@ -244,46 +450,13 @@ Deadline:
 Budget:
 Revisions expected:
 Contact:</pre>
-    </div>
-    <div class="page-cta">
-      <p class="page-cta-title">Send your brief or just say hi 👋</p>
-      <a href="mailto:admin@moji-studios.com?subject=Project%20inquiry%20%E2%80%94%20Moji%20Studios" class="btn btn-primary"><span class="btn-arrow">▶</span> Email admin@moji-studios.com</a>
-      <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer" class="social-link social-link-ig"><span class="social-link-icon" aria-hidden="true">📸</span> @mojistudios.official</a>
-    </div>
-  </section>
+      </div>
 
-  <section class="content-section">
-    <h2>FAQ</h2>
-    <div class="faq-list">
-      <details>
-        <summary>What does it cost?</summary>
-        <p>Websites start from our Starter package; video, music, and brand work are quoted per project. Send your brief and we'll give you a clear price — no surprises.</p>
-      </details>
-      <details>
-        <summary>How fast is delivery?</summary>
-        <p>It depends on scope, but most small projects turn around in days, not weeks. We'll confirm a timeline with your quote.</p>
-      </details>
-      <details>
-        <summary>Do you handle hosting and upkeep?</summary>
-        <p>Yes — we can host your site, set up the domain, and keep it updated with an optional monthly care plan, so you never touch the technical side.</p>
-      </details>
-      <details>
-        <summary>Can you match a specific style or theme?</summary>
-        <p>That's the point. We have specialists across web, video, music, and design, so we can adapt to whatever look and feel you're going for.</p>
-      </details>
-      <details>
-        <summary>Who owns the final work?</summary>
-        <p>You do, on delivery. Usage rights and licensing are confirmed up front in your quote.</p>
-      </details>
-    </div>
-  </section>
-
-  <section class="content-section">
-    <h2>More from Moji Studios</h2>
-    <div class="related-links">
-      <a href="/games/"><span class="related-kicker">Studio</span> Our games &amp; the full studio</a>
-      <a href="/press/"><span class="related-kicker">Press</span> Press kit &amp; media assets</a>
-      <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer"><span class="related-kicker">Follow</span> @mojistudios.official on Instagram</a>
+      <div class="ga-cta-row" data-reveal>
+        <a href="mailto:admin@moji-studios.com?subject=Project%20inquiry%20%E2%80%94%20Moji%20Studios" class="ga-btn magnetic">▶ Email admin@moji-studios.com</a>
+        <a href="https://www.instagram.com/mojistudios.official/" target="_blank" rel="noopener noreferrer" class="ga-btn ga-btn-ghost">📸 @mojistudios.official</a>
+      </div>
+      <p class="svc-trust" data-reveal>⚡ We usually reply within 24 hours · Worldwide &amp; remote · Always taking new commissions</p>
     </div>
   </section>
 </main>
@@ -323,5 +496,6 @@ Contact:</pre>
 </footer>
 
 <script src="/script.js?v=20260624c"></script>
+<script src="/games.js?v=20260624i"></script>
 </body>
 </html>
