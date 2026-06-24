@@ -219,10 +219,10 @@
       var top = sec.getBoundingClientRect().top;
       var prog = Math.min(Math.max(-top / total, 0), 1);
       targetT = prog * (duration || 0);
-      // Overlay parallax + fade as the intro plays through
+      // Subtle parallax drift on the overlay; keep it visible (the tabs are
+      // the only navigation on this solo page).
       if (content) {
-        content.style.opacity = String(Math.max(0, 1 - prog * 1.7));
-        content.style.transform = 'translate3d(0,' + (-prog * 90).toFixed(1) + 'px,0)';
+        content.style.transform = 'translate3d(0,' + (-prog * 40).toFixed(1) + 'px,0)';
       }
       if (cue) cue.style.opacity = String(Math.max(0, 1 - prog * 4));
       if (!running) { running = true; requestAnimationFrame(scrub); }
