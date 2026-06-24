@@ -155,6 +155,8 @@
 
 /* ===== CONTACT FINALE — the alive closer ===== */
 .svc-finale { position: relative; z-index: 2; overflow: hidden; background: var(--ink); color: #fff; padding: clamp(4.5rem, 10vw, 9rem) 1.5rem; text-align: center; }
+.svc-finale-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: var(--ink); transform: translateZ(0); will-change: transform; }
+.svc-finale-scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(120% 80% at 50% 45%, rgba(18,10,30,0.22), rgba(18,10,30,0.72) 100%); }
 .svc-finale-bg { position: absolute; inset: 0; z-index: 0; background: linear-gradient(120deg, #ff6db5, #b48aff, #5ec6ff, #7fd490, #ffd84d); background-size: 320% 320%; animation: svc-drift 18s ease-in-out infinite; opacity: 0.26; }
 @keyframes svc-drift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 .svc-finale-shape { position: absolute; z-index: 0; border-radius: 50%; opacity: 0.55; will-change: transform; }
@@ -411,11 +413,10 @@
 
   <!-- ============ CONTACT FINALE — the alive closer ============ -->
   <section class="svc-finale" id="contact" aria-label="Get started">
-    <div class="svc-finale-bg" aria-hidden="true"></div>
-    <div class="svc-finale-shape s1" data-mouse-depth="0.06" aria-hidden="true"></div>
-    <div class="svc-finale-shape s2" data-mouse-depth="0.09" aria-hidden="true"></div>
-    <div class="svc-finale-shape s3" data-mouse-depth="0.05" aria-hidden="true"></div>
-    <div class="svc-finale-shape s4" data-mouse-depth="0.11" aria-hidden="true"></div>
+    <video class="svc-finale-video" muted playsinline preload="auto" aria-hidden="true">
+      <source src="/mojistudios_Sunshine_end.mp4?v=kf" type="video/mp4" />
+    </video>
+    <div class="svc-finale-scrim" aria-hidden="true"></div>
 
     <div class="svc-finale-inner">
       <h2 data-reveal="line">
@@ -485,5 +486,42 @@ Contact:</pre>
 
 <script src="/script.js?v=20260624c"></script>
 <script src="/games.js?v=20260624i"></script>
+<script>
+/* Finale background video — scroll-scrubbed as the section passes through the viewport */
+(function () {
+  var sec = document.querySelector('.svc-finale');
+  var v = sec && sec.querySelector('.svc-finale-video');
+  if (!sec || !v) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; // static first frame
+  var primed = false;
+  function prime() { if (primed) return; primed = true; var p = v.play(); if (p && p.then) p.then(function () { v.pause(); }).catch(function () { try { v.pause(); } catch (e) {} }); }
+  prime();
+  window.addEventListener('touchstart', prime, { passive: true });
+  window.addEventListener('pointerdown', prime, { passive: true });
+  v.pause();
+  var dur = 0, target = 0, cur = 0, ticking = false, running = false;
+  function setDur() { if (v.duration && isFinite(v.duration)) dur = v.duration; }
+  if (v.readyState >= 1) setDur();
+  v.addEventListener('loadedmetadata', setDur);
+  v.addEventListener('loadeddata', function () { setDur(); update(); });
+  function update() {
+    ticking = false;
+    var r = sec.getBoundingClientRect(), vh = window.innerHeight;
+    var total = r.height + vh;
+    target = Math.min(Math.max((vh - r.top) / total, 0), 1) * (dur || 0);
+    if (!running) { running = true; requestAnimationFrame(scrub); }
+  }
+  function scrub() {
+    cur += (target - cur) * 0.16;
+    if (Math.abs(target - cur) < 0.004) cur = target;
+    if (dur) { try { v.currentTime = cur; } catch (e) {} }
+    if (Math.abs(target - cur) > 0.002) requestAnimationFrame(scrub); else running = false;
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
+})();
+</script>
 </body>
 </html>
