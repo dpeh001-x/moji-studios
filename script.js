@@ -836,6 +836,6 @@ function handleSubmit(event) {
 (function () {
   const original = document.title;
   document.addEventListener('visibilitychange', () => {
-    document.title = document.hidden ? '🐥 GUGUMA MISSES YOU — COME BACK!' : original;
+    document.title = document.hidden ? '🐥 Come back soon!' : original;
   });
 })();
