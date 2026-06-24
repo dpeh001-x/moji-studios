@@ -69,6 +69,8 @@
 
 <style>
 /* ===== /services/ — page-specific components (reuses games.css ga-* engine) ===== */
+/* Slightly shorter scrub than the homepage (300vh) so the page content is reachable sooner */
+.ga-cine { height: 220svh; }
 .svc-zone { position: relative; z-index: 2; background: var(--bg-cream, #fff7e8); color: var(--ink); border-top: 5px solid var(--ink); border-bottom: 5px solid var(--ink); padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .svc-wrap { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
 .svc-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 0.5rem; }
@@ -183,9 +185,6 @@
 </head>
 <body class="games-aaa">
 
-<!-- Candy sky behind the hero -->
-<div class="ga-canvas" aria-hidden="true"></div>
-
 <header class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo">
@@ -208,41 +207,30 @@
 </header>
 
 <main>
-  <!-- ============ HERO ============ -->
-  <section class="ga-hero" data-sky-top="#ffd1e8" data-sky-bot="#8fd4ff" aria-label="Hire Moji Studios">
-    <div class="ga-hero-layers" aria-hidden="true">
-      <div class="ga-layer ga-sun" data-parallax-speed="0.22" data-mouse-depth="0.015"></div>
-      <div class="ga-layer ga-cloud ga-cloud-a" data-parallax-speed="0.16" data-mouse-depth="0.03"></div>
-      <div class="ga-layer ga-cloud ga-cloud-b" data-parallax-speed="0.12" data-mouse-depth="0.045"></div>
-      <div class="ga-layer ga-cloud ga-cloud-c" data-parallax-speed="0.08" data-mouse-depth="0.06"></div>
-      <div class="ga-layer ga-hills" data-parallax-speed="-0.06" data-mouse-depth="0.02">
-        <div class="ga-hill ga-hill-back"></div>
-        <div class="ga-hill ga-hill-mid"></div>
-        <div class="ga-hill ga-hill-front"></div>
-      </div>
-      <div class="ga-layer ga-mascot" data-parallax-speed="-0.14" data-mouse-depth="0.08">
-        <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
-          <source src="/moji-mascot-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
+  <!-- ============ CINEMATIC INTRO — scroll-scrubbed video ============ -->
+  <section class="ga-cine" id="top" aria-label="Hire Moji Studios">
+    <div class="ga-cine-stage">
+      <video class="ga-cine-video" muted playsinline preload="auto" aria-hidden="true">
+        <source src="/mojistudios_Sunshine.mp4?v=kf" type="video/mp4" />
+      </video>
+      <div class="ga-cine-scrim" aria-hidden="true"></div>
 
-    <div class="ga-hero-content">
-      <span class="ga-kicker" data-hero-reveal>▶ Creative Studio for Hire</span>
-      <h1 class="ga-hero-title">
-        <span class="ga-line"><span>LET'S MAKE</span></span>
-        <span class="ga-line"><span>SOMETHING GOOD</span></span>
-      </h1>
-      <p class="ga-hero-sub" data-hero-reveal>Websites &amp; hosting · video &amp; AI · music · brand. One studio, full pipeline, any style — we make your project look and sound as charming as ours. ✨</p>
-      <div class="ga-hero-cta-row" data-hero-reveal>
-        <a href="#contact" class="ga-btn magnetic">Start your project ↓</a>
-        <a href="#services" class="ga-btn ga-btn-ghost">See services</a>
+      <div class="ga-hero-content">
+        <span class="ga-kicker" data-hero-reveal>▶ Creative Studio for Hire</span>
+        <h1 class="ga-hero-title">
+          <span class="ga-line"><span>LET'S MAKE</span></span>
+          <span class="ga-line"><span>SOMETHING GOOD</span></span>
+        </h1>
+        <div class="ga-hero-cta-row" data-hero-reveal>
+          <a href="#contact" class="ga-btn magnetic">Start your project ↓</a>
+          <a href="#services" class="ga-btn ga-btn-ghost">See services</a>
+        </div>
       </div>
-    </div>
 
-    <div class="ga-scrollcue" aria-hidden="true">
-      <span>Scroll</span>
-      <span class="chev"></span>
+      <div class="ga-scrollcue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="chev"></span>
+      </div>
     </div>
   </section>
 
