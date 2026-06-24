@@ -187,12 +187,13 @@
 }
 .ga-cine .ga-hero-content { z-index: 2; will-change: transform, opacity; }
 .ga-cine .ga-scrollcue { z-index: 3; }
+/* Mobile keeps the tall section + sticky stage so scroll-scrubbing works too.
+   Use svh so the section height is stable as the mobile toolbar shows/hides. */
 @media (max-width: 720px) {
-  /* Mobile: no scrub — a normal one-screen video hero */
-  .ga-cine { height: auto; }
-  .ga-cine-stage { position: relative; height: 100svh; }
+  .ga-cine { height: 300svh; }
 }
 @media (prefers-reduced-motion: reduce) {
+  /* No scrub for reduced motion — collapse to a single static screen */
   .ga-cine { height: auto; }
   .ga-cine-stage { position: relative; height: 100svh; }
 }

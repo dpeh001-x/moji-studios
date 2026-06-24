@@ -189,20 +189,23 @@
     if (!sec || !video) return;
     var content = sec.querySelector('.ga-hero-content');
     var cue = sec.querySelector('.ga-scrollcue');
-    var canScrub = window.matchMedia('(min-width: 721px) and (pointer: fine)').matches;
-
-    // Reduced motion: leave the poster/first frame static, no motion at all.
+    // Reduced motion: leave the first frame static, no motion at all.
     if (reduce) return;
 
-    // Mobile / touch / coarse pointer: programmatic seeking is unreliable —
-    // fall back to a simple muted autoplay loop.
-    if (!canScrub) {
-      video.loop = true;
-      video.setAttribute('autoplay', '');
-      var pm = video.play();
-      if (pm && pm.catch) pm.catch(function () {});
-      return;
+    // Scrub on ALL devices, including mobile/touch. Muted inline videos can be
+    // seeked via currentTime on modern browsers; on iOS, seeking is unlocked by
+    // a muted play() — so prime it immediately and again on first interaction.
+    var primed = false;
+    function prime() {
+      if (primed) return;
+      primed = true;
+      var pp = video.play();
+      if (pp && pp.then) pp.then(function () { video.pause(); }).catch(function () { try { video.pause(); } catch (e) {} });
+      else { try { video.pause(); } catch (e) {} }
     }
+    prime();
+    window.addEventListener('touchstart', prime, { passive: true });
+    window.addEventListener('pointerdown', prime, { passive: true });
 
     video.pause();
     var duration = 0, targetT = 0, curT = 0, ticking = false, running = false;
