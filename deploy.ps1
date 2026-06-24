@@ -10,6 +10,7 @@ $key = "04fbe46d731747a20579b2c522f5e073"
 $urls = @(
   "https://moji-studios.com/",
   "https://moji-studios.com/games/",
+  "https://moji-studios.com/services/",
   "https://moji-studios.com/games/mojiworld/",
   "https://moji-studios.com/games/bitmon/",
   "https://moji-studios.com/games/chubby-bird/",
