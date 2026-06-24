@@ -33,7 +33,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Press+Start+2P&family=VT323&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="/styles.css?v=20260613i" />
-<link rel="stylesheet" href="/games.css?v=20260624b" />
+<link rel="stylesheet" href="/games.css?v=20260624d" />
 
 <script type="application/ld+json">
 {
@@ -169,41 +169,31 @@
 </header>
 
 <main>
-  <!-- ============ HERO ============ -->
-  <section class="ga-hero" data-sky-top="#ffb3d9" data-sky-bot="#7ec8ff" aria-label="Games by Moji Studios">
-    <div class="ga-hero-layers" aria-hidden="true">
-      <div class="ga-layer ga-sun" data-parallax-speed="0.22" data-mouse-depth="0.015"></div>
-      <div class="ga-layer ga-cloud ga-cloud-a" data-parallax-speed="0.16" data-mouse-depth="0.03"></div>
-      <div class="ga-layer ga-cloud ga-cloud-b" data-parallax-speed="0.12" data-mouse-depth="0.045"></div>
-      <div class="ga-layer ga-cloud ga-cloud-c" data-parallax-speed="0.08" data-mouse-depth="0.06"></div>
-      <div class="ga-layer ga-hills" data-parallax-speed="-0.06" data-mouse-depth="0.02">
-        <div class="ga-hill ga-hill-back"></div>
-        <div class="ga-hill ga-hill-mid"></div>
-        <div class="ga-hill ga-hill-front"></div>
-      </div>
-      <div class="ga-layer ga-mascot" data-parallax-speed="-0.14" data-mouse-depth="0.08">
-        <video autoplay muted loop playsinline preload="auto" aria-hidden="true">
-          <source src="/moji-mascot-1.mp4" type="video/mp4" />
-        </video>
-      </div>
-    </div>
+  <!-- ============ CINEMATIC INTRO — scroll-scrubbed video ============ -->
+  <section class="ga-cine" id="top" data-sky-top="#ffb3d9" data-sky-bot="#7ec8ff" aria-label="Games by Moji Studios">
+    <div class="ga-cine-stage">
+      <video class="ga-cine-video" muted playsinline preload="auto" poster="/moji-logo-poster.png" aria-hidden="true">
+        <source src="/mojistudios_intro.mp4" type="video/mp4" />
+      </video>
+      <div class="ga-cine-scrim" aria-hidden="true"></div>
 
-    <div class="ga-hero-content">
-      <span class="ga-kicker" data-hero-reveal>▶ Moji Studios Presents</span>
-      <h1 class="ga-hero-title">
-        <span class="ga-line"><span>OUR</span></span>
-        <span class="ga-line"><span>GAMES</span></span>
-      </h1>
-      <p class="ga-hero-sub" data-hero-reveal>Three hand-pixeled worlds, born from the early 2000s. One you can play right now — two on the way. Scroll in. 🌀</p>
-      <div class="ga-hero-cta-row" data-hero-reveal>
-        <a href="#mojiworld" class="ga-btn">Enter the worlds ↓</a>
-        <a href="/chubbybird/" class="ga-btn ga-btn-ghost">▶ Play free now</a>
+      <div class="ga-hero-content">
+        <span class="ga-kicker" data-hero-reveal>▶ Moji Studios Presents</span>
+        <h1 class="ga-hero-title">
+          <span class="ga-line"><span>OUR</span></span>
+          <span class="ga-line"><span>GAMES</span></span>
+        </h1>
+        <p class="ga-hero-sub" data-hero-reveal>Three hand-pixeled worlds, born from the early 2000s. One you can play right now — two on the way. Scroll in. 🌀</p>
+        <div class="ga-hero-cta-row" data-hero-reveal>
+          <a href="#mojiworld" class="ga-btn">Enter the worlds ↓</a>
+          <a href="/chubbybird/" class="ga-btn ga-btn-ghost">▶ Play free now</a>
+        </div>
       </div>
-    </div>
 
-    <div class="ga-scrollcue" aria-hidden="true">
-      <span>Scroll</span>
-      <span class="chev"></span>
+      <div class="ga-scrollcue" aria-hidden="true">
+        <span>Scroll</span>
+        <span class="chev"></span>
+      </div>
     </div>
   </section>
 
@@ -454,6 +444,6 @@
 </div>
 
 <script src="/script.js?v=20260624c"></script>
-<script src="/games.js?v=20260624b"></script>
+<script src="/games.js?v=20260624d"></script>
 </body>
 </html>

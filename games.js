@@ -182,6 +182,68 @@
     requestAnimationFrame(loop);
   })();
 
+  /* ---------- Cinematic intro: scroll-scrubbed video (Apple-style) ---------- */
+  (function () {
+    var sec = document.querySelector('.ga-cine');
+    var video = document.querySelector('.ga-cine-video');
+    if (!sec || !video) return;
+    var content = sec.querySelector('.ga-hero-content');
+    var cue = sec.querySelector('.ga-scrollcue');
+    var canScrub = window.matchMedia('(min-width: 721px) and (pointer: fine)').matches;
+
+    // Reduced motion: leave the poster/first frame static, no motion at all.
+    if (reduce) return;
+
+    // Mobile / touch / coarse pointer: programmatic seeking is unreliable —
+    // fall back to a simple muted autoplay loop.
+    if (!canScrub) {
+      video.loop = true;
+      video.setAttribute('autoplay', '');
+      var pm = video.play();
+      if (pm && pm.catch) pm.catch(function () {});
+      return;
+    }
+
+    video.pause();
+    var duration = 0, targetT = 0, curT = 0, ticking = false, running = false;
+
+    function setDur() { if (video.duration && isFinite(video.duration)) duration = video.duration; }
+    if (video.readyState >= 1) setDur();
+    video.addEventListener('loadedmetadata', setDur);
+    video.addEventListener('loadeddata', function () { setDur(); update(); });
+
+    function update() {
+      ticking = false;
+      var total = sec.offsetHeight - window.innerHeight;
+      if (total <= 0) return;
+      var top = sec.getBoundingClientRect().top;
+      var prog = Math.min(Math.max(-top / total, 0), 1);
+      targetT = prog * (duration || 0);
+      // Overlay parallax + fade as the intro plays through
+      if (content) {
+        content.style.opacity = String(Math.max(0, 1 - prog * 1.7));
+        content.style.transform = 'translate3d(0,' + (-prog * 90).toFixed(1) + 'px,0)';
+      }
+      if (cue) cue.style.opacity = String(Math.max(0, 1 - prog * 4));
+      if (!running) { running = true; requestAnimationFrame(scrub); }
+    }
+
+    function scrub() {
+      curT += (targetT - curT) * 0.2; // lerp smooths sparse-keyframe seeking
+      if (Math.abs(targetT - curT) < 0.01) curT = targetT;
+      if (duration && !video.seeking) {
+        try { video.currentTime = curT; } catch (e) {}
+      }
+      if (Math.abs(targetT - curT) > 0.005) requestAnimationFrame(scrub);
+      else running = false;
+    }
+
+    function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  })();
+
   /* ---------- Play chapter videos only while on-screen ---------- */
   (function () {
     var vids = [].slice.call(document.querySelectorAll('video[data-autoplay-inview]'));
