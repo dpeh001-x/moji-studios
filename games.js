@@ -189,6 +189,38 @@
     if (!sec || !video) return;
     var content = sec.querySelector('.ga-hero-content');
     var cue = sec.querySelector('.ga-scrollcue');
+
+    // Sequential zoom-in + fade-out layers, driven by scroll progress.
+    // Each layer scales up and fades over its own [a,b] slice of the scroll.
+    var titleLines = [].slice.call(sec.querySelectorAll('.ga-hero-title .ga-line'));
+    var ctaBtns = [].slice.call(sec.querySelectorAll('.ga-hero-cta-row a'));
+    var kickerEl = sec.querySelector('.ga-kicker');
+    var seqLayers = [];
+    if (kickerEl) seqLayers.push({ el: kickerEl, a: 0.00, b: 0.18 });
+    if (titleLines[0]) seqLayers.push({ el: titleLines[0], a: 0.08, b: 0.32 });
+    if (titleLines[1]) seqLayers.push({ el: titleLines[1], a: 0.22, b: 0.46 });
+    if (ctaBtns[0]) seqLayers.push({ el: ctaBtns[0], a: 0.38, b: 0.58 });
+    if (ctaBtns[1]) seqLayers.push({ el: ctaBtns[1], a: 0.44, b: 0.64 });
+    seqLayers.forEach(function (l) { l.el.style.willChange = 'transform, opacity'; });
+
+    function applySeq(prog) {
+      if (prog <= 0.001) {
+        // At the very top, hand control back to the entrance/resting styles
+        for (var j = 0; j < seqLayers.length; j++) {
+          seqLayers[j].el.style.transform = '';
+          seqLayers[j].el.style.opacity = '';
+        }
+        return;
+      }
+      for (var i = 0; i < seqLayers.length; i++) {
+        var l = seqLayers[i];
+        var t = (prog - l.a) / (l.b - l.a);
+        t = t < 0 ? 0 : (t > 1 ? 1 : t);
+        l.el.style.transform = 'scale(' + (1 + t * 0.85).toFixed(3) + ')';
+        l.el.style.opacity = (1 - t).toFixed(3);
+      }
+    }
+
     // Reduced motion: leave the first frame static, no motion at all.
     if (reduce) return;
 
@@ -222,11 +254,8 @@
       var top = sec.getBoundingClientRect().top;
       var prog = Math.min(Math.max(-top / total, 0), 1);
       targetT = prog * (duration || 0);
-      // Subtle parallax drift on the overlay; keep it visible (the tabs are
-      // the only navigation on this solo page).
-      if (content) {
-        content.style.transform = 'translate3d(0,' + (-prog * 40).toFixed(1) + 'px,0)';
-      }
+      // Sequential zoom-in + fade-out of the text layers and buttons
+      applySeq(prog);
       if (cue) cue.style.opacity = String(Math.max(0, 1 - prog * 4));
       if (!running) { running = true; requestAnimationFrame(scrub); }
     }
