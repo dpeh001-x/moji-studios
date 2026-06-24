@@ -175,6 +175,10 @@
   display: block;
   z-index: 0;
   background: #120a1e;
+  /* Keep the video on its own compositor layer so seek repaints stay cheap */
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 .ga-cine-scrim {
   position: absolute;

@@ -261,12 +261,14 @@
     }
 
     function scrub() {
-      curT += (targetT - curT) * 0.2; // lerp smooths sparse-keyframe seeking
-      if (Math.abs(targetT - curT) < 0.01) curT = targetT;
-      if (duration && !video.seeking) {
+      curT += (targetT - curT) * 0.16; // gentle lerp = buttery, jitter-free motion
+      if (Math.abs(targetT - curT) < 0.004) curT = targetT;
+      // Every frame is a keyframe now, so seeks are instant — set each frame
+      // (no seeking guard) for tight, smooth tracking.
+      if (duration) {
         try { video.currentTime = curT; } catch (e) {}
       }
-      if (Math.abs(targetT - curT) > 0.005) requestAnimationFrame(scrub);
+      if (Math.abs(targetT - curT) > 0.002) requestAnimationFrame(scrub);
       else running = false;
     }
 
