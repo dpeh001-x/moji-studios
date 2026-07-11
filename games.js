@@ -190,6 +190,14 @@
     var content = sec.querySelector('.ga-hero-content');
     var cue = sec.querySelector('.ga-scrollcue');
 
+    // Pick the intro asset before anything else touches the video: phones get
+    // a lighter 720p all-intra encode (mobile decoders seek high-bitrate 1080p
+    // I-frames too slowly for 60fps scrubbing, and it buffers in half the time
+    // on cellular). Done here, not via <source>, so only one file downloads.
+    var wantMobile = window.matchMedia('(max-width: 820px), (pointer: coarse) and (max-width: 1100px)').matches;
+    var chosenSrc = video.getAttribute(wantMobile ? 'data-src-mobile' : 'data-src-desktop');
+    if (chosenSrc && !video.getAttribute('src')) video.src = chosenSrc;
+
     // Sequential zoom-in + fade-out layers, driven by scroll progress.
     // Each layer scales up and fades over its own [a,b] slice of the scroll.
     var titleLines = [].slice.call(sec.querySelectorAll('.ga-hero-title .ga-line'));
@@ -260,17 +268,32 @@
       if (!running) { running = true; requestAnimationFrame(scrub); }
     }
 
+    // Prefer fastSeek where it exists (Safari/iOS): with every frame a
+    // keyframe it's exact anyway, and it skips Safari's slow precise-seek path.
+    var canFastSeek = typeof video.fastSeek === 'function';
+    function seekVideo(t) {
+      try { if (canFastSeek) video.fastSeek(t); else video.currentTime = t; } catch (e) {}
+    }
+
     function scrub() {
       curT += (targetT - curT) * 0.16; // gentle lerp = buttery, jitter-free motion
       if (Math.abs(targetT - curT) < 0.004) curT = targetT;
-      // Every frame is a keyframe now, so seeks are instant — set each frame
-      // (no seeking guard) for tight, smooth tracking.
-      if (duration) {
-        try { video.currentTime = curT; } catch (e) {}
-      }
+      // Every frame is a keyframe so seeks are near-instant, but on mobile a
+      // seek can still outlive a 60fps frame — never stack a new seek on a
+      // pending one or the decoder thrashes and the scrub visibly chokes.
+      if (duration && !video.seeking) seekVideo(curT);
       if (Math.abs(targetT - curT) > 0.002) requestAnimationFrame(scrub);
       else running = false;
     }
+
+    // If the loop wound down while the last seek was still in flight, the
+    // displayed frame can lag curT — issue one catch-up seek when it lands.
+    video.addEventListener('seeked', function () {
+      if (!running && duration && Math.abs(video.currentTime - curT) > 0.005) {
+        running = true;
+        requestAnimationFrame(scrub);
+      }
+    });
 
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });
