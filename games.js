@@ -271,29 +271,51 @@
     // Prefer fastSeek where it exists (Safari/iOS): with every frame a
     // keyframe it's exact anyway, and it skips Safari's slow precise-seek path.
     var canFastSeek = typeof video.fastSeek === 'function';
-    function seekVideo(t) {
-      try { if (canFastSeek) video.fastSeek(t); else video.currentTime = t; } catch (e) {}
-    }
+    var hasRVFC = typeof video.requestVideoFrameCallback === 'function';
+    var FPS = 24; // both intro encodes are 24fps
 
-    function scrub() {
-      curT += (targetT - curT) * 0.16; // gentle lerp = buttery, jitter-free motion
+    // Seek pipeline: at most one seek in flight, deduped to the 24fps frame
+    // grid. rAF runs at 60-120Hz, so blindly seeking every tick re-decodes
+    // the same source frame most ticks — skipped seeks are what buy the
+    // mobile decoder enough headroom to never fall behind the scroll.
+    var pendingSeek = false, shownFrame = -1;
+    function trySeek() {
+      if (!duration || pendingSeek) return;
+      var f = Math.round(curT * FPS);
+      if (f === shownFrame) return;
+      // aim mid-frame so decoder rounding can't land on a neighbour frame
+      var t = Math.min((f + 0.5) / FPS, duration - 0.01);
+      try {
+        if (canFastSeek) video.fastSeek(t); else video.currentTime = t;
+        pendingSeek = true;
+        shownFrame = f;
+        // Pace the next seek off actual frame presentation when we can:
+        // the pipeline then self-tunes to whatever rate this device sustains.
+        if (hasRVFC) video.requestVideoFrameCallback(seekDone);
+      } catch (e) {}
+    }
+    function seekDone() {
+      pendingSeek = false;
+      trySeek(); // catch up to wherever the lerp is now
+    }
+    // Exactly one pacer per seek: rVFC where supported, else 'seeked' —
+    // both at once would overlap seeks and reintroduce decoder thrash.
+    if (!hasRVFC) video.addEventListener('seeked', seekDone);
+    // rVFC never fires in a hidden tab; don't come back with a stuck pipeline.
+    document.addEventListener('visibilitychange', function () { pendingSeek = false; });
+
+    var lastTick = 0;
+    function scrub(now) {
+      // Time-based smoothing (≈ the old 0.16/frame at 60Hz) so the feel is
+      // identical on 120Hz phones and through dropped frames.
+      var dt = lastTick ? Math.min((now - lastTick) / 1000, 0.1) : 1 / 60;
+      lastTick = now;
+      curT += (targetT - curT) * (1 - Math.exp(-10.5 * dt));
       if (Math.abs(targetT - curT) < 0.004) curT = targetT;
-      // Every frame is a keyframe so seeks are near-instant, but on mobile a
-      // seek can still outlive a 60fps frame — never stack a new seek on a
-      // pending one or the decoder thrashes and the scrub visibly chokes.
-      if (duration && !video.seeking) seekVideo(curT);
+      trySeek();
       if (Math.abs(targetT - curT) > 0.002) requestAnimationFrame(scrub);
-      else running = false;
+      else { running = false; lastTick = 0; }
     }
-
-    // If the loop wound down while the last seek was still in flight, the
-    // displayed frame can lag curT — issue one catch-up seek when it lands.
-    video.addEventListener('seeked', function () {
-      if (!running && duration && Math.abs(video.currentTime - curT) > 0.005) {
-        running = true;
-        requestAnimationFrame(scrub);
-      }
-    });
 
     function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
     window.addEventListener('scroll', onScroll, { passive: true });

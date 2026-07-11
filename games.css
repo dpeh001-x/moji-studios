@@ -118,6 +118,14 @@
   -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   margin-bottom: 1.4rem;
 }
+/* Mobile: backdrop blur forces a re-blur of the scrubbing video behind the
+   kicker every frame — a real jank source. A denser plain fill reads the same. */
+@media (max-width: 820px), (pointer: coarse) {
+  .ga-kicker {
+    -webkit-backdrop-filter: none; backdrop-filter: none;
+    background: rgba(26,15,34,0.72);
+  }
+}
 .ga-hero-title {
   font-family: var(--font-display); font-weight: 700;
   font-size: clamp(3.5rem, 16vw, 11rem);
