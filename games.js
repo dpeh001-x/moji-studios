@@ -278,31 +278,46 @@
     // grid. rAF runs at 60-120Hz, so blindly seeking every tick re-decodes
     // the same source frame most ticks — skipped seeks are what buy the
     // mobile decoder enough headroom to never fall behind the scroll.
-    var pendingSeek = false, shownFrame = -1;
+    //
+    // Pacing must survive every browser's quirks, so three pacers race per
+    // seek and a generation counter makes all but the first a no-op:
+    //  - 'seeked'  — the dependable baseline; fires everywhere, incl. iOS.
+    //  - rVFC      — presentation-accurate, lets fast devices go sooner. NOT
+    //                a sole pacer: iOS WebKit often never fires it for seeks
+    //                on a paused video (which froze the scrub on iPhones).
+    //  - watchdog  — 250ms timeout so a device that swallows both events
+    //                stalls for a beat instead of freezing forever.
+    var pendingSeek = false, shownFrame = -1, seekGen = 0, watchdog = 0;
+    function seekDone(gen) {
+      if (gen !== seekGen) return; // stale pacer for an already-superseded seek
+      clearTimeout(watchdog);
+      pendingSeek = false;
+      trySeek(); // catch up to wherever the lerp is now
+    }
     function trySeek() {
       if (!duration || pendingSeek) return;
       var f = Math.round(curT * FPS);
       if (f === shownFrame) return;
       // aim mid-frame so decoder rounding can't land on a neighbour frame
       var t = Math.min((f + 0.5) / FPS, duration - 0.01);
+      var gen = ++seekGen;
       try {
         if (canFastSeek) video.fastSeek(t); else video.currentTime = t;
-        pendingSeek = true;
-        shownFrame = f;
-        // Pace the next seek off actual frame presentation when we can:
-        // the pipeline then self-tunes to whatever rate this device sustains.
-        if (hasRVFC) video.requestVideoFrameCallback(seekDone);
-      } catch (e) {}
+      } catch (e) { return; }
+      pendingSeek = true;
+      shownFrame = f;
+      if (hasRVFC) video.requestVideoFrameCallback(function () { seekDone(gen); });
+      watchdog = setTimeout(function () { seekDone(gen); }, 250);
     }
-    function seekDone() {
-      pendingSeek = false;
-      trySeek(); // catch up to wherever the lerp is now
-    }
-    // Exactly one pacer per seek: rVFC where supported, else 'seeked' —
-    // both at once would overlap seeks and reintroduce decoder thrash.
-    if (!hasRVFC) video.addEventListener('seeked', seekDone);
-    // rVFC never fires in a hidden tab; don't come back with a stuck pipeline.
-    document.addEventListener('visibilitychange', function () { pendingSeek = false; });
+    video.addEventListener('seeked', function () {
+      // a late 'seeked' from a watchdog-recovered seek can arrive while the
+      // next seek is genuinely in flight — never clear a live seek
+      if (!video.seeking) seekDone(seekGen);
+    });
+    // rVFC and timers are throttled in hidden tabs; don't come back stuck.
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { clearTimeout(watchdog); pendingSeek = false; }
+    });
 
     var lastTick = 0;
     function scrub(now) {
